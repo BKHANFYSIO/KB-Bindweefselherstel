@@ -5,6 +5,12 @@ function DeBasisSection() {
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-blue-700">De Basis: Wat is Bindweefsel?</h2>
       
+      <div className="bg-blue-50 p-6 rounded-lg shadow-sm">
+        <p className="text-gray-700 leading-relaxed">
+          Welkom bij De Basis! Dit is je startpunt voor het leren over bindweefselherstel. Hier vind je alle fundamentele kennis die je nodig hebt om het onderwerp goed te begrijpen. Of je nu net begint of je kennis wilt opfrissen, dit onderdeel biedt een solide basis met duidelijke uitleg en betrouwbare bronnen. Neem de tijd om de stof goed door te nemen - een stevige basis maakt het leren van complexere onderwerpen later veel makkelijker.
+        </p>
+      </div>
+
       <div className="prose max-w-none">
         <h3 className="text-xl font-medium text-gray-800 mt-6">Introductie tot Bindweefsel</h3>
         <p className="text-gray-700 leading-relaxed">

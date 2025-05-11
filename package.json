@@ -4,7 +4,7 @@
   "description": "Een interactieve leermodule over bindweefselherstel",
   "main": "src/index.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
