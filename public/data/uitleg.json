@@ -1,0 +1,27 @@
+[
+  {
+    "id": "uitleg_vraag_collega_1", 
+    "type": "colleague", 
+    "questionText": "Beschrijf aan een collega-fysiotherapeut het fysiologische proces van de proliferatiefase tijdens bindweefselherstel na een spierscheuring.",
+    "criteria": [
+      "Benoem de belangrijkste cellen en hun rol (bv. fibroblasten, endotheelcellen).",
+      "Beschrijf de vorming van granulatieweefsel en angiogenese.",
+      "Noem het type collageen dat initieel wordt afgezet.",
+      "Gebruik correcte fysiologische vaktermen."
+    ],
+    "modelAnswer": "Tijdens de proliferatiefase (dag 3-21 ong.) migreren fibroblasten naar het wondgebied en starten de synthese van ECM, voornamelijk type III collageen, wat zorgt voor initiële matrixstructuur. Parallel vindt angiogenese plaats door endotheelcelproliferatie, resulterend in de vorming van capillairen en rood granulatieweefsel. Myofibroblasten dragen bij aan wondcontractie door hun contractiele eigenschappen."
+  },
+  {
+    "id": "uitleg_vraag_client_1", 
+    "type": "client", 
+    "questionText": "Leg aan een cliënt met een recente enkelbandblessure (verstuiking) uit waarom het belangrijk is om de eerste dagen rust te houden en daarna voorzichtig te gaan bewegen.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal (vermijd te veel jargon).",
+      "Leg het concept 'ontsteking' kort en simpel uit (bv. 'opruimreactie', 'natuurlijke reactie').",
+      "Verklaar het belang van relatieve rust voor de eerste fase (bescherming, herstelproces starten).",
+      "Verklaar waarom vroege, gedoseerde beweging daarna gunstig is (bv. 'weefsel sterker maken', 'juiste richting geven').",
+      "Gebruik eventueel een eenvoudige analogie (bv. 'bouwstenen leggen')."
+    ],
+    "modelAnswer": "Na het verstuiken van je enkel reageert je lichaam met een natuurlijke 'opruimreactie', dat noemen we ontsteking. Dit is nodig voor herstel. De eerste paar dagen is het slim om je enkel wat rust te geven, zodat deze reactie goed kan verlopen en je de enkel beschermt. Zie het als de fundering leggen voor een nieuw muurtje. Daarna is het juist goed om voorzichtig te gaan bewegen op geleide van de pijn. Vergelijk het met de 'bouwstenen' (het nieuwe weefsel) in de juiste richting leggen en langzaam sterker maken. Door gedoseerd te bewegen, help je je enkel om weer sterk en stabiel te worden."
+  }
+] 

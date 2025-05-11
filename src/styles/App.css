@@ -65,4 +65,14 @@
   .main-content {
     padding: 1rem;
   }
+}
+
+.qr-code-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 } 

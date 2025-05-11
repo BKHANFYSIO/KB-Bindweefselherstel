@@ -1,0 +1,7 @@
+[
+  { "id": "term1", "term": "Fibroblast", "definition": "De belangrijkste cel in bindweefsel, verantwoordelijk voor de productie van de extracellulaire matrix componenten zoals collageen." },
+  { "id": "term2", "term": "Collageen", "definition": "Een structureel eiwit dat zorgt voor treksterkte en stevigheid in bindweefsel. Er bestaan verschillende types met specifieke functies." },
+  { "id": "term3", "term": "Extracellulaire Matrix (ECM)", "definition": "Het netwerk van eiwitten (zoals collageen, elastine) en andere moleculen buiten de cellen dat structurele en biochemische ondersteuning biedt aan de omliggende cellen." },
+  { "id": "term4", "term": "Grondsubstantie", "definition": "Een gel-achtige substantie in de ECM, rijk aan water, proteoglycanen en glycoproteïnen, die compressie weerstaat en transport van voedingsstoffen faciliteert." },
+  { "id": "term5", "term": "Wondgenezing Fasen", "definition": "Het proces van weefselherstel na letsel, typisch onderverdeeld in ontsteking, proliferatie, en remodellering." }
+] 

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "mc_vraag_1",
+    "questionText": "Welk type collageen is dominant aanwezig in de vroege proliferatiefase van wondgenezing en zorgt voor de initiële matrix?",
+    "options": ["Type I Collageen", "Type II Collageen", "Type III Collageen", "Type IV Collageen"],
+    "correctOptionIndex": 2,
+    "feedback": "Type III collageen wordt vroeg in de wondgenezing afgezet door fibroblasten en vormt een initiële, flexibele matrix die later grotendeels wordt vervangen door het sterkere Type I collageen."
+  },
+  {
+    "id": "mc_vraag_2",
+    "questionText": "Welke cel is primair verantwoordelijk voor fagocytose (opruimen van celresten en bacteriën) tijdens de ontstekingsfase?",
+    "options": ["Fibroblast", "Macrofagen", "Endotheelcel", "Mastcel"],
+    "correctOptionIndex": 1,
+    "feedback": "Macrofagen zijn cruciale fagocyten in de ontstekingsfase; ze ruimen dode cellen, bacteriën en beschadigd weefsel op en scheiden groeifactoren uit die het herstelproces stimuleren."
+  },
+  {
+    "id": "mc_vraag_3",
+    "questionText": "Angiogenese, de vorming van nieuwe bloedvaten, is een kenmerk van welke fase van wondgenezing?",
+    "options": ["Hemostase", "Ontstekingsfase", "Proliferatiefase", "Remodelleringsfase"],
+    "correctOptionIndex": 2,
+    "feedback": "Angiogenese is essentieel tijdens de proliferatiefase om het nieuw gevormde granulatieweefsel te voorzien van zuurstof en voedingsstoffen, nodig voor celactiviteit en matrixsynthese."
+  }
+] 
