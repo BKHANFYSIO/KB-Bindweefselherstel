@@ -18,7 +18,7 @@ import IntroductieSection from './components/IntroductieSection';
 import { generateCertificatePDF } from './utils'; // Import via utils/index.js
 
 function App() {
-  const [activeSection, setActiveSection] = useState('de_basis');
+  const [activeSection, setActiveSection] = useState('introductie');
   const [answers, setAnswers] = useState(() => {
     const savedAnswers = localStorage.getItem('userAnswers');
     return savedAnswers ? JSON.parse(savedAnswers) : {};

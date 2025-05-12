@@ -141,7 +141,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
             <ul className="list-disc ml-5 mt-2 space-y-1 text-gray-700">
               <li>Het uit je hoofd ophalen van het goede antwoord heeft een veel sterker leereffect dan het herkennen van antwoordopties.</li>
               <li>Neem even de tijd om goed na te denken over het antwoord voordat je de opties bekijkt.</li>
-              <li>Dit voelt moeilijk voelen, maar het is bewezen veel effectiever voor je lange termijn geheugen.</li>
+              <li>Dit voelt moeilijker, maar het is bewezen veel effectiever voor je lange termijn geheugen.</li>
             </ul>
           </div>
         )}
