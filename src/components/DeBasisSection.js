@@ -55,7 +55,7 @@ function DeBasisSection() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-2xl mx-auto p-4 sm:p-6 space-y-8">
       {/* Samenvatting en verdieping */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold text-blue-700 mb-2">De Basis</h2>
