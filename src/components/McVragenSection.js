@@ -7,6 +7,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
   const [showReview, setShowReview] = useState(false);
   const [reviewMode, setReviewMode] = useState('all'); // 'all' or 'incorrect'
   const [showIntro, setShowIntro] = useState(true);
+  const [showTips, setShowTips] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [shuffledOptions, setShuffledOptions] = useState({});
@@ -125,6 +126,27 @@ function McVragenSection({ questions, scores, onScoreChange }) {
         )}
       </div>
 
+      <div className="mb-4">
+        <button
+          className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
+          onClick={() => setShowTips((prev) => !prev)}
+          aria-expanded={showTips}
+          aria-controls="mcvragen-tips"
+        >
+          {showTips ? '▼' : '►'} Bekijk tips voor effectief oefenen
+        </button>
+        {showTips && (
+          <div id="mcvragen-tips" className="bg-blue-50 p-6 rounded-lg shadow-sm mt-2">
+            <strong>Tips voor effectief oefenen:</strong>
+            <ul className="list-disc ml-5 mt-2 space-y-1 text-gray-700">
+              <li>Het uit je hoofd ophalen van het goede antwoord heeft een veel sterker leereffect dan het herkennen van antwoordopties.</li>
+              <li>Neem even de tijd om goed na te denken over het antwoord voordat je de opties bekijkt.</li>
+              <li>Dit voelt moeilijk voelen, maar het is bewezen veel effectiever voor je lange termijn geheugen.</li>
+            </ul>
+          </div>
+        )}
+      </div>
+
       <div className="mb-6 flex justify-between items-center">
         <h2 className="text-2xl font-semibold text-blue-700">Multiple Choice Vragen</h2>
         <div className="text-gray-600">
@@ -137,23 +159,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
           {currentQuestion.questionText}
         </p>
 
-        {!showOptions && !hasAnswered && (
-          <div className="bg-blue-50 p-6 rounded-lg mb-4">
-            <p className="text-gray-700 mb-4">
-              Het uit je hoofd ophalen van het goede antwoord heeft een veel sterker leereffect dan het herkennen van antwoord opties. 
-              Neem even de tijd om goed na te denken over het antwoord voordat je de opties bekijkt. 
-              Dit kan in het begin moeilijk voelen, maar het is bewezen veel effectiever voor je lange termijn geheugen.
-            </p>
-            <button
-              onClick={() => setShowOptions(true)}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-            >
-              Laat antwoord opties zien
-            </button>
-          </div>
-        )}
-
-        {showOptions && (
+        {((showOptions && !showReview) || showReview) && (
           <div className="space-y-3">
             {shuffledOptions[currentQuestion.id]?.options.map((option, optionIndex) => (
               <label
@@ -174,7 +180,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
                   value={optionIndex}
                   checked={selectedAnswers[currentQuestion.id] === optionIndex}
                   onChange={() => handleAnswerSelect(currentQuestion.id, optionIndex)}
-                  disabled={hasAnswered}
+                  disabled={hasAnswered || showReview}
                   className="mr-3"
                 />
                 <span className={`${
@@ -191,7 +197,18 @@ function McVragenSection({ questions, scores, onScoreChange }) {
           </div>
         )}
 
-        {hasAnswered && (
+        {!showOptions && !hasAnswered && !showReview && (
+          <div className="bg-blue-50 p-6 rounded-lg mb-4">
+            <button
+              onClick={() => setShowOptions(true)}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Laat antwoord opties zien
+            </button>
+          </div>
+        )}
+
+        {(hasAnswered || showReview) && (
           <div className={`mt-4 p-4 rounded-lg ${
             selectedAnswers[currentQuestion.id] === shuffledOptions[currentQuestion.id].correctIndex
               ? 'bg-green-100 text-green-700'
@@ -208,40 +225,34 @@ function McVragenSection({ questions, scores, onScoreChange }) {
       </div>
 
       <div className="flex justify-between items-center">
-        <button
-          onClick={goToPreviousQuestion}
-          disabled={currentQuestionIndex === 0}
-          className={`px-4 py-2 rounded-lg font-medium ${
-            currentQuestionIndex === 0
-              ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-              : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
-          }`}
-        >
-          ← Vorige
-        </button>
-        
-        {currentQuestionIndex === filteredQuestions.length - 1 ? (
-          isSubmitted ? (
-            <div className="flex gap-4">
+        {showReview && (
+          <button
+            onClick={goToPreviousQuestion}
+            disabled={currentQuestionIndex === 0}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              currentQuestionIndex === 0
+                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
+          >
+            ← Vorige
+          </button>
+        )}
+        <div className="flex-1 flex justify-end">
+          {currentQuestionIndex === filteredQuestions.length - 1 ? (
+            isSubmitted ? null : (
               <button
-                onClick={() => startReview('all')}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700"
+                onClick={goToNextQuestion}
+                disabled={!hasAnswered}
+                className={`px-4 py-2 rounded-lg font-medium ${
+                  !hasAnswered
+                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
               >
-                Bekijk alle vragen
+                Afronden
               </button>
-              <button
-                onClick={() => startReview('incorrect')}
-                className="bg-orange-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-orange-700"
-              >
-                Bekijk fout beantwoorde vragen
-              </button>
-              <button
-                onClick={restartQuiz}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700"
-              >
-                Start opnieuw
-              </button>
-            </div>
+            )
           ) : (
             <button
               onClick={goToNextQuestion}
@@ -252,32 +263,22 @@ function McVragenSection({ questions, scores, onScoreChange }) {
                   : 'bg-blue-600 text-white hover:bg-blue-700'
               }`}
             >
-              Afronden
+              Volgende →
             </button>
-          )
-        ) : (
-          <button
-            onClick={goToNextQuestion}
-            disabled={!hasAnswered}
-            className={`px-4 py-2 rounded-lg font-medium ${
-              !hasAnswered
-                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
-          >
-            Volgende →
-          </button>
-        )}
+          )}
+        </div>
       </div>
 
-      {isSubmitted && !showReview && (
+      {(isSubmitted || showReview) && (
         <div className="mt-8 text-center p-6 bg-blue-50 rounded-lg">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="text-4xl font-bold text-blue-700">{percentage}%</div>
-            <p className="text-xl font-medium text-gray-800">
-              Je hebt {totalCorrect} van de {questions.length} vragen correct beantwoord.
-            </p>
-          </div>
+          {isSubmitted && (
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="text-4xl font-bold text-blue-700">{percentage}%</div>
+              <p className="text-xl font-medium text-gray-800">
+                Je hebt {totalCorrect} van de {questions.length} vragen correct beantwoord.
+              </p>
+            </div>
+          )}
           <div className="flex justify-center gap-4">
             <button
               onClick={() => startReview('all')}
@@ -289,7 +290,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
               onClick={() => startReview('incorrect')}
               className="bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700"
             >
-              Bekijk fout beantwoorde vragen
+              Bekijk foutief beantwoorde vragen
             </button>
             <button
               onClick={restartQuiz}

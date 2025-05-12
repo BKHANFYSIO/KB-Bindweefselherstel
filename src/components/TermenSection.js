@@ -56,10 +56,10 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
 
   const startReview = (filterType) => {
     let filteredCards = [];
-    if (filterType === 'Nee') {
-      filteredCards = initialFlashcards.filter(card => assessments[card.id] === 'Nee');
-    } else if (filterType === 'Nee_Redelijk') {
-      filteredCards = initialFlashcards.filter(card => assessments[card.id] === 'Nee' || assessments[card.id] === 'Redelijk');
+    if (filterType === 'Niet') {
+      filteredCards = initialFlashcards.filter(card => assessments[card.id] === 'Niet');
+    } else if (filterType === 'Niet_Redelijk') {
+      filteredCards = initialFlashcards.filter(card => assessments[card.id] === 'Niet' || assessments[card.id] === 'Redelijk');
     } else {
       filteredCards = [...initialFlashcards];
     }
@@ -71,7 +71,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
       setReviewedThisRound([]);
       setShowRepeatDone(false);
     } else {
-      alert(`Geen kaarten gevonden met beoordeling '${filterType === 'Nee' ? 'Nee' : filterType === 'Nee_Redelijk' ? 'Nee of Redelijk' : 'Alles'}'.`);
+      alert(`Geen kaarten gevonden met beoordeling '${filterType === 'Niet' ? 'Niet' : filterType === 'Niet_Redelijk' ? 'Niet of Redelijk' : 'Alles'}'.`);
     }
   };
 
@@ -86,8 +86,8 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
 
   // Helper: zijn alle kaarten beoordeeld?
   const allAssessed = currentFlashcards.every(card => assessments[card.id]);
-  const countNee = initialFlashcards.filter(c => assessments[c.id] === 'Nee').length;
-  const countNeeRedelijk = initialFlashcards.filter(c => assessments[c.id] === 'Nee' || assessments[c.id] === 'Redelijk').length;
+  const countNee = initialFlashcards.filter(c => assessments[c.id] === 'Niet').length;
+  const countNeeRedelijk = initialFlashcards.filter(c => assessments[c.id] === 'Niet' || assessments[c.id] === 'Redelijk').length;
   const countAll = initialFlashcards.length;
 
   if (!currentFlashcards || currentFlashcards.length === 0) {
@@ -144,8 +144,8 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
         </div>
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-2 text-blue-700">
-          Begrippen Trainer {isReviewing ? "(Herhaling)" : ""} ({currentCardIndex + 1}/{currentFlashcards.length})
+        <h2 className="text-2xl font-semibold mb-2 text-blue-700">
+          Begrippen Trainer {isReviewing ? <span className="font-bold text-red-600 ml-2">(Herhaling)</span> : ""} ({currentCardIndex + 1}/{currentFlashcards.length})
         </h2>
         <p className="mb-2 text-gray-600">
           Test en verbeter je kennis van belangrijke termen met deze interactieve flashcards.
@@ -164,7 +164,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
                 <li>Kijk goed naar de term hieronder.</li>
                 <li>Probeer eerst zélf het antwoord te bedenken, zonder direct te klikken.</li>
                 <li>Klik daarna op 'Toon Antwoord' om het juiste antwoord te zien.</li>
-                <li>Beoordeel eerlijk hoe goed je het antwoord wist met de knoppen 'Nee', 'Redelijk' of 'Goed'.</li>
+                <li>Beoordeel eerlijk hoe goed je het antwoord wist met de knoppen 'Niet', 'Redelijk' of 'Goed'.</li>
                 <li>Herhaal de kaarten die je nog niet goed kent.</li>
               </ol>
               <p className="mt-2 text-xs text-gray-500">Tip: Door eerst actief na te denken, leer je effectiever!</p>
@@ -191,14 +191,14 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
                 <p className="text-sm text-gray-600 mb-2">Hoe goed kende je dit?</p>
                 <div className="flex flex-wrap justify-center items-center space-x-3">
                   <button
-                    onClick={() => handleAssessment(currentCard.id, 'Nee')}
+                    onClick={() => handleAssessment(currentCard.id, 'Niet')}
                     className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
-                      assessments[currentCard.id] === 'Nee'
+                      assessments[currentCard.id] === 'Niet'
                         ? 'bg-red-700 ring-2 ring-offset-1 ring-red-700'
                         : 'bg-red-500 hover:bg-red-600'
                     }`}
                   >
-                    Nee
+                    Niet
                   </button>
                   <button
                     onClick={() => handleAssessment(currentCard.id, 'Redelijk')}
@@ -247,9 +247,9 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
             <div className="mt-4">
               <button
                 onClick={startOriginalSet}
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-md"
               >
-                Terug naar oorspronkelijke set
+                Terug naar Oorspronkelijke Set
               </button>
             </div>
           </div>
@@ -262,16 +262,16 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
               <button
-                onClick={() => startReview('Nee')}
+                onClick={() => startReview('Niet')}
                 className="bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors shadow-md"
               >
-                Herhaal 'Nee' ({countNee})
+                Herhaal 'Niet' ({initialFlashcards.filter(c => assessments[c.id] === 'Niet').length})
               </button>
               <button
-                onClick={() => startReview('Nee_Redelijk')}
+                onClick={() => startReview('Niet_Redelijk')}
                 className="bg-orange-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors shadow-md"
               >
-                Herhaal 'Nee & Redelijk' ({countNeeRedelijk})
+                Herhaal 'Niet & Redelijk' ({initialFlashcards.filter(c => assessments[c.id] === 'Niet' || assessments[c.id] === 'Redelijk').length})
               </button>
               <button
                 onClick={() => startReview('Alles')}
@@ -280,17 +280,6 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
                 Herhaal Alles ({countAll})
               </button>
             </div>
-          </div>
-        )}
-        {/* Reset-knop tonen als je in review-mode zit, MAAR NIET als showRepeatDone true is */}
-        {isReviewing && !showRepeatDone && (
-          <div className="mt-8 text-center">
-            <button
-              onClick={startOriginalSet}
-              className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-md"
-            >
-              Terug naar Oorspronkelijke Set
-            </button>
           </div>
         )}
       </div>

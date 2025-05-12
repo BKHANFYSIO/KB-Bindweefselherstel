@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+// import '../styles/qr-animate.css'; // animatie niet meer nodig
 
 function QRCodeComponent({ size = 32 }) {
   const [showModal, setShowModal] = useState(false);

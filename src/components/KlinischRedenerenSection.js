@@ -166,8 +166,16 @@ Geef een gestructureerde analyse met:
                       onClick={() => handleSelfAssessment(level)}
                       className={`px-4 py-2 rounded-lg font-medium capitalize ${
                         selfAssessment[currentCase.id] === level
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? level === 'beginner' 
+                            ? 'bg-red-500 hover:bg-red-600 text-white'
+                            : level === 'gevorderd'
+                            ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                            : 'bg-green-500 hover:bg-green-600 text-white'
+                          : level === 'beginner'
+                          ? 'bg-red-500 hover:bg-red-600 text-white'
+                          : level === 'gevorderd'
+                          ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                          : 'bg-green-500 hover:bg-green-600 text-white'
                       }`}
                     >
                       {level}

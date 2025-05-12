@@ -42,23 +42,20 @@ function Sidebar({ navItems, activeSection, navigateTo, getStatus, overallProgre
         })}
       </ul>
 
-      {/* voortgang en wis knop onderin */}
-      <div className="px-6 py-4 mt-auto flex flex-col items-center gap-3">
-        {/* Wis Alle Voortgang Knop */}
-        <button
-          onClick={onClearAllData}
-          className="w-full text-center px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-100 rounded-md border border-red-300 transition-colors duration-150 ease-in-out"
-        >
-          Wis Alle Voortgang
-        </button>
+      {/* Subtiel horizontaal lijntje */}
+      <div className="px-6 mt-2 mb-2">
+        <hr className="border-gray-200" />
+      </div>
 
-        {/* Verbeterde cirkeldiagram */}
+      {/* Voortgangscirkel en percentage */}
+      <div className="flex items-center justify-center gap-3 px-6 mb-4">
+        {/* Cirkel uitgelijnd met hoofdstuk-cirkels */}
         {(() => {
           const radius = 16;
           const circumference = 2 * Math.PI * radius;
           const progress = Math.max(0, Math.min(1, overallProgress / 100)); // Clamp tussen 0 en 1
           return (
-            <svg width="60" height="60" viewBox="0 0 36 36" className="rotate-[-90deg]">
+            <svg width="40" height="40" viewBox="0 0 36 36" className="rotate-[-90deg]">
               <circle
                 cx="18"
                 cy="18"
@@ -81,7 +78,17 @@ function Sidebar({ navItems, activeSection, navigateTo, getStatus, overallProgre
             </svg>
           );
         })()}
-        <span className="text-sm font-medium text-purple-700">{Math.round(overallProgress)}%</span>
+        <span className="text-base font-semibold text-purple-700">{Math.round(overallProgress)}%</span>
+      </div>
+
+      {/* Wis Alle Voortgang Knop onderaan */}
+      <div className="px-6 mt-auto pb-2">
+        <button
+          onClick={onClearAllData}
+          className="w-full text-center px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-100 rounded-md border border-red-300 transition-colors duration-150 ease-in-out"
+        >
+          Wis Alle Voortgang
+        </button>
       </div>
 
       {/* Aangepaste sluitknop voor mobiel, nu als FAB-stijl linksonder */}

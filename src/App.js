@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import BreinIcoon from './assets/Brein-icoontje-kennisbooster.png';
+import hanSmallLogo from './assets/HAN-logo.png';
 
 // Import section components
 import DeBasisSection from './components/DeBasisSection';
@@ -11,6 +12,7 @@ import KlinischRedenerenSection from './components/KlinischRedenerenSection';
 import EJournalSection from './components/EJournalSection';
 import QRCodeComponent from './components/QRCodeComponent';
 import Sidebar from './components/Sidebar';
+import IntroductieSection from './components/IntroductieSection';
 
 // Verwijder oude data imports
 import { generateCertificatePDF } from './utils'; // Import via utils/index.js
@@ -154,6 +156,7 @@ function App() {
   };
 
   const navItems = [
+    { id: 'introductie', label: 'Introductie & Werkwijze', interactive: false },
     { id: 'de_basis', label: 'De Basis', interactive: false },
     { id: 'begrippen_trainer', label: 'Begrippen Trainer', interactive: true },
     { id: 'mc_vragen', label: 'MC Vragen', interactive: true },
@@ -277,23 +280,21 @@ function App() {
       <div className="flex flex-col flex-1 min-h-screen">
         <header className="bg-blue-600 text-white p-4 shadow-md flex flex-col md:flex-row md:items-center md:justify-center relative">
           <div className="flex flex-col md:flex-row md:items-center gap-2 min-w-0 w-full justify-center md:justify-center">
-            <h1 className="text-2xl font-bold text-center m-0 whitespace-nowrap truncate flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-center m-0 whitespace-nowrap truncate flex flex-col items-center md:flex-row md:items-center gap-0 md:gap-2">
               <span className="inline-flex items-center">
                 {/* Brein-icoon PNG */}
                 <img src={BreinIcoon} alt="Brein icoon" className="w-14 h-14 mr-1 object-contain" />
                 <span className="text-white font-extrabold tracking-wide drop-shadow-sm">KennisBooster</span>
+                <span className="text-gray-100 font-medium ml-1">:</span>
               </span>
-              <span className="mx-1 text-gray-100 font-medium">:</span>
-              <span className="text-white font-semibold">Bindweefselherstel</span>
+              <span className="text-white font-semibold block md:inline text-center">Bindweefselherstel</span>
             </h1>
-            {/* QR-code: desktop naast titel, mobiel onder titel */}
-            <div className="hidden sm:block ml-2"><QRCodeComponent size={32} /></div>
-            <div className="block sm:hidden mt-2 flex justify-center"><QRCodeComponent size={24} /></div>
           </div>
         </header>
 
         <main className="flex-grow p-6 container mx-auto max-w-4xl">
           <div className="bg-white p-6 rounded-lg shadow">
+            {activeSection === 'introductie' && <IntroductieSection />}
             {activeSection === 'de_basis' && <DeBasisSection />}
             {activeSection === 'begrippen_trainer' && initialFlashcards.length > 0 && (
               <TermenSection
@@ -344,8 +345,9 @@ function App() {
           </div>
         </main>
 
-        <footer className="bg-gray-200 text-gray-600 text-center p-3 text-sm">
-          © 2025 Fysio Leerplatform
+        <footer className="bg-gray-200 text-gray-600 text-center p-3 text-sm flex items-center justify-center gap-2">
+          <span>© 2025 HAN opleiding Fysiotherapie</span>
+          <img src={hanSmallLogo} alt="HAN logo klein" className="h-7 w-auto ml-2" />
         </footer>
       </div>
 
