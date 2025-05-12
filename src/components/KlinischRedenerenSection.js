@@ -6,6 +6,7 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
   const [isAiChecking, setIsAiChecking] = useState(false);
   const [aiFeedback, setAiFeedback] = useState('');
   const [selfAssessment, setSelfAssessment] = useState({});
+  const [showIntro, setShowIntro] = useState(true);
 
   const currentCase = cases[currentCaseIndex];
 
@@ -70,10 +71,22 @@ Geef een gestructureerde analyse met:
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-blue-700">Klinisch Redeneren</h2>
       
-      <div className="bg-blue-50 p-6 rounded-lg shadow-sm">
-        <p className="text-gray-700 leading-relaxed">
-          Welkom bij Klinisch Redeneren, waar we de diepte ingaan! Hier leer je om je kennis toe te passen in complexe, realistische situaties. Je ontwikkelt het vermogen om klinische problemen te analyseren, verschillende opties te overwegen en weloverwogen beslissingen te nemen. Dit is waar je leert om theorie om te zetten in praktische vaardigheden.
-        </p>
+      <div className="mb-4">
+        <button
+          className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
+          onClick={() => setShowIntro((prev) => !prev)}
+          aria-expanded={showIntro}
+          aria-controls="klinischredeneren-intro"
+        >
+          {showIntro ? '▼' : '►'} Inleiding
+        </button>
+        {showIntro && (
+          <div id="klinischredeneren-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
+            <p className="text-gray-700 leading-relaxed">
+              Welkom bij Klinisch Redeneren, waar we de diepte ingaan! Hier leer je om je kennis toe te passen in complexe, realistische situaties. Je ontwikkelt het vermogen om klinische problemen te analyseren, verschillende opties te overwegen en weloverwogen beslissingen te nemen. Dit is waar je leert om theorie om te zetten in praktische vaardigheden.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="max-w-4xl mx-auto">

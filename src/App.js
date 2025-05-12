@@ -126,6 +126,12 @@ function App() {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const closeSidebar = () => setSidebarOpen(false);
 
+  // Braindump ophalen uit localStorage
+  const getBasisBraindumps = () => {
+    const saved = localStorage.getItem('basisBraindumps');
+    return saved ? JSON.parse(saved) : [];
+  };
+
   const handleGeneratePdf = () => {
     if (loading || error) {
       alert("Data is nog niet geladen of er is een fout opgetreden. PDF kan niet gegenereerd worden.");
@@ -142,7 +148,8 @@ function App() {
       uitlegQuestions, // Nu uit state
       toepassenScores,
       toepassenCases, // Nu uit state
-      answers
+      answers,
+      basisBraindumps: getBasisBraindumps(), // NIEUW: braindump toevoegen
     });
   };
 
@@ -157,7 +164,15 @@ function App() {
 
   const getStatus = (sectionId) => {
     const item = navItems.find(i => i.id === sectionId);
-    if (!item?.interactive) return 'static';
+    if (!item?.interactive) {
+      // Speciaal voor 'de_basis' (hoofdstuk 1): check braindump voortgang
+      if (sectionId === 'de_basis') {
+        const braindumps = getBasisBraindumps();
+        if (braindumps.length === 0) return 'not';
+        return 'completed';
+      }
+      return 'static';
+    }
     // Voorkom errors als data nog niet geladen is
     if (loading) return 'not'; 
 

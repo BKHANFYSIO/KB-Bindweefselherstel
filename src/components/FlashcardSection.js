@@ -7,6 +7,7 @@ const FlashcardSection = ({ onScoreUpdate }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [completedCards, setCompletedCards] = useState(new Set());
+  const [selfScore, setSelfScore] = useState({});
 
   useEffect(() => {
     // Shuffle flashcards on component mount
@@ -32,14 +33,18 @@ const FlashcardSection = ({ onScoreUpdate }) => {
     }
   };
 
-  const handleMarkComplete = () => {
+  const handleSelfAssessment = (score) => {
+    setSelfScore({ ...selfScore, [flashcards[currentIndex].id]: score });
     const newCompletedCards = new Set(completedCards);
     newCompletedCards.add(flashcards[currentIndex].id);
     setCompletedCards(newCompletedCards);
-
-    // Calculate and update progress
     const progress = (newCompletedCards.size / flashcards.length) * 100;
     onScoreUpdate(progress);
+    // Automatically go to next card if not last
+    if (currentIndex < flashcards.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setIsFlipped(false);
+    }
   };
 
   if (flashcards.length === 0) {
@@ -69,26 +74,18 @@ const FlashcardSection = ({ onScoreUpdate }) => {
         </div>
       </div>
       <div className="flashcard-controls">
-        <button 
-          className="control-button"
-          onClick={handlePrevCard}
-          disabled={currentIndex === 0}
-        >
-          Previous
-        </button>
-        <button 
-          className={`complete-button ${isCompleted ? 'completed' : ''}`}
-          onClick={handleMarkComplete}
-        >
-          {isCompleted ? 'Completed' : 'Mark Complete'}
-        </button>
-        <button 
-          className="control-button"
-          onClick={handleNextCard}
-          disabled={currentIndex === flashcards.length - 1}
-        >
-          Next
-        </button>
+        <div className="self-assessment-block">
+          {isFlipped && (
+            <>
+              <div className="self-assessment-label">Hoe goed kende je dit?</div>
+              <div className="self-assessment-options">
+                <button onClick={() => handleSelfAssessment('Nee')} className={`self-score-btn${selfScore[currentCard.id]==='Nee' ? ' selected' : ''}`}>Nee</button>
+                <button onClick={() => handleSelfAssessment('Redelijk')} className={`self-score-btn${selfScore[currentCard.id]==='Redelijk' ? ' selected' : ''}`}>Redelijk</button>
+                <button onClick={() => handleSelfAssessment('Goed')} className={`self-score-btn${selfScore[currentCard.id]==='Goed' ? ' selected' : ''}`}>Goed</button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
       <div className="card-counter">
         {currentIndex + 1} / {flashcards.length}

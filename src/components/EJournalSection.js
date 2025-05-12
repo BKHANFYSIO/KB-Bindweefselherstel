@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 
 function EJournalSection({ onGeneratePDF, firstName, lastName, onFirstNameChange, onLastNameChange }) {
+  const [showIntro, setShowIntro] = useState(true);
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-blue-700">Certificaat</h2>
-      
-      <div className="bg-blue-50 p-6 rounded-lg shadow-sm">
-        <p className="text-gray-700 leading-relaxed">
-          Je certificaat is je persoonlijke bewijs van deelname en voortgang. Vul je naam in en genereer een PDF-certificaat van je leerresultaten.
-        </p>
+      <div className="mb-4">
+        <button
+          className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
+          onClick={() => setShowIntro((prev) => !prev)}
+          aria-expanded={showIntro}
+          aria-controls="certificaat-intro"
+        >
+          {showIntro ? '▼' : '►'} Inleiding
+        </button>
+        {showIntro && (
+          <div id="certificaat-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
+            <p className="text-gray-700 leading-relaxed">
+              Je certificaat is je persoonlijke bewijs van deelname en voortgang. Vul je naam in en genereer een PDF-certificaat van je leerresultaten.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="max-w-4xl mx-auto">

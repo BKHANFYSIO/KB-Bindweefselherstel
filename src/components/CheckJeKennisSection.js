@@ -8,6 +8,7 @@ function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onSc
   const [aiFeedback, setAiFeedback] = useState('');
   const [selfAssessment, setSelfAssessment] = useState({});
   const [isReviewing, setIsReviewing] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
 
   const currentQuestion = currentQuestions[currentQuestionIndex];
 
@@ -101,10 +102,22 @@ Geef een gestructureerde analyse met:
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-blue-700">Check je Kennis</h2>
       
-      <div className="bg-blue-50 p-6 rounded-lg shadow-sm">
-        <p className="text-gray-700 leading-relaxed">
-          Check je Kennis is je persoonlijke voortgangscheck. Hier kun je zien hoe ver je bent in je leerproces en welke onderwerpen je al goed beheerst. Dit onderdeel helpt je om gericht te studeren en te focussen op de gebieden die nog extra aandacht nodig hebben. Gebruik het als een spiegel voor je eigen leerproces.
-        </p>
+      <div className="mb-4">
+        <button
+          className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
+          onClick={() => setShowIntro((prev) => !prev)}
+          aria-expanded={showIntro}
+          aria-controls="checkkennis-intro"
+        >
+          {showIntro ? '▼' : '►'} Inleiding
+        </button>
+        {showIntro && (
+          <div id="checkkennis-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
+            <p className="text-gray-700 leading-relaxed">
+              Check je Kennis is je persoonlijke voortgangscheck. Hier kun je zien hoe ver je bent in je leerproces en welke onderwerpen je al goed beheerst. Dit onderdeel helpt je om gericht te studeren en te focussen op de gebieden die nog extra aandacht nodig hebben. Gebruik het als een spiegel voor je eigen leerproces.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="max-w-4xl mx-auto">
