@@ -55,7 +55,7 @@ function DeBasisSection() {
   };
 
   return (
-    <div className="mx-auto p-4 sm:p-6 space-y-8">
+    <div className="max-w-2xl mx-auto p-4 sm:p-6 space-y-8">
       {/* Samenvatting en verdieping */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold text-blue-700 mb-2">De Basis</h2>
@@ -214,55 +214,59 @@ function DeBasisSection() {
       {/* Fase-tabel met alternatieve termen */}
       <div className="mb-8">
         <h3 className="text-xl font-semibold text-blue-700 mb-2">Overzicht fasen van bindweefselherstel</h3>
-        <div className="overflow-x-auto max-w-2xl mx-auto">
-          <table className="w-full bg-white border border-gray-300 rounded-lg text-sm">
-            <thead className="bg-blue-100">
-              <tr>
-                <th className="px-3 py-2 border">Fase (NL)</th>
-                <th className="px-3 py-2 border">Alternatieve termen (NL)</th>
-                <th className="px-3 py-2 border">Engelse term</th>
-                <th className="px-3 py-2 border">Kernproces</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border px-3 py-2">Homeostase</td>
-                <td className="border px-3 py-2">Hemostase, acute fase</td>
-                <td className="border px-3 py-2">Hemostasis</td>
-                <td className="border px-3 py-2">Bloedstelping, stolling</td>
-              </tr>
-              <tr>
-                <td className="border px-3 py-2">Ontstekingsfase</td>
-                <td className="border px-3 py-2">Inflammatiefase</td>
-                <td className="border px-3 py-2">Inflammation phase</td>
-                <td className="border px-3 py-2">Opruimen, ontsteking</td>
-              </tr>
-              <tr>
-                <td className="border px-3 py-2">Proliferatiefase</td>
-                <td className="border px-3 py-2">Granulatiefase, regeneratiefase</td>
-                <td className="border px-3 py-2">Proliferation phase</td>
-                <td className="border px-3 py-2">Weefselopbouw, celdeling</td>
-              </tr>
-              <tr>
-                <td className="border px-3 py-2">Vroege remodelleringsfase</td>
-                <td className="border px-3 py-2">Vroege reorganisatiefase</td>
-                <td className="border px-3 py-2">Early remodeling phase</td>
-                <td className="border px-3 py-2">Matrix reorganisatie</td>
-              </tr>
-              <tr>
-                <td className="border px-3 py-2">Late remodelleringsfase</td>
-                <td className="border px-3 py-2">Late reorganisatiefase</td>
-                <td className="border px-3 py-2">Late remodeling phase</td>
-                <td className="border px-3 py-2">Uitlijning, versterking</td>
-              </tr>
-              <tr>
-                <td className="border px-3 py-2">Integratiefase</td>
-                <td className="border px-3 py-2">Maturatiefase</td>
-                <td className="border px-3 py-2">Maturation/integration phase</td>
-                <td className="border px-3 py-2">Functionele integratie</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="overflow-x-auto max-w-full -mx-4 sm:mx-0">
+          <div className="inline-block align-middle w-full">
+            <div className="overflow-hidden">
+              <table className="table-fixed w-full divide-y divide-gray-300 bg-white border border-gray-300 rounded-lg text-sm sm:text-xs">
+                <thead className="bg-blue-100">
+                  <tr>
+                    <th className="px-3 py-2 border break-words">Fase (NL)</th>
+                    <th className="px-3 py-2 border break-words">Alternatieve termen (NL)</th>
+                    <th className="px-3 py-2 border break-words">Engelse term</th>
+                    <th className="px-3 py-2 border break-words">Kernproces</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-300">
+                  <tr>
+                    <td className="border px-3 py-2 break-words">Homeostase</td>
+                    <td className="border px-3 py-2 break-words">Hemostase, acute fase</td>
+                    <td className="border px-3 py-2 break-words">Hemostasis</td>
+                    <td className="border px-3 py-2 break-words">Bloedstelping, stolling</td>
+                  </tr>
+                  <tr>
+                    <td className="border px-3 py-2 break-words">Ontstekingsfase</td>
+                    <td className="border px-3 py-2 break-words">Inflammatiefase</td>
+                    <td className="border px-3 py-2 break-words">Inflammation phase</td>
+                    <td className="border px-3 py-2 break-words">Opruimen, ontsteking</td>
+                  </tr>
+                  <tr>
+                    <td className="border px-3 py-2 break-words">Proliferatiefase</td>
+                    <td className="border px-3 py-2 break-words">Granulatiefase, regeneratiefase</td>
+                    <td className="border px-3 py-2 break-words">Proliferation phase</td>
+                    <td className="border px-3 py-2 break-words">Weefselopbouw, celdeling</td>
+                  </tr>
+                  <tr>
+                    <td className="border px-3 py-2 break-words">Vroege remodelleringsfase</td>
+                    <td className="border px-3 py-2 break-words">Vroege reorganisatiefase</td>
+                    <td className="border px-3 py-2 break-words">Early remodeling phase</td>
+                    <td className="border px-3 py-2 break-words">Matrix reorganisatie</td>
+                  </tr>
+                  <tr>
+                    <td className="border px-3 py-2 break-words">Late remodelleringsfase</td>
+                    <td className="border px-3 py-2 break-words">Late reorganisatiefase</td>
+                    <td className="border px-3 py-2 break-words">Late remodeling phase</td>
+                    <td className="border px-3 py-2 break-words">Uitlijning, versterking</td>
+                  </tr>
+                  <tr>
+                    <td className="border px-3 py-2 break-words">Integratiefase</td>
+                    <td className="border px-3 py-2 break-words">Maturatiefase</td>
+                    <td className="border px-3 py-2 break-words">Maturation/integration phase</td>
+                    <td className="border px-3 py-2 break-words">Functionele integratie</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div className="text-xs text-gray-500 mt-2">Bronnen: Landen et al. 2016; Culav et al. 1999; Cook & Purdam 2009; Khan & Scott 2009; zie ook het studieboek onderaan deze pagina.</div>
       </div>
@@ -270,7 +274,7 @@ function DeBasisSection() {
       {/* Fasen en video's in grid */}
       <div className="mb-8">
         <h3 className="text-xl font-medium text-gray-800 mt-6 mb-4">Fasen van Bindweefselherstel</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-lg shadow p-4 flex flex-col">
             <h4 className="text-lg font-semibold mb-2">Homeostase (Hemostase)</h4>
             <p className="text-gray-700 mb-2">Direct na letsel treedt de homeostasefase op: bloedplaatjes zorgen voor stolling en vormen een voorlopige matrix. Dit stopt het bloeden en vormt de basis voor herstel. <span className="text-blue-700 font-medium">Zie video voor meer uitleg.</span></p>
@@ -324,7 +328,7 @@ function DeBasisSection() {
       {/* Boek sectie onderaan */}
       <div className="mt-12">
         <h3 className="text-xl font-semibold text-blue-700 mb-4">Online studieboek (AI gegenereerd)</h3>
-        <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-4 rounded max-w-2xl mx-auto">
+        <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-4 rounded">
           <p className="mb-2 text-gray-800">
             Dit digitale studieboek is met behulp van een AI-agent samengesteld. Het biedt een uitgebreide verdieping over bindweefselherstel. Let op: hoewel het boek zorgvuldig is samengesteld, kunnen er fouten of onduidelijkheden in staan. Zie je iets opvallends of twijfel je aan de inhoud? Bespreek dit met medestudenten of docenten en geef het aan ons door. Samen maken we het materiaal steeds beter!
           </p>
@@ -340,7 +344,7 @@ function DeBasisSection() {
       {/* Aangrenzende bronnen */}
       <div className="mt-12">
         <h3 className="text-xl font-semibold text-blue-700 mb-4">Aangrenzende bronnen</h3>
-        <div className="mb-6 max-w-2xl mx-auto">
+        <div className="mb-6">
           <h4 className="text-lg font-semibold mb-2">De fibroblast</h4>
           <div className="aspect-w-16 aspect-h-9 mb-4"><iframe className="w-full h-64" src="https://www.youtube.com/embed/N-Vi31TdCII" title="De fibroblast" frameBorder="0" allowFullScreen></iframe></div>
         </div>

@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { shuffleArray } from '../utils';
 
+// Noodzakelijk voor de dynamische titel en andere UI elementen
+const levelLabels = {
+  all: 'Alle Niveaus',
+  level1: 'Niveau 1 (Beginner)',
+  level2: 'Niveau 2 (Gevorderd)',
+  level3: 'Niveau 3 (Expert)',
+  level1_2: 'Niveau 1 & 2',
+};
+
 function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) {
-  const [currentFlashcards, setCurrentFlashcards] = useState([...initialFlashcards]);
+  const [levelFilter, setLevelFilter] = useState('all');
+  const [activeFlashcards, setActiveFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -12,10 +22,39 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
   const [showRepeatDone, setShowRepeatDone] = useState(false);
   const [reviewedThisRound, setReviewedThisRound] = useState([]);
 
+  // Deze effect hook beheert de set kaarten die getoond wordt in de normale leermodus.
   useEffect(() => {
-    // Shuffle cards on component mount
-    setCurrentFlashcards(shuffleArray([...initialFlashcards]));
-  }, [initialFlashcards]);
+    if (!isReviewing) {
+      let cardsToDisplay = [];
+      const validInitialFlashcards = Array.isArray(initialFlashcards) ? initialFlashcards : [];
+
+      switch (levelFilter) {
+        case 'level1':
+          cardsToDisplay = validInitialFlashcards.filter(card => card && card.level === 1);
+          break;
+        case 'level2':
+          cardsToDisplay = validInitialFlashcards.filter(card => card && card.level === 2);
+          break;
+        case 'level3':
+          cardsToDisplay = validInitialFlashcards.filter(card => card && card.level === 3);
+          break;
+        case 'level1_2':
+          cardsToDisplay = validInitialFlashcards.filter(card => card && (card.level === 1 || card.level === 2));
+          break;
+        case 'all':
+        default:
+          cardsToDisplay = [...validInitialFlashcards];
+          break;
+      }
+      setActiveFlashcards(shuffleArray(cardsToDisplay));
+      setCurrentCardIndex(0);
+      setShowAnswer(false);
+      // Reset review-gerelateerde states als we de level filter veranderen
+      setReviewedThisRound([]);
+      setShowRepeatDone(false);
+      setRepeatCounts({});
+    }
+  }, [initialFlashcards, levelFilter, isReviewing]);
 
   const handleAssessment = (cardId, assessmentLevel) => {
     onAssessmentsChange({ ...assessments, [cardId]: assessmentLevel });
@@ -25,101 +64,139 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
     }
     setTimeout(() => {
       if (isReviewing) {
-        if (reviewedThisRound.length + (reviewedThisRound.includes(cardId) ? 0 : 1) === currentFlashcards.length) {
+        if (activeFlashcards.length > 0 && reviewedThisRound.length + (reviewedThisRound.includes(cardId) ? 0 : 1) >= activeFlashcards.length) {
           setShowRepeatDone(true);
           return;
         }
       }
-      setShowAnswer(false);
-      setCurrentCardIndex((prevIndex) => (prevIndex + 1) % currentFlashcards.length);
+      if (activeFlashcards.length > 0) {
+        setShowAnswer(false);
+        setCurrentCardIndex((prevIndex) => (prevIndex + 1) % activeFlashcards.length);
+      }
     }, 200);
   };
 
   const goToNextCard = () => {
+    if (activeFlashcards.length === 0) return;
     setShowAnswer(false);
-    setCurrentCardIndex((prevIndex) => (prevIndex + 1) % currentFlashcards.length);
+    setCurrentCardIndex((prevIndex) => (prevIndex + 1) % activeFlashcards.length);
   };
 
   const goToPreviousCard = () => {
+    if (activeFlashcards.length === 0) return;
     setShowAnswer(false);
-    setCurrentCardIndex((prevIndex) => (prevIndex - 1 + currentFlashcards.length) % currentFlashcards.length);
+    setCurrentCardIndex((prevIndex) => (prevIndex - 1 + activeFlashcards.length) % activeFlashcards.length);
   };
 
-  const toggleAnswer = () => {
-    setShowAnswer(!showAnswer);
-  };
+  const toggleAnswer = () => setShowAnswer(!showAnswer);
+  const currentCard = activeFlashcards[currentCardIndex];
 
   const generateChatGPTLink = () => {
-    const prompt = `Leg mij meer uit over de term '${currentCard.term}' in de context van bindweefselherstel bij fysiotherapie.`;
+    if (!currentCard) return '';
+    const prompt = `Leg mij meer uit over de term \'\'\'${currentCard.term}\'\'\' in de context van bindweefselherstel bij fysiotherapie.`;
     return `https://chat.openai.com/?q=${encodeURIComponent(prompt)}`;
   };
 
-  const startReview = (filterType) => {
-    let filteredCards = [];
-    if (filterType === 'Niet') {
-      filteredCards = initialFlashcards.filter(card => assessments[card.id] === 'Niet');
-    } else if (filterType === 'Niet_Redelijk') {
-      filteredCards = initialFlashcards.filter(card => assessments[card.id] === 'Niet' || assessments[card.id] === 'Redelijk');
-    } else {
-      filteredCards = [...initialFlashcards];
+  // Helper: Haal de kaarten op die overeenkomen met het huidige levelFilter
+  const getCardsForCurrentLevelFilter = () => {
+    const validInitialFlashcards = Array.isArray(initialFlashcards) ? initialFlashcards : [];
+    if (levelFilter === 'all') return [...validInitialFlashcards];
+    return validInitialFlashcards.filter(card => {
+      if (!card) return false;
+      if (levelFilter === 'level1') return card.level === 1;
+      if (levelFilter === 'level2') return card.level === 2;
+      if (levelFilter === 'level3') return card.level === 3;
+      if (levelFilter === 'level1_2') return card.level === 1 || card.level === 2;
+      return false;
+    });
+  };
+
+  const startReview = (assessmentFilterType) => {
+    const cardsToConsiderForReview = getCardsForCurrentLevelFilter();
+    let filteredForReviewSession = [];
+
+    if (assessmentFilterType === 'Niet') {
+      filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id] === 'Niet');
+    } else if (assessmentFilterType === 'Niet_Redelijk') {
+      filteredForReviewSession = cardsToConsiderForReview.filter(card => card && (assessments[card.id] === 'Niet' || assessments[card.id] === 'Redelijk'));
+    } else { // 'Alles' (alle beoordeelde kaarten binnen het huidige filter)
+      filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id]);
     }
-    if (filteredCards.length > 0) {
-      setCurrentFlashcards(shuffleArray(filteredCards));
+
+    if (filteredForReviewSession.length > 0) {
+      setIsReviewing(true);
+      setActiveFlashcards(shuffleArray(filteredForReviewSession));
       setCurrentCardIndex(0);
       setShowAnswer(false);
-      setIsReviewing(true);
       setReviewedThisRound([]);
       setShowRepeatDone(false);
+      setRepeatCounts({});
     } else {
-      alert(`Geen kaarten gevonden met beoordeling '${filterType === 'Niet' ? 'Niet' : filterType === 'Niet_Redelijk' ? 'Niet of Redelijk' : 'Alles'}'.`);
+      alert(`Geen kaarten gevonden voor deze review selectie ${levelFilter !== 'all' ? `binnen ${levelLabels[levelFilter]}` : 'van alle beoordeelde kaarten'}.`);
     }
   };
 
   const startOriginalSet = () => {
-    setCurrentFlashcards(shuffleArray([...initialFlashcards]));
-    setCurrentCardIndex(0);
-    setShowAnswer(false);
-    setIsReviewing(false);
-    setReviewedThisRound([]);
-    setShowRepeatDone(false);
+    setIsReviewing(false); // Triggert de useEffect hierboven om te filteren op levelFilter
   };
 
-  // Helper: zijn alle kaarten beoordeeld?
-  const allAssessed = currentFlashcards.every(card => assessments[card.id]);
-  const countNee = initialFlashcards.filter(c => assessments[c.id] === 'Niet').length;
-  const countNeeRedelijk = initialFlashcards.filter(c => assessments[c.id] === 'Niet' || assessments[c.id] === 'Redelijk').length;
-  const countAll = initialFlashcards.length;
+  // Bepaal de kaarten voor het huidige actieve level filter (voor normale modus)
+  const cardsInCurrentLearningSet = !isReviewing ? activeFlashcards : getCardsForCurrentLevelFilter();
+  
+  // Zijn alle kaarten in de HUIDIGE LEERSET (gefilterd op level) beoordeeld?
+  const allCardsInCurrentSetAssessed = cardsInCurrentLearningSet.length > 0 && cardsInCurrentLearningSet.every(card => card && assessments[card.id]);
 
-  if (!currentFlashcards || currentFlashcards.length === 0) {
+  // Tellingen voor review knoppen, gebaseerd op kaarten binnen het huidige level filter
+  const cardsForCurrentFilterForCounts = getCardsForCurrentLevelFilter();
+  const countNeeInFilter = cardsForCurrentFilterForCounts.filter(c => c && assessments[c.id] === 'Niet').length;
+  const countNeeRedelijkInFilter = cardsForCurrentFilterForCounts.filter(c => c && (assessments[c.id] === 'Niet' || assessments[c.id] === 'Redelijk')).length;
+  const countAssessedInFilter = cardsForCurrentFilterForCounts.filter(c => c && assessments[c.id]).length;
+
+  // Fallback UI als er geen kaarten zijn
+  if (!currentCard && activeFlashcards.length === 0) {
+    let message = initialFlashcards && initialFlashcards.length > 0 
+        ? `Geen flashcards beschikbaar voor ${levelLabels[levelFilter]}. Probeer een ander niveau.`
+        : "Er zijn nog geen flashcards ingeladen.";
     if (isReviewing) {
-      return (
-        <div>
-          <p className="text-center text-gray-700 mb-4">Geen kaarten gevonden voor deze herhaling.</p>
+        message = `Geen kaarten gevonden voor deze herhaling ${levelFilter !== 'all' ? `binnen ${levelLabels[levelFilter]}` : 'van alle beoordeelde kaarten'}.`;
+    }
+
+    return (
+      <div className="space-y-6">
+        {/* Filter UI (altijd tonen als er een probleem is) */}
+        <div className="mb-4 p-4 bg-gray-100 rounded-lg">
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
+          <div className="flex flex-wrap gap-2">
+            {Object.keys(levelLabels).map(levelKey => (
+              <button
+                key={levelKey}
+                onClick={() => { setLevelFilter(levelKey); setIsReviewing(false); }}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
+                  ${levelFilter === levelKey && !isReviewing
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+              >
+                {levelLabels[levelKey]}
+              </button>
+            ))}
+          </div>
+        </div>
+        <p className="text-center text-gray-700 mb-4">{message}</p>
+        {isReviewing && (
           <button
-            onClick={startOriginalSet}
+            onClick={startOriginalSet} // Gaat terug naar leermodus, respecteert actieve levelFilter
             className="block mx-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
           >
-            Terug naar Oorspronkelijke Set
+            Terug naar Leermodus
           </button>
-        </div>
-      );
-    }
-    return <div>Geen flashcards beschikbaar.</div>;
+        )}
+      </div>
+    );
   }
-
-  const currentCard = currentFlashcards[currentCardIndex];
-  if (!currentCard) {
-    if (currentFlashcards.length > 0) {
-      setCurrentCardIndex(0);
-      setShowAnswer(false);
-    }
-    return <div>Fout: Kan huidige kaart niet laden. Index wordt gereset.</div>;
-  }
-
-  const hasAssessments = Object.keys(assessments).length > 0;
-
+  
   return (
     <div className="space-y-6">
+      {/* Introductie */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold text-blue-700 mb-2">Begrippen Trainer</h2>
         <div className="mb-4">
@@ -134,150 +211,170 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
           {showIntro && (
             <div id="begrippen-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
               <p className="text-gray-700 leading-relaxed">
-                De Begrippen Trainer helpt je om de belangrijkste termen en concepten rondom bindweefselherstel eigen te maken. Door actief met deze begrippen te oefenen, bouw je een stevige woordenschat op die essentieel is voor het begrijpen van de stof. Dit onderdeel is speciaal ontworpen om je te helpen de juiste terminologie te leren gebruiken, wat cruciaal is voor zowel je studie als je toekomstige praktijk.
-              </p>
-              <p className="text-gray-700 leading-relaxed mt-4">
-                Deze trainer is vooral een mooi startpunt voor studenten voor wie de stof nieuw of redelijk nieuw is. Maar ook als je al gevorderd bent, is dit een goede plek om je begrippenkennis te testen en te herhalen.
+                De Begrippen Trainer helpt je om de belangrijkste termen en concepten rondom bindweefselherstel eigen te maken. Gebruik de filters hieronder om op niveau te oefenen.
               </p>
             </div>
           )}
         </div>
       </div>
+
+      {/* Filter UI (alleen als niet in review) */}
+      {!isReviewing && (
+        <div className="mb-4 p-4 bg-gray-100 rounded-lg">
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
+          <div className="flex flex-wrap gap-2">
+            {Object.keys(levelLabels).map(levelKey => (
+              <button
+                key={levelKey}
+                onClick={() => setLevelFilter(levelKey)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
+                  ${levelFilter === levelKey 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+              >
+                {levelLabels[levelKey]}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {/* Hoofdsectie Trainer */}
       <div>
         <h2 className="text-2xl font-semibold mb-2 text-blue-700">
-          Begrippen Trainer {isReviewing ? <span className="font-bold text-red-600 ml-2">(Herhaling)</span> : ""} ({currentCardIndex + 1}/{currentFlashcards.length})
+          {isReviewing 
+            ? <span className="font-bold text-red-600">Herhaling {levelFilter !== 'all' ? `(${levelLabels[levelFilter]})` : '(Alle Beoordeelde)'}: Kaart {currentCardIndex + 1}/{activeFlashcards.length}</span> 
+            : `Oefenen: ${levelLabels[levelFilter]} (Kaart ${currentCardIndex + 1}/${activeFlashcards.length})`}
         </h2>
-        <p className="mb-2 text-gray-600">
-          Test en verbeter je kennis van belangrijke termen met deze interactieve flashcards.
-        </p>
+        
+        {/* Stappen & Tips */}
         <div className="mb-4">
           <button
             className="text-blue-700 font-semibold mb-2 focus:outline-none"
             onClick={() => setShowInstructions((prev) => !prev)}
+             aria-expanded={showInstructions}
+             aria-controls="flashcard-instructions"
           >
             {showInstructions ? '▼' : '►'} Bekijk de stappen & tips
           </button>
           {showInstructions && (
-            <div className="bg-blue-50 p-6 rounded-lg shadow-sm mt-2">
+            <div id="flashcard-instructions" className="bg-blue-50 p-6 rounded-lg shadow-sm mt-2">
               <strong>Stappen & tips:</strong>
               <ol className="list-decimal ml-5 mt-2 space-y-1">
-                <li>Kijk goed naar de term hieronder.</li>
-                <li>Probeer eerst zélf het antwoord te bedenken, zonder direct te klikken.</li>
-                <li>Klik daarna op 'Toon Antwoord' om het juiste antwoord te zien.</li>
-                <li>Beoordeel eerlijk hoe goed je het antwoord wist met de knoppen 'Niet', 'Redelijk' of 'Goed'.</li>
-                <li>Herhaal de kaarten die je nog niet goed kent.</li>
+                {!isReviewing && <li>Selecteer eerst een niveau hierboven.</li>}
+                <li>Kijk goed naar de term. Probeer zélf het antwoord te bedenken.</li>
+                <li>Klik op \'Toon Antwoord\'.</li>
+                <li>Beoordeel eerlijk hoe goed je het wist.</li>
+                {allCardsInCurrentSetAssessed && !isReviewing && <li>Alle kaarten van dit niveau beoordeeld? Kies hieronder of je specifieke kaarten wilt herhalen.</li>}
+                {isReviewing && <li>Herhaal de kaarten die je nog niet goed kent.</li>}
               </ol>
-              <p className="mt-2 text-xs text-gray-500">Tip: Door eerst actief na te denken, leer je effectiever!</p>
             </div>
           )}
         </div>
-        <div className="border p-6 rounded-lg shadow-md bg-yellow-50 min-h-[200px] flex flex-col justify-between items-center mb-4">
-          <p className="text-xl font-bold text-gray-800 text-center mb-4">{currentCard.term}</p>
-          <div className="flex-grow flex items-center justify-center w-full">
-            {showAnswer ? (
-              <p className="text-gray-700 text-center">{currentCard.definition}</p>
-            ) : (
-              <button
-                onClick={toggleAnswer}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
-              >
-                Toon Antwoord
-              </button>
+
+        {/* Flashcard zelf */}
+        {currentCard && (
+          <div className="border p-6 rounded-lg shadow-md bg-yellow-50 min-h-[200px] flex flex-col justify-between items-center mb-4">
+            <p className="text-xl font-bold text-gray-800 text-center mb-4">{currentCard.term}</p>
+            <div className="flex-grow flex items-center justify-center w-full">
+              {showAnswer ? (
+                <p className="text-gray-700 text-center">{currentCard.definition}</p>
+              ) : (
+                <button
+                  onClick={toggleAnswer}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
+                >
+                  Toon Antwoord
+                </button>
+              )}
+            </div>
+            {showAnswer && (
+              <>
+                <div className="mt-4 flex flex-col items-center">
+                  <p className="text-sm text-gray-600 mb-2">Hoe goed kende je dit?</p>
+                  <div className="flex flex-wrap justify-center items-center space-x-3">
+                    {['Niet', 'Redelijk', 'Goed'].map(assessmentType => (
+                       <button
+                          key={assessmentType}
+                          onClick={() => handleAssessment(currentCard.id, assessmentType)}
+                          className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
+                            assessments[currentCard.id] === assessmentType
+                              ? assessmentType === 'Niet' ? 'bg-red-700 ring-2 ring-offset-1 ring-red-700' 
+                              : assessmentType === 'Redelijk' ? 'bg-yellow-700 ring-2 ring-offset-1 ring-yellow-700'
+                              : 'bg-green-700 ring-2 ring-offset-1 ring-green-700'
+                              : assessmentType === 'Niet' ? 'bg-red-500 hover:bg-red-600'
+                              : assessmentType === 'Redelijk' ? 'bg-yellow-500 hover:bg-yellow-600'
+                              : 'bg-green-500 hover:bg-green-600'
+                          }`}
+                        >
+                          {assessmentType}
+                        </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex justify-center mt-4 w-full">
+                  <a
+                    href={generateChatGPTLink()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow text-sm"
+                  >
+                    Leer meer over dit onderwerp met AI
+                  </a>
+                </div>
+              </>
+            )}
+            {isReviewing && repeatCounts[currentCard.id] > 0 && (
+              <div className="mt-2 text-xs text-gray-500">Herhaald: {repeatCounts[currentCard.id]}x</div>
             )}
           </div>
-          {showAnswer && (
-            <>
-              <div className="mt-4 flex flex-col items-center">
-                <p className="text-sm text-gray-600 mb-2">Hoe goed kende je dit?</p>
-                <div className="flex flex-wrap justify-center items-center space-x-3">
-                  <button
-                    onClick={() => handleAssessment(currentCard.id, 'Niet')}
-                    className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
-                      assessments[currentCard.id] === 'Niet'
-                        ? 'bg-red-700 ring-2 ring-offset-1 ring-red-700'
-                        : 'bg-red-500 hover:bg-red-600'
-                    }`}
-                  >
-                    Niet
-                  </button>
-                  <button
-                    onClick={() => handleAssessment(currentCard.id, 'Redelijk')}
-                    className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
-                      assessments[currentCard.id] === 'Redelijk'
-                        ? 'bg-yellow-700 ring-2 ring-offset-1 ring-yellow-700'
-                        : 'bg-yellow-500 hover:bg-yellow-600'
-                    }`}
-                  >
-                    Redelijk
-                  </button>
-                  <button
-                    onClick={() => handleAssessment(currentCard.id, 'Goed')}
-                    className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
-                      assessments[currentCard.id] === 'Goed'
-                        ? 'bg-green-700 ring-2 ring-offset-1 ring-green-700'
-                        : 'bg-green-500 hover:bg-green-600'
-                    }`}
-                  >
-                    Goed
-                  </button>
-                </div>
-              </div>
-              <div className="flex justify-center mt-4 w-full">
-                <a
-                  href={generateChatGPTLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow text-sm"
-                >
-                  Leer meer over dit onderwerp met AI
-                </a>
-              </div>
-            </>
-          )}
-          {/* Herhaalteller tonen indien van toepassing */}
-          {repeatCounts[currentCard.id] > 0 && (
-            <div className="mt-2 text-xs text-gray-500">Deze kaart heb je {repeatCounts[currentCard.id]} keer herhaald.</div>
-          )}
-        </div>
-        {/* Melding als herhaalronde klaar is */}
+        )}
+
+        {/* Melding & Knop als herhaalronde (review) klaar is */}
         {showRepeatDone && isReviewing && (
-          <div className="text-center text-green-700 font-semibold mb-4">
-            Je hebt alle kaarten in deze herhaalronde afgerond.<br />
-            Keer terug naar de oorspronkelijke set om eventueel meer te herhalen.
+          <div className="text-center text-green-700 font-semibold mb-4 p-4 bg-green-50 rounded-lg">
+            <p>Je hebt alle kaarten in deze herhaalronde ({levelLabels[levelFilter] !== 'Alle Niveaus' ? levelLabels[levelFilter] : 'Alle Beoordeelde'}) afgerond.</p>
             <div className="mt-4">
               <button
-                onClick={startOriginalSet}
-                className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-md"
+                onClick={startOriginalSet} // Gaat terug naar leermodus, respecteert actieve levelFilter
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md"
               >
-                Terug naar Oorspronkelijke Set
+                Terug naar Leermodus
               </button>
             </div>
           </div>
         )}
-        {/* Herhaal-knoppen alleen tonen als alles beoordeeld is en niet in review-mode */}
-        {allAssessed && !isReviewing && (
+        
+        {/* Herhaal-knoppen (alleen tonen als alle kaarten in huidige leerset beoordeeld zijn en niet in review-mode) */}
+        {allCardsInCurrentSetAssessed && !isReviewing && cardsInCurrentLearningSet.length > 0 && (
           <div className="mt-8 text-center p-6 bg-blue-50 rounded-lg">
-            <p className="text-xl font-medium text-gray-800 mb-4">
-              Je hebt alle kaarten beoordeeld.
+            <p className="text-xl font-medium text-gray-800 mb-2">
+              Alle ({cardsInCurrentLearningSet.length}) kaarten van {levelLabels[levelFilter]} beoordeeld!
+            </p>
+            <p className="text-sm text-gray-600 mb-4">
+              Herhaal specifieke groepen binnen {levelLabels[levelFilter]}.
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
               <button
                 onClick={() => startReview('Niet')}
-                className="bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors shadow-md"
+                disabled={countNeeInFilter === 0}
+                className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeInFilter > 0 ? 'bg-orange-600 hover:bg-orange-700' : 'bg-gray-400 cursor-not-allowed'}`}
               >
-                Herhaal 'Niet' ({initialFlashcards.filter(c => assessments[c.id] === 'Niet').length})
+                Herhaal 'Niet' ({countNeeInFilter})
               </button>
               <button
                 onClick={() => startReview('Niet_Redelijk')}
-                className="bg-orange-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors shadow-md"
+                disabled={countNeeRedelijkInFilter === 0}
+                className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeRedelijkInFilter > 0 ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-gray-400 cursor-not-allowed'}`}
               >
-                Herhaal 'Niet & Redelijk' ({initialFlashcards.filter(c => assessments[c.id] === 'Niet' || assessments[c.id] === 'Redelijk').length})
+                Herhaal 'Niet & Redelijk' ({countNeeRedelijkInFilter})
               </button>
               <button
                 onClick={() => startReview('Alles')}
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md"
+                disabled={countAssessedInFilter === 0}
+                className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countAssessedInFilter > 0 ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'}`}
               >
-                Herhaal Alles ({countAll})
+                Herhaal Alle Beoordeelde ({countAssessedInFilter})
               </button>
             </div>
           </div>
