@@ -11,6 +11,12 @@ function IntroductieSection() {
           <QRCodeComponent size={48} />
         </div>
       </div>
+      <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4 rounded">
+        <span className="font-semibold text-yellow-800 block mb-1">Let op: jouw voortgang wordt lokaal opgeslagen</span>
+        <span className="text-yellow-900 text-sm block">
+          Alle antwoorden, beoordelingen en voortgang in deze KennisBooster worden <b>uitsluitend lokaal</b> in je browser opgeslagen (op je eigen computer). Je gegevens zijn niet zichtbaar voor anderen en worden niet online bewaard. Je kunt je voortgang wissen met de knop <b>"wis alle voortgang"</b> in het menu. Let op: als je je browsergegevens wist, een andere computer gebruikt of je apparaat opnieuw instelt, kan je voortgang verloren gaan.
+        </span>
+      </div>
       <div className="bg-blue-50 p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-2">Welkom bij de KennisBooster Bindweefselherstel!</h2>
         <p className="text-gray-700 mb-2">

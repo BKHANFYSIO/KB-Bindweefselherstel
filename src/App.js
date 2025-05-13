@@ -134,25 +134,30 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   };
 
-  const handleGeneratePdf = () => {
+  const handleGeneratePdf = async () => {
     if (loading || error) {
       alert("Data is nog niet geladen of er is een fout opgetreden. PDF kan niet gegenereerd worden.");
       return;
     }
-    generateCertificatePDF({
-      firstName,
-      lastName,
-      flashcardAssessments,
-      initialFlashcards, // Nu uit state
-      mcScores,
-      mcQuestions, // Nu uit state
-      uitlegScores,
-      uitlegQuestions, // Nu uit state
-      toepassenScores,
-      toepassenCases, // Nu uit state
-      answers,
-      basisBraindumps: getBasisBraindumps(), // NIEUW: braindump toevoegen
-    });
+    try {
+      await generateCertificatePDF({
+        firstName,
+        lastName,
+        flashcardAssessments,
+        initialFlashcards,
+        mcScores,
+        mcQuestions,
+        uitlegScores,
+        uitlegQuestions,
+        toepassenScores,
+        toepassenCases,
+        answers,
+        basisBraindumps: getBasisBraindumps(),
+      });
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Er is een fout opgetreden bij het genereren van het certificaat. Probeer het later opnieuw.');
+    }
   };
 
   const navItems = [

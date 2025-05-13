@@ -28,7 +28,7 @@ function DeBasisSection() {
   const handleAddBraindump = (score) => {
     setErrorMsg('');
     setSuccessMsg('');
-    if (!currentTitle.trim() || !currentBraindump.trim() || !currentToelichting.trim()) {
+    if (!currentTitle.trim() || !currentBraindump.trim() || !currentToelichtingGoed.trim() || !currentToelichtingBeter.trim()) {
       setErrorMsg('Vul alle verplichte velden in voordat je een beoordeling kiest.');
       return;
     }
@@ -37,14 +37,16 @@ function DeBasisSection() {
       {
         title: currentTitle,
         text: currentBraindump,
-        toelichting: currentToelichting,
+        toelichtingGoed: currentToelichtingGoed,
+        toelichtingBeter: currentToelichtingBeter,
         score,
         date: new Date().toISOString(),
       },
     ]);
     setCurrentBraindump('');
     setCurrentTitle('');
-    setCurrentToelichting('');
+    setCurrentToelichtingGoed('');
+    setCurrentToelichtingBeter('');
     setSuccessMsg('Braindump succesvol opgeslagen!');
   };
 

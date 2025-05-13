@@ -10,8 +10,11 @@ const levelLabels = {
   level1_2: 'Niveau 1 & 2',
 };
 
+// Zet de gewenste volgorde van de filterknoppen
+const levelOrder = ['level1', 'level2', 'level3', 'level1_2', 'all'];
+
 function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) {
-  const [levelFilter, setLevelFilter] = useState('all');
+  const [levelFilter, setLevelFilter] = useState(''); // standaard leeg
   const [activeFlashcards, setActiveFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -143,7 +146,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
   // Bepaal de kaarten voor het huidige actieve level filter (voor normale modus)
   const cardsInCurrentLearningSet = !isReviewing ? activeFlashcards : getCardsForCurrentLevelFilter();
   
-  // Zijn alle kaarten in de HUIDIGE LEERSET (gefilterd op level) beoordeeld?
+  // Zijn alle kaarten in de HUIDIGE LEERSET (gefilteredd op level) beoordeeld?
   const allCardsInCurrentSetAssessed = cardsInCurrentLearningSet.length > 0 && cardsInCurrentLearningSet.every(card => card && assessments[card.id]);
 
   // Tellingen voor review knoppen, gebaseerd op kaarten binnen het huidige level filter
@@ -167,7 +170,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
         <div className="mb-4 p-4 bg-gray-100 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
           <div className="flex flex-wrap gap-2">
-            {Object.keys(levelLabels).map(levelKey => (
+            {levelOrder.map(levelKey => (
               <button
                 key={levelKey}
                 onClick={() => { setLevelFilter(levelKey); setIsReviewing(false); }}
@@ -223,7 +226,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
         <div className="mb-4 p-4 bg-gray-100 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
           <div className="flex flex-wrap gap-2">
-            {Object.keys(levelLabels).map(levelKey => (
+            {levelOrder.map(levelKey => (
               <button
                 key={levelKey}
                 onClick={() => setLevelFilter(levelKey)}
@@ -231,6 +234,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
                   ${levelFilter === levelKey 
                     ? 'bg-blue-600 text-white' 
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                disabled={levelKey === ''}
               >
                 {levelLabels[levelKey]}
               </button>
@@ -240,146 +244,150 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
       )}
       
       {/* Hoofdsectie Trainer */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-2 text-blue-700">
-          {isReviewing 
-            ? <span className="font-bold text-red-600">Herhaling {levelFilter !== 'all' ? `(${levelLabels[levelFilter]})` : '(Alle Beoordeelde)'}: Kaart {currentCardIndex + 1}/{activeFlashcards.length}</span> 
-            : `Oefenen: ${levelLabels[levelFilter]} (Kaart ${currentCardIndex + 1}/${activeFlashcards.length})`}
-        </h2>
-        
-        {/* Stappen & Tips */}
-        <div className="mb-4">
-          <button
-            className="text-blue-700 font-semibold mb-2 focus:outline-none"
-            onClick={() => setShowInstructions((prev) => !prev)}
-             aria-expanded={showInstructions}
-             aria-controls="flashcard-instructions"
-          >
-            {showInstructions ? '▼' : '►'} Bekijk de stappen & tips
-          </button>
-          {showInstructions && (
-            <div id="flashcard-instructions" className="bg-blue-50 p-6 rounded-lg shadow-sm mt-2">
-              <strong>Stappen & tips:</strong>
-              <ol className="list-decimal ml-5 mt-2 space-y-1">
-                {!isReviewing && <li>Selecteer eerst een niveau hierboven.</li>}
-                <li>Kijk goed naar de term. Probeer zélf het antwoord te bedenken.</li>
-                <li>Klik op \'Toon Antwoord\'.</li>
-                <li>Beoordeel eerlijk hoe goed je het wist.</li>
-                {allCardsInCurrentSetAssessed && !isReviewing && <li>Alle kaarten van dit niveau beoordeeld? Kies hieronder of je specifieke kaarten wilt herhalen.</li>}
-                {isReviewing && <li>Herhaal de kaarten die je nog niet goed kent.</li>}
-              </ol>
+      {levelFilter ? (
+        <div>
+          <h2 className="text-2xl font-semibold mb-2 text-blue-700">
+            {isReviewing 
+              ? <span className="font-bold text-red-600">Herhaling {levelFilter !== 'all' ? `(${levelLabels[levelFilter]})` : '(Alle Beoordeelde)'}: Kaart {currentCardIndex + 1}/{activeFlashcards.length}</span> 
+              : `Oefenen: ${levelLabels[levelFilter]} (Kaart ${currentCardIndex + 1}/${activeFlashcards.length})`}
+          </h2>
+          
+          {/* Stappen & Tips */}
+          <div className="mb-4">
+            <button
+              className="text-blue-700 font-semibold mb-2 focus:outline-none"
+              onClick={() => setShowInstructions((prev) => !prev)}
+               aria-expanded={showInstructions}
+               aria-controls="flashcard-instructions"
+            >
+              {showInstructions ? '▼' : '►'} Bekijk de stappen & tips
+            </button>
+            {showInstructions && (
+              <div id="flashcard-instructions" className="bg-blue-50 p-6 rounded-lg shadow-sm mt-2">
+                <strong>Stappen & tips:</strong>
+                <ol className="list-decimal ml-5 mt-2 space-y-1">
+                  {!isReviewing && <li>Selecteer eerst een niveau hierboven.</li>}
+                  <li>Kijk goed naar de term. Probeer zélf het antwoord te bedenken.</li>
+                  <li>Klik op \'Toon Antwoord\'.</li>
+                  <li>Beoordeel eerlijk hoe goed je het wist.</li>
+                  {allCardsInCurrentSetAssessed && !isReviewing && <li>Alle kaarten van dit niveau beoordeeld? Kies hieronder of je specifieke kaarten wilt herhalen.</li>}
+                  {isReviewing && <li>Herhaal de kaarten die je nog niet goed kent.</li>}
+                </ol>
+              </div>
+            )}
+          </div>
+
+          {/* Flashcard zelf */}
+          {currentCard && (
+            <div className="border p-6 rounded-lg shadow-md bg-yellow-50 min-h-[200px] flex flex-col justify-between items-center mb-4">
+              <p className="text-xl font-bold text-gray-800 text-center mb-4">{currentCard.term}</p>
+              <div className="flex-grow flex items-center justify-center w-full">
+                {showAnswer ? (
+                  <p className="text-gray-700 text-center">{currentCard.definition}</p>
+                ) : (
+                  <button
+                    onClick={toggleAnswer}
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
+                  >
+                    Toon Antwoord
+                  </button>
+                )}
+              </div>
+              {showAnswer && (
+                <>
+                  <div className="mt-4 flex flex-col items-center">
+                    <p className="text-sm text-gray-600 mb-2">Hoe goed kende je dit?</p>
+                    <div className="flex flex-wrap justify-center items-center space-x-3">
+                      {['Niet', 'Redelijk', 'Goed'].map(assessmentType => (
+                         <button
+                            key={assessmentType}
+                            onClick={() => handleAssessment(currentCard.id, assessmentType)}
+                            className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
+                              assessments[currentCard.id] === assessmentType
+                                ? assessmentType === 'Niet' ? 'bg-red-700 ring-2 ring-offset-1 ring-red-700' 
+                                : assessmentType === 'Redelijk' ? 'bg-yellow-700 ring-2 ring-offset-1 ring-yellow-700'
+                                : 'bg-green-700 ring-2 ring-offset-1 ring-green-700'
+                                : assessmentType === 'Niet' ? 'bg-red-500 hover:bg-red-600'
+                                : assessmentType === 'Redelijk' ? 'bg-yellow-500 hover:bg-yellow-600'
+                                : 'bg-green-500 hover:bg-green-600'
+                            }`}
+                          >
+                            {assessmentType}
+                          </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex justify-center mt-4 w-full">
+                    <a
+                      href={generateChatGPTLink()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow text-sm"
+                    >
+                      Leer meer over dit onderwerp met AI
+                    </a>
+                  </div>
+                </>
+              )}
+              {isReviewing && repeatCounts[currentCard.id] > 0 && (
+                <div className="mt-2 text-xs text-gray-500">Herhaald: {repeatCounts[currentCard.id]}x</div>
+              )}
+            </div>
+          )}
+
+          {/* Melding & Knop als herhaalronde (review) klaar is */}
+          {showRepeatDone && isReviewing && (
+            <div className="text-center text-green-700 font-semibold mb-4 p-4 bg-green-50 rounded-lg">
+              <p>Je hebt alle kaarten in deze herhaalronde ({levelLabels[levelFilter] !== 'Alle Niveaus' ? levelLabels[levelFilter] : 'Alle Beoordeelde'}) afgerond.</p>
+              <div className="mt-4">
+                <button
+                  onClick={startOriginalSet} // Gaat terug naar leermodus, respecteert actieve levelFilter
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md"
+                >
+                  Terug naar Leermodus
+                </button>
+              </div>
+            </div>
+          )}
+          
+          {/* Herhaal-knoppen (alleen tonen als alle kaarten in huidige leerset beoordeeld zijn en niet in review-mode) */}
+          {allCardsInCurrentSetAssessed && !isReviewing && cardsInCurrentLearningSet.length > 0 && (
+            <div className="mt-8 text-center p-6 bg-blue-50 rounded-lg">
+              <p className="text-xl font-medium text-gray-800 mb-2">
+                Alle ({cardsInCurrentLearningSet.length}) kaarten van {levelLabels[levelFilter]} beoordeeld!
+              </p>
+              <p className="text-sm text-gray-600 mb-4">
+                Herhaal specifieke groepen binnen {levelLabels[levelFilter]}.
+              </p>
+              <div className="flex justify-center gap-4 flex-wrap">
+                <button
+                  onClick={() => startReview('Niet')}
+                  disabled={countNeeInFilter === 0}
+                  className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeInFilter > 0 ? 'bg-orange-600 hover:bg-orange-700' : 'bg-gray-400 cursor-not-allowed'}`}
+                >
+                  Herhaal 'Niet' ({countNeeInFilter})
+                </button>
+                <button
+                  onClick={() => startReview('Niet_Redelijk')}
+                  disabled={countNeeRedelijkInFilter === 0}
+                  className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeRedelijkInFilter > 0 ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-gray-400 cursor-not-allowed'}`}
+                >
+                  Herhaal 'Niet & Redelijk' ({countNeeRedelijkInFilter})
+                </button>
+                <button
+                  onClick={() => startReview('Alles')}
+                  disabled={countAssessedInFilter === 0}
+                  className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countAssessedInFilter > 0 ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'}`}
+                >
+                  Herhaal Alle Beoordeelde ({countAssessedInFilter})
+                </button>
+              </div>
             </div>
           )}
         </div>
-
-        {/* Flashcard zelf */}
-        {currentCard && (
-          <div className="border p-6 rounded-lg shadow-md bg-yellow-50 min-h-[200px] flex flex-col justify-between items-center mb-4">
-            <p className="text-xl font-bold text-gray-800 text-center mb-4">{currentCard.term}</p>
-            <div className="flex-grow flex items-center justify-center w-full">
-              {showAnswer ? (
-                <p className="text-gray-700 text-center">{currentCard.definition}</p>
-              ) : (
-                <button
-                  onClick={toggleAnswer}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
-                >
-                  Toon Antwoord
-                </button>
-              )}
-            </div>
-            {showAnswer && (
-              <>
-                <div className="mt-4 flex flex-col items-center">
-                  <p className="text-sm text-gray-600 mb-2">Hoe goed kende je dit?</p>
-                  <div className="flex flex-wrap justify-center items-center space-x-3">
-                    {['Niet', 'Redelijk', 'Goed'].map(assessmentType => (
-                       <button
-                          key={assessmentType}
-                          onClick={() => handleAssessment(currentCard.id, assessmentType)}
-                          className={`text-white text-sm font-medium py-1 px-3 rounded-md transition duration-150 ease-in-out shadow mb-2 sm:mb-0 ${
-                            assessments[currentCard.id] === assessmentType
-                              ? assessmentType === 'Niet' ? 'bg-red-700 ring-2 ring-offset-1 ring-red-700' 
-                              : assessmentType === 'Redelijk' ? 'bg-yellow-700 ring-2 ring-offset-1 ring-yellow-700'
-                              : 'bg-green-700 ring-2 ring-offset-1 ring-green-700'
-                              : assessmentType === 'Niet' ? 'bg-red-500 hover:bg-red-600'
-                              : assessmentType === 'Redelijk' ? 'bg-yellow-500 hover:bg-yellow-600'
-                              : 'bg-green-500 hover:bg-green-600'
-                          }`}
-                        >
-                          {assessmentType}
-                        </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex justify-center mt-4 w-full">
-                  <a
-                    href={generateChatGPTLink()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow text-sm"
-                  >
-                    Leer meer over dit onderwerp met AI
-                  </a>
-                </div>
-              </>
-            )}
-            {isReviewing && repeatCounts[currentCard.id] > 0 && (
-              <div className="mt-2 text-xs text-gray-500">Herhaald: {repeatCounts[currentCard.id]}x</div>
-            )}
-          </div>
-        )}
-
-        {/* Melding & Knop als herhaalronde (review) klaar is */}
-        {showRepeatDone && isReviewing && (
-          <div className="text-center text-green-700 font-semibold mb-4 p-4 bg-green-50 rounded-lg">
-            <p>Je hebt alle kaarten in deze herhaalronde ({levelLabels[levelFilter] !== 'Alle Niveaus' ? levelLabels[levelFilter] : 'Alle Beoordeelde'}) afgerond.</p>
-            <div className="mt-4">
-              <button
-                onClick={startOriginalSet} // Gaat terug naar leermodus, respecteert actieve levelFilter
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md"
-              >
-                Terug naar Leermodus
-              </button>
-            </div>
-          </div>
-        )}
-        
-        {/* Herhaal-knoppen (alleen tonen als alle kaarten in huidige leerset beoordeeld zijn en niet in review-mode) */}
-        {allCardsInCurrentSetAssessed && !isReviewing && cardsInCurrentLearningSet.length > 0 && (
-          <div className="mt-8 text-center p-6 bg-blue-50 rounded-lg">
-            <p className="text-xl font-medium text-gray-800 mb-2">
-              Alle ({cardsInCurrentLearningSet.length}) kaarten van {levelLabels[levelFilter]} beoordeeld!
-            </p>
-            <p className="text-sm text-gray-600 mb-4">
-              Herhaal specifieke groepen binnen {levelLabels[levelFilter]}.
-            </p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <button
-                onClick={() => startReview('Niet')}
-                disabled={countNeeInFilter === 0}
-                className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeInFilter > 0 ? 'bg-orange-600 hover:bg-orange-700' : 'bg-gray-400 cursor-not-allowed'}`}
-              >
-                Herhaal 'Niet' ({countNeeInFilter})
-              </button>
-              <button
-                onClick={() => startReview('Niet_Redelijk')}
-                disabled={countNeeRedelijkInFilter === 0}
-                className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeRedelijkInFilter > 0 ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-gray-400 cursor-not-allowed'}`}
-              >
-                Herhaal 'Niet & Redelijk' ({countNeeRedelijkInFilter})
-              </button>
-              <button
-                onClick={() => startReview('Alles')}
-                disabled={countAssessedInFilter === 0}
-                className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countAssessedInFilter > 0 ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'}`}
-              >
-                Herhaal Alle Beoordeelde ({countAssessedInFilter})
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
+      ) : (
+        <div className="text-center text-gray-500 italic mt-8">Kies eerst een niveau om te starten met de flashcards.</div>
+      )}
     </div>
   );
 }
