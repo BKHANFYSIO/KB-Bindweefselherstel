@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import usePersistentToggle from './usePersistentToggle';
 
 function EJournalSection({ onGeneratePDF, firstName, lastName, onFirstNameChange, onLastNameChange }) {
-  const [showIntro, setShowIntro] = useState(true);
-  const [showPortfolio, setShowPortfolio] = useState(false);
+  const [showIntro, toggleIntro] = usePersistentToggle('ejournal_intro', true);
+  const [showPortfolioBlock, togglePortfolioBlock] = usePersistentToggle('ejournal_portfolio_block', true);
   const [showVRAAK, setShowVRAAK] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [showPortfolioBlock, setShowPortfolioBlock] = useState(true);
 
   const handleGeneratePDF = async () => {
     setIsGenerating(true);
@@ -25,7 +25,7 @@ function EJournalSection({ onGeneratePDF, firstName, lastName, onFirstNameChange
       <div className="mb-4">
         <button
           className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowIntro((prev) => !prev)}
+          onClick={toggleIntro}
           aria-expanded={showIntro}
           aria-controls="certificaat-intro"
         >
@@ -50,7 +50,7 @@ function EJournalSection({ onGeneratePDF, firstName, lastName, onFirstNameChange
       <div className="mb-4">
         <button
           className="text-purple-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowPortfolioBlock((prev) => !prev)}
+          onClick={togglePortfolioBlock}
           aria-expanded={showPortfolioBlock}
           aria-controls="portfolio-bewijs-blok"
         >

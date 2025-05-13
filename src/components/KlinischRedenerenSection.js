@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import usePersistentToggle from './usePersistentToggle';
 
 function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onScoreChange }) {
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
@@ -6,7 +7,19 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
   const [isAiChecking, setIsAiChecking] = useState(false);
   const [aiFeedback, setAiFeedback] = useState('');
   const [selfAssessment, setSelfAssessment] = useState({});
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, toggleIntro] = usePersistentToggle('klinisch_redeneren_intro', true);
+  const [answerVersions, setAnswerVersions] = useState({});
+  const [currentVersion, setCurrentVersion] = useState({});
+
+  // Bepaal huidige pogingnummer
+  const savedVersionCount = answerVersions[cases[currentCaseIndex]?.id] ? (answerVersions[cases[currentCaseIndex].id] || []).length : 0;
+  const attemptNumber = selfAssessment[cases[currentCaseIndex]?.id] ? savedVersionCount : savedVersionCount + 1;
+
+  // Synchroniseer lokale selfAssessment met de doorgegeven scores zodat na herladen
+  // de vergrendeling correct is.
+  useEffect(() => {
+    setSelfAssessment(scores);
+  }, [scores]);
 
   const currentCase = cases[currentCaseIndex];
 
@@ -36,6 +49,45 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
       ...selfAssessment,
       [currentCase.id]: level
     });
+
+    // Save the current answer as a version
+    const versionNumber = (answerVersions[currentCase.id]?.length || 0) + 1;
+    const newVersion = {
+      answer: answers[currentCase.id],
+      score: level,
+      timestamp: new Date().toISOString(),
+      version: versionNumber
+    };
+
+    setAnswerVersions(prev => ({
+      ...prev,
+      [currentCase.id]: [...(prev[currentCase.id] || []), newVersion]
+    }));
+
+    // Update the current version
+    setCurrentVersion(prev => ({
+      ...prev,
+      [currentCase.id]: versionNumber
+    }));
+  };
+
+  const startNewAttempt = () => {
+    // Clear the current answer but keep versions
+    onAnswerChange(currentCase.id, '');
+
+    // Verwijder de eerdere zelfbeoordeling zodat de buttons weer actief worden
+    const newScores = { ...scores };
+    delete newScores[currentCase.id];
+    onScoreChange(newScores);
+
+    setSelfAssessment(prev => {
+      const updated = { ...prev };
+      delete updated[currentCase.id];
+      return updated;
+    });
+
+    setShowModelAnswer(false);
+    setAiFeedback('');
   };
 
   const checkWithAI = (casus, answer) => {
@@ -74,7 +126,7 @@ Geef een gestructureerde analyse met:
       <div className="mb-4">
         <button
           className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowIntro((prev) => !prev)}
+          onClick={toggleIntro}
           aria-expanded={showIntro}
           aria-controls="klinischredeneren-intro"
         >
@@ -92,7 +144,7 @@ Geef een gestructureerde analyse met:
       <div className="max-w-4xl mx-auto">
         <div className="mb-6 flex justify-between items-center">
           <div className="text-gray-600">
-            Casus {currentCaseIndex + 1} van {cases.length}
+            Casus {currentCaseIndex + 1} van {cases.length} • Poging {attemptNumber}
           </div>
         </div>
 
@@ -109,30 +161,58 @@ Geef een gestructureerde analyse met:
               <textarea
                 value={answers[currentCase.id] || ''}
                 onChange={(e) => onAnswerChange(currentCase.id, e.target.value)}
-                className="w-full h-40 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                readOnly={!!selfAssessment[currentCase.id]}
+                className={`w-full h-40 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                  selfAssessment[currentCase.id] ? 'bg-gray-100 cursor-not-allowed' : ''
+                }`}
                 placeholder="Beschrijf hier je klinische redenering..."
               />
             </div>
 
             <div className="space-y-4">
               <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => setShowModelAnswer(!showModelAnswer)}
-                  className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200"
-                >
-                  {showModelAnswer ? 'Verberg modelantwoord' : 'Toon modelantwoord'}
-                </button>
-                <button
-                  onClick={() => checkWithAI(currentCase, answers[currentCase.id] || '')}
-                  disabled={!answers[currentCase.id]}
-                  className={`px-4 py-2 rounded-lg font-medium ${
-                    !answers[currentCase.id]
-                      ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                      : 'bg-green-600 text-white hover:bg-green-700'
-                  }`}
-                >
-                  Controleer met AI
-                </button>
+                <div className="relative group">
+                  <button
+                    onClick={() => setShowModelAnswer(!showModelAnswer)}
+                    disabled={!answers[currentCase.id]}
+                    className={`px-4 py-2 rounded-lg font-medium ${
+                      !answers[currentCase.id]
+                        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                        : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                    }`}
+                  >
+                    {showModelAnswer ? 'Verberg modelantwoord' : 'Toon modelantwoord'}
+                  </button>
+                  {!answers[currentCase.id] && (
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                      Vul eerst je antwoord in om feedback te krijgen
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                        <div className="border-8 border-transparent border-t-gray-800"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="relative group">
+                  <button
+                    onClick={() => checkWithAI(currentCase, answers[currentCase.id] || '')}
+                    disabled={!answers[currentCase.id]}
+                    className={`px-4 py-2 rounded-lg font-medium ${
+                      !answers[currentCase.id]
+                        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                        : 'bg-green-600 text-white hover:bg-green-700'
+                    }`}
+                  >
+                    Controleer met AI
+                  </button>
+                  {!answers[currentCase.id] && (
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                      Vul eerst je antwoord in om feedback te krijgen
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                        <div className="border-8 border-transparent border-t-gray-800"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {showModelAnswer && (
@@ -159,28 +239,61 @@ Geef een gestructureerde analyse met:
 
               <div className="border-t pt-4 mt-4">
                 <h4 className="font-medium text-gray-700 mb-2">Hoe goed denk je dat je het hebt gedaan?</h4>
-                <div className="flex gap-3">
-                  {['beginner', 'gevorderd', 'expert'].map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => handleSelfAssessment(level)}
-                      className={`px-4 py-2 rounded-lg font-medium capitalize ${
-                        selfAssessment[currentCase.id] === level
-                          ? level === 'beginner' 
-                            ? 'bg-red-500 hover:bg-red-600 text-white'
-                            : level === 'gevorderd'
-                            ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
-                            : 'bg-green-500 hover:bg-green-600 text-white'
-                          : level === 'beginner'
-                          ? 'bg-red-500 hover:bg-red-600 text-white'
-                          : level === 'gevorderd'
-                          ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
-                          : 'bg-green-500 hover:bg-green-600 text-white'
-                      }`}
-                    >
-                      {level}
-                    </button>
-                  ))}
+                <div className="flex flex-col gap-4">
+                  <div className="flex gap-3">
+                    {['beginner', 'gevorderd', 'expert'].map((level) => (
+                      <div key={level} className="relative group">
+                        <button
+                          onClick={() => handleSelfAssessment(level)}
+                          disabled={!answers[currentCase.id] || selfAssessment[currentCase.id]}
+                          className={`px-4 py-2 rounded-lg font-medium capitalize ${
+                            !answers[currentCase.id] || selfAssessment[currentCase.id]
+                              ? 'opacity-50 cursor-not-allowed'
+                              : ''
+                          } ${
+                            selfAssessment[currentCase.id] === level
+                              ? level === 'beginner' 
+                                ? 'bg-red-500 hover:bg-red-600 text-white'
+                                : level === 'gevorderd'
+                                ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                                : 'bg-green-500 hover:bg-green-600 text-white'
+                              : level === 'beginner'
+                              ? 'bg-red-500 hover:bg-red-600 text-white'
+                              : level === 'gevorderd'
+                              ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                              : 'bg-green-500 hover:bg-green-600 text-white'
+                          }`}
+                        >
+                          {level}
+                        </button>
+                        {!answers[currentCase.id] && (
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                            Vul eerst je antwoord in om feedback te krijgen
+                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                              <div className="border-8 border-transparent border-t-gray-800"></div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {selfAssessment[currentCase.id] && (
+                    <div className="flex flex-col gap-2">
+                      <div className="bg-green-50 p-3 rounded-lg text-green-700">
+                        <p className="font-medium">✓ Antwoord opgeslagen als {selfAssessment[currentCase.id]}</p>
+                        {currentVersion[currentCase.id] > 1 && (
+                          <p className="text-sm mt-1">Dit is je {currentVersion[currentCase.id]}e poging</p>
+                        )}
+                      </div>
+                      <button
+                        onClick={startNewAttempt}
+                        className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200"
+                      >
+                        Opnieuw proberen
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

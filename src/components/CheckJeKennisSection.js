@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import usePersistentToggle from './usePersistentToggle';
 
 function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onScoreChange }) {
   const [currentQuestions, setCurrentQuestions] = useState([...questions]);
@@ -8,7 +9,25 @@ function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onSc
   const [aiFeedback, setAiFeedback] = useState('');
   const [selfAssessment, setSelfAssessment] = useState({});
   const [isReviewing, setIsReviewing] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, toggleIntro] = usePersistentToggle('check_je_kennis_intro', true);
+  const [showTips, toggleTips] = usePersistentToggle('check_je_kennis_tips', false);
+  const [showChecklist, setShowChecklist] = useState(false);
+  const [answerVersions, setAnswerVersions] = useState({});
+  const [currentVersion, setCurrentVersion] = useState({});
+
+  // Bepaal het huidige pogingnummer voor deze vraag
+  const savedVersionCount = answerVersions[currentQuestions[currentQuestionIndex]?.id] ? answerVersions[currentQuestions[currentQuestionIndex].id].length : 0;
+  const attemptNumber = selfAssessment[currentQuestions[currentQuestionIndex]?.id] ? savedVersionCount : savedVersionCount + 1;
+
+  /*
+   * Zorg dat de lokale selfAssessment state altijd in sync blijft met de
+   * doorgegeven scores-prop. Dit is nodig om na een herlaad of wanneer de gebruiker
+   * terugkeert naar het hoofdstuk, de juiste vergrendeling en status van de vraag
+   * te tonen.
+   */
+  useEffect(() => {
+    setSelfAssessment(scores);
+  }, [scores]);
 
   const currentQuestion = currentQuestions[currentQuestionIndex];
 
@@ -38,6 +57,26 @@ function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onSc
       ...selfAssessment,
       [currentQuestion.id]: level
     });
+
+    // Save the current answer as a version
+    const versionNumber = (answerVersions[currentQuestion.id]?.length || 0) + 1;
+    const newVersion = {
+      answer: answers[currentQuestion.id],
+      score: level,
+      timestamp: new Date().toISOString(),
+      version: versionNumber
+    };
+
+    setAnswerVersions(prev => ({
+      ...prev,
+      [currentQuestion.id]: [...(prev[currentQuestion.id] || []), newVersion]
+    }));
+
+    // Update the current version
+    setCurrentVersion(prev => ({
+      ...prev,
+      [currentQuestion.id]: versionNumber
+    }));
   };
 
   const checkWithAI = (question, answer) => {
@@ -98,6 +137,24 @@ Geef een gestructureerde analyse met:
     setIsReviewing(false);
   };
 
+  const startNewAttempt = () => {
+    // Clear the current answer but keep versions
+    onAnswerChange(currentQuestion.id, '');
+    // Verwijder de eerdere zelfbeoordeling zodat de buttons weer actief worden
+    const newScores = { ...scores };
+    delete newScores[currentQuestion.id];
+    onScoreChange(newScores);
+
+    setSelfAssessment(prev => {
+      const updated = { ...prev };
+      delete updated[currentQuestion.id];
+      return updated;
+    });
+
+    setShowModelAnswer(false);
+    setAiFeedback('');
+  };
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-blue-700">Check je Kennis</h2>
@@ -105,16 +162,58 @@ Geef een gestructureerde analyse met:
       <div className="mb-4">
         <button
           className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowIntro((prev) => !prev)}
+          onClick={toggleIntro}
           aria-expanded={showIntro}
           aria-controls="checkkennis-intro"
         >
           {showIntro ? '▼' : '►'} Inleiding
         </button>
         {showIntro && (
-          <div id="checkkennis-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
+          <div id="checkkennis-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm space-y-4">
             <p className="text-gray-700 leading-relaxed">
-              Check je Kennis is je persoonlijke voortgangscheck. Hier kun je zien hoe ver je bent in je leerproces en welke onderwerpen je al goed beheerst. Dit onderdeel helpt je om gericht te studeren en te focussen op de gebieden die nog extra aandacht nodig hebben. Gebruik het als een spiegel voor je eigen leerproces.
+              Check je Kennis is jouw persoonlijke voortgangscheck. Hier ontdek je welke kennisonderwerpen je al goed beheerst en waar nog winst te behalen valt. Door jouw kennis actief op te halen uit je geheugen en deze uit te leggen aan een denkbeeldige patiënt of collega, leer je diepgaander en effectiever.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Deze oefening maakt gebruik van retrieval practice: een bewezen leermethode waarbij je actief informatie uit je geheugen probeert op te roepen in plaats van deze opnieuw te bestuderen. Dat voelt soms lastig, maar juist op die momenten versterk je je begrip en vergroot je de kans dat je de kennis op lange termijn onthoudt.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Gebruik dit onderdeel als spiegel: waar voel je je zeker over, en waar merk je dat je uitleg nog scherper kan?
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="mb-4">
+        <button
+          className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
+          onClick={toggleTips}
+          aria-expanded={showTips}
+          aria-controls="checkkennis-tips"
+        >
+          {showTips ? '▼' : '►'} Bekijk tips voor effectief oefenen
+        </button>
+        {showTips && (
+          <div id="checkkennis-tips" className="bg-blue-50 p-6 rounded-lg shadow-sm space-y-4">
+            <h3 className="font-semibold text-blue-800 mb-2">Werkwijze</h3>
+            <ol className="list-decimal ml-6 space-y-2 text-gray-700">
+              <li>Kies een onderwerp en stel je voor dat je het uitlegt aan een patiënt of collega.</li>
+              <li>Type je uitleg in het tekstvak. Probeer helder, begrijpelijk en volledig te zijn.</li>
+              <li>Vergelijk je uitleg met de antwoordsleutel en/of gebruik de functie Controleer met AI voor directe feedback.</li>
+              <li>Geef jezelf een score (bijvoorbeeld van 1 tot 5): Hoe duidelijk, accuraat en compleet was jouw uitleg?</li>
+              <li>Reflecteer: Wat ging goed? Wat zou je anders doen bij een volgende uitleg?</li>
+            </ol>
+
+            <h3 className="font-semibold text-blue-800 mt-4 mb-2">Tip</h3>
+            <p className="text-gray-700">
+              Wil je liever spreken dan typen? Gebruik dan bijvoorbeeld:
+            </p>
+            <ul className="list-disc ml-6 text-gray-700">
+              <li>De dicteerfunctie in MS Word,</li>
+              <li>De spraak naar tekst functie op je telefoon,</li>
+              <li>Of spreek je uitleg in bij ChatGPT (gebruik de microfoonfunctie).</li>
+            </ul>
+            <p className="text-gray-700 mt-2">
+              Je gesproken tekst wordt automatisch omgezet naar tekst die je hier kunt plakken en controleren.
             </p>
           </div>
         )}
@@ -125,8 +224,9 @@ Geef een gestructureerde analyse met:
           <h2 className="text-2xl font-semibold text-blue-700">
             Check je Kennis {isReviewing ? "(Herhaling)" : ""}
           </h2>
-          <div className="text-gray-600">
-            Vraag {currentQuestionIndex + 1} van {currentQuestions.length}
+          <div className="text-gray-600 flex items-center gap-2">
+            <span>Vraag {currentQuestionIndex + 1} van {currentQuestions.length}</span>
+            <span className="text-sm text-gray-500">• Poging {attemptNumber}</span>
           </div>
         </div>
 
@@ -140,6 +240,41 @@ Geef een gestructureerde analyse met:
             </h3>
           </div>
 
+          <div className="mb-4">
+            <button
+              className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
+              onClick={() => setShowChecklist((prev) => !prev)}
+              aria-expanded={showChecklist}
+              aria-controls="explanation-checklist"
+            >
+              {showChecklist ? '▼' : '►'} {currentQuestion.type === 'client' ? '👂' : '🧠'} Bekijk checklist voor {currentQuestion.type === 'client' ? 'patiënt' : 'collega'} uitleg
+            </button>
+            {showChecklist && (
+              <div id="explanation-checklist" className="bg-blue-50 p-4 rounded-lg shadow-sm">
+                {currentQuestion.type === 'client' ? (
+                  <>
+                    <h4 className="font-semibold text-blue-800 mb-2">👂 Uitleg aan een patiënt – Checklijst</h4>
+                    <ul className="list-disc ml-6 space-y-2 text-gray-700">
+                      <li>Vermijd medische vaktaal of leg deze meteen eenvoudig uit</li>
+                      <li>Gebruik eenvoudige, begrijpelijke zinnen</li>
+                      <li>Maak gebruik van metaforen of vergelijkingen (bijv. "de zenuw is als een kabel met isolatie")</li>
+                      <li>Focus op wat relevant is voor de patiënt</li>
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <h4 className="font-semibold text-blue-800 mb-2">🧠 Uitleg aan een collega – Checklijst</h4>
+                    <ul className="list-disc ml-6 space-y-2 text-gray-700">
+                      <li>Gebruik vaktermen en definities correct</li>
+                      <li>Leg fysiologische/mechanische processen nauwkeurig en met voldoende diepgang uit</li>
+                      <li>Toon onderliggende verbanden of oorzaken-gevolgrelaties</li>
+                    </ul>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+
           <div className="mb-6">
             <label className="block text-gray-700 font-medium mb-2">
               Jouw antwoord:
@@ -147,29 +282,57 @@ Geef een gestructureerde analyse met:
             <textarea
               value={answers[currentQuestion.id] || ''}
               onChange={(e) => onAnswerChange(currentQuestion.id, e.target.value)}
-              className="w-full h-32 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              readOnly={!!selfAssessment[currentQuestion.id]}
+              className={`w-full h-32 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                selfAssessment[currentQuestion.id] ? 'bg-gray-100 cursor-not-allowed' : ''
+              }`}
               placeholder="Typ hier je antwoord..."
             />
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => setShowModelAnswer(!showModelAnswer)}
-              className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200"
-            >
-              {showModelAnswer ? 'Verberg antwoordsleutel' : 'Toon antwoordsleutel'}
-            </button>
-            <button
-              onClick={() => checkWithAI(currentQuestion, answers[currentQuestion.id] || '')}
-              disabled={!answers[currentQuestion.id] || isAiChecking}
-              className={`px-4 py-2 rounded-lg font-medium ${
-                !answers[currentQuestion.id] || isAiChecking
-                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  : 'bg-green-600 text-white hover:bg-green-700'
-              }`}
-            >
-              {isAiChecking ? 'Bezig met controleren...' : 'Controleer met AI'}
-            </button>
+            <div className="relative group">
+              <button
+                onClick={() => setShowModelAnswer(!showModelAnswer)}
+                disabled={!answers[currentQuestion.id]}
+                className={`px-4 py-2 rounded-lg font-medium ${
+                  !answers[currentQuestion.id]
+                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                }`}
+              >
+                {showModelAnswer ? 'Verberg antwoordsleutel' : 'Toon antwoordsleutel'}
+              </button>
+              {!answers[currentQuestion.id] && (
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                  Vul eerst je antwoord in om feedback te krijgen
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                    <div className="border-8 border-transparent border-t-gray-800"></div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => checkWithAI(currentQuestion, answers[currentQuestion.id] || '')}
+                disabled={!answers[currentQuestion.id] || isAiChecking}
+                className={`px-4 py-2 rounded-lg font-medium ${
+                  !answers[currentQuestion.id] || isAiChecking
+                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    : 'bg-green-600 text-white hover:bg-green-700'
+                }`}
+              >
+                {isAiChecking ? 'Bezig met controleren...' : 'Controleer met AI'}
+              </button>
+              {!answers[currentQuestion.id] && (
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                  Vul eerst je antwoord in om feedback te krijgen
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                    <div className="border-8 border-transparent border-t-gray-800"></div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           {showModelAnswer && (
@@ -196,28 +359,61 @@ Geef een gestructureerde analyse met:
 
           <div className="mt-6">
             <h4 className="font-medium text-gray-700 mb-2">Hoe goed denk je dat je het hebt gedaan?</h4>
-            <div className="flex gap-3">
-              {['beginner', 'gevorderd', 'expert'].map((level) => (
-                <button
-                  key={level}
-                  onClick={() => handleSelfAssessment(level)}
-                  className={`px-4 py-2 rounded-lg font-medium capitalize ${
-                    selfAssessment[currentQuestion.id] === level
-                      ? level === 'beginner' 
-                        ? 'bg-red-500 hover:bg-red-600 text-white'
-                        : level === 'gevorderd'
-                        ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
-                        : 'bg-green-500 hover:bg-green-600 text-white'
-                      : level === 'beginner'
-                      ? 'bg-red-500 hover:bg-red-600 text-white'
-                      : level === 'gevorderd'
-                      ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
-                      : 'bg-green-500 hover:bg-green-600 text-white'
-                  }`}
-                >
-                  {level}
-                </button>
-              ))}
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-3">
+                {['beginner', 'gevorderd', 'expert'].map((level) => (
+                  <div key={level} className="relative group">
+                    <button
+                      onClick={() => handleSelfAssessment(level)}
+                      disabled={!answers[currentQuestion.id] || selfAssessment[currentQuestion.id]}
+                      className={`px-4 py-2 rounded-lg font-medium capitalize ${
+                        !answers[currentQuestion.id] || selfAssessment[currentQuestion.id]
+                          ? 'opacity-50 cursor-not-allowed'
+                          : ''
+                      } ${
+                        selfAssessment[currentQuestion.id] === level
+                          ? level === 'beginner' 
+                            ? 'bg-red-500 hover:bg-red-600 text-white'
+                            : level === 'gevorderd'
+                            ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                            : 'bg-green-500 hover:bg-green-600 text-white'
+                          : level === 'beginner'
+                          ? 'bg-red-500 hover:bg-red-600 text-white'
+                          : level === 'gevorderd'
+                          ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                          : 'bg-green-500 hover:bg-green-600 text-white'
+                      }`}
+                    >
+                      {level}
+                    </button>
+                    {!answers[currentQuestion.id] && (
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                        Vul eerst je antwoord in om feedback te krijgen
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                          <div className="border-8 border-transparent border-t-gray-800"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              
+              {selfAssessment[currentQuestion.id] && (
+                <div className="flex flex-col gap-2">
+                  <div className="bg-green-50 p-3 rounded-lg text-green-700">
+                    <p className="font-medium">✓ Antwoord opgeslagen als {selfAssessment[currentQuestion.id]}</p>
+                    {currentVersion[currentQuestion.id] > 1 && (
+                      <p className="text-sm mt-1">Dit is je {currentVersion[currentQuestion.id]}e poging</p>
+                    )}
+                  </div>
+                  <button
+                    onClick={startNewAttempt}
+                    className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200"
+                  >
+                    Opnieuw proberen
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -289,4 +485,4 @@ Geef een gestructureerde analyse met:
   );
 }
 
-export default CheckJeKennisSection; 
+export default CheckJeKennisSection;

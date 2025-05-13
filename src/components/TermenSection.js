@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { shuffleArray } from '../utils';
+import usePersistentToggle from './usePersistentToggle';
 
 // Noodzakelijk voor de dynamische titel en andere UI elementen
 const levelLabels = {
@@ -20,7 +21,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
   const [showAnswer, setShowAnswer] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, toggleIntro] = usePersistentToggle('begrippen_trainer_intro', true);
   const [repeatCounts, setRepeatCounts] = useState({});
   const [showRepeatDone, setShowRepeatDone] = useState(false);
   const [reviewedThisRound, setReviewedThisRound] = useState([]);
@@ -205,7 +206,7 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
         <div className="mb-4">
           <button
             className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-            onClick={() => setShowIntro((prev) => !prev)}
+            onClick={toggleIntro}
             aria-expanded={showIntro}
             aria-controls="begrippen-intro"
           >

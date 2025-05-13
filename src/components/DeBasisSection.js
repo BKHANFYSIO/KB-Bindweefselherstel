@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import usePersistentToggle from './usePersistentToggle';
 
 const BRAINDUMP_STORAGE_KEY = 'basisBraindumps';
 
@@ -14,8 +15,8 @@ function DeBasisSection() {
   const [currentToelichtingGoed, setCurrentToelichtingGoed] = useState('');
   const [currentToelichtingBeter, setCurrentToelichtingBeter, setCurrentScore] = useState('');
   const [showBoek, setShowBoek] = useState(false);
-  const [showBraindumpIntro, setShowBraindumpIntro] = useState(true);
-  const [showBasisIntro, setShowBasisIntro] = useState(true);
+  const [showBraindumpIntro, toggleBraindumpIntro] = usePersistentToggle('de_basis_braindump_intro', true);
+  const [showBasisIntro, toggleBasisIntro] = usePersistentToggle('de_basis_intro', true);
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
@@ -57,14 +58,14 @@ function DeBasisSection() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 sm:p-6 space-y-8">
+    <div className="max-w-4xl mx-auto space-y-8">
       {/* Samenvatting en verdieping */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold text-blue-700 mb-2">De Basis</h2>
         <div className="mb-4">
           <button
             className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-            onClick={() => setShowBasisIntro((prev) => !prev)}
+            onClick={toggleBasisIntro}
             aria-expanded={showBasisIntro}
             aria-controls="basis-intro"
           >
@@ -88,7 +89,7 @@ function DeBasisSection() {
         </div>
         <button
           className="text-yellow-800 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowBraindumpIntro((prev) => !prev)}
+          onClick={toggleBraindumpIntro}
           aria-expanded={showBraindumpIntro}
           aria-controls="braindump-intro"
         >

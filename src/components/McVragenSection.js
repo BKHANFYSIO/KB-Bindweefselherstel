@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import usePersistentToggle from './usePersistentToggle';
 
 function McVragenSection({ questions, scores, onScoreChange }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -6,8 +7,8 @@ function McVragenSection({ questions, scores, onScoreChange }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [reviewMode, setReviewMode] = useState('all'); // 'all' or 'incorrect'
-  const [showIntro, setShowIntro] = useState(true);
-  const [showTips, setShowTips] = useState(false);
+  const [showIntro, toggleIntro] = usePersistentToggle('mc_vragen_intro', true);
+  const [showTips, toggleTips] = usePersistentToggle('mc_vragen_tips', false);
   const [showOptions, setShowOptions] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [shuffledOptions, setShuffledOptions] = useState({});
@@ -111,7 +112,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
       <div className="mb-4">
         <button
           className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowIntro((prev) => !prev)}
+          onClick={toggleIntro}
           aria-expanded={showIntro}
           aria-controls="mcvragen-intro"
         >
@@ -129,7 +130,7 @@ function McVragenSection({ questions, scores, onScoreChange }) {
       <div className="mb-4">
         <button
           className="text-blue-700 font-semibold mb-2 focus:outline-none flex items-center gap-2"
-          onClick={() => setShowTips((prev) => !prev)}
+          onClick={toggleTips}
           aria-expanded={showTips}
           aria-controls="mcvragen-tips"
         >
