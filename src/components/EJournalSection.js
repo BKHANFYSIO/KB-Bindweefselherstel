@@ -34,14 +34,14 @@ function EJournalSection({ onGeneratePDF, firstName, lastName, onFirstNameChange
         {showIntro && (
           <div id="certificaat-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm space-y-4">
             <p className="text-gray-700 leading-relaxed">
-              Dit certificaat is niet alleen een beloning voor je inzet, maar helpt je ook:<br/>
-              <ul className="list-disc ml-6 mt-2 mb-2">
-                <li>Bij zelfinzicht en het sturen van je eigen leerproces. Je kunt het gebruiken als bewijs voor <b>EVL4 (4.1 sturen van eigen leerproces)</b>, waarmee je mede met hulp van de certificaten kunt aantonen dat je effectieve leerstrategieën toepast en hierin groeit.</li>
-                <li>Je kennisniveau te laten zien, wat als basis kan dienen voor <b>diverse EVL's</b>. Gebruik de entry <b>'aanvullend bewijs kennis'</b> in eJournal om dit te onderbouwen.</li>
-              </ul>
-              <span className="block mt-2">Je hoeft niet alle onderdelen in de voortgang te hebben afgerond. Kies dat wat nu bij je past en maak daar een certificaat van. Later terugkomen en opnieuw een certificaat aanmaken is een goed idee: <b>herhaling is één van de sterkste leerstrategieën!</b></span><br/>
-              <span className="font-semibold text-red-600">Let op:</span> Bewaar je certificaten goed! Tip: Je kunt ze direct toevoegen aan je eJournal bij een datapunt en later meer certificaten toevoegen.
+              Dit certificaat is niet alleen een beloning voor je inzet, maar helpt je ook:
             </p>
+            <ul className="list-disc ml-6 mt-2 mb-2">
+              <li>Bij zelfinzicht en het sturen van je eigen leerproces. Je kunt het gebruiken als bewijs voor <b>EVL4 (4.1 sturen van eigen leerproces)</b>, waarmee je mede met hulp van de certificaten kunt aantonen dat je effectieve leerstrategieën toepast en hierin groeit.</li>
+              <li>Je kennisniveau te laten zien, wat als basis kan dienen voor <b>diverse EVL's</b>. Gebruik de entry <b>'aanvullend bewijs kennis'</b> in eJournal om dit te onderbouwen.</li>
+            </ul>
+            <span className="block mt-2">Je hoeft niet alle onderdelen in de voortgang te hebben afgerond. Kies dat wat nu bij je past en maak daar een certificaat van. Later terugkomen en opnieuw een certificaat aanmaken is een goed idee: <b>herhaling is één van de sterkste leerstrategieën!</b></span><br/>
+            <span className="font-semibold text-red-600">Let op:</span> Bewaar je certificaten goed! Tip: Je kunt ze direct toevoegen aan je eJournal bij een datapunt en later meer certificaten toevoegen.
           </div>
         )}
       </div>
