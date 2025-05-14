@@ -12,10 +12,28 @@ function McVragenSection({ questions, scores, onScoreChange, onUserAnswersChange
   const [showOptions, setShowOptions] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [shuffledOptions, setShuffledOptions] = useState({});
+  const [niveauFilter, setNiveauFilter] = useState('alle vragen');
 
-  // Shuffle questions and options on component mount
+  // Filter logic for niveau
+  const niveauOptions = [
+    { label: 'Kennis', value: 'kennis' },
+    { label: 'Begrip', value: 'begrip' },
+    { label: 'Toepassing', value: 'toepassing' },
+    { label: 'Kennis & Begrip', value: 'kennis & begrip' },
+    { label: 'Alle vragen', value: 'alle vragen' }
+  ];
+
+  // Shuffle questions and options on component mount or filter change
   useEffect(() => {
-    const shuffled = [...questions].sort(() => Math.random() - 0.5);
+    let filtered = [...questions];
+    if (niveauFilter !== 'alle vragen') {
+      if (niveauFilter === 'kennis & begrip') {
+        filtered = questions.filter(q => q.niveau === 'kennis' || q.niveau === 'begrip');
+      } else {
+        filtered = questions.filter(q => q.niveau === niveauFilter);
+      }
+    }
+    const shuffled = [...filtered].sort(() => Math.random() - 0.5);
     setShuffledQuestions(shuffled);
     
     // Create shuffled options for each question
@@ -30,7 +48,8 @@ function McVragenSection({ questions, scores, onScoreChange, onUserAnswersChange
       };
     });
     setShuffledOptions(shuffledOpts);
-  }, [questions]);
+    setCurrentQuestionIndex(0);
+  }, [questions, niveauFilter]);
 
   useEffect(() => {
     if (typeof onUserAnswersChange === 'function') {
@@ -152,6 +171,24 @@ function McVragenSection({ questions, scores, onScoreChange, onUserAnswersChange
             </ul>
           </div>
         )}
+      </div>
+
+      <div className="mb-4 p-4 bg-gray-100 rounded-lg">
+        <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
+        <div className="flex flex-wrap gap-2">
+          {niveauOptions.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => setNiveauFilter(opt.value)}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
+                ${niveauFilter === opt.value
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="mb-6 flex justify-between items-center">
