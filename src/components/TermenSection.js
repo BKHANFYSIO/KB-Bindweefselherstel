@@ -14,7 +14,7 @@ const levelLabels = {
 // Zet de gewenste volgorde van de filterknoppen
 const levelOrder = ['level1', 'level2', 'level3', 'level1_2', 'all'];
 
-function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) {
+function TermenSection({ initialFlashcards, assessments, onAssessmentsChange, onRepeatCountsChange, initialFlashcardRepeats, kennisBoosterTitel }) {
   const [levelFilter, setLevelFilter] = useState(''); // standaard leeg
   const [activeFlashcards, setActiveFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -22,9 +22,17 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
   const [isReviewing, setIsReviewing] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
   const [showIntro, toggleIntro] = usePersistentToggle('begrippen_trainer_intro', true);
-  const [repeatCounts, setRepeatCounts] = useState({});
+  const [repeatCounts, setRepeatCounts] = useState(initialFlashcardRepeats || {});
   const [showRepeatDone, setShowRepeatDone] = useState(false);
   const [reviewedThisRound, setReviewedThisRound] = useState([]);
+
+  useEffect(() => {
+    // Initialiseer of update repeatCounts als initialFlashcardRepeats verandert
+    // en verschilt van de huidige state, om onnodige updates te voorkomen.
+    if (JSON.stringify(initialFlashcardRepeats) !== JSON.stringify(repeatCounts)) {
+      setRepeatCounts(initialFlashcardRepeats || {});
+    }
+  }, [initialFlashcardRepeats]);
 
   // Deze effect hook beheert de set kaarten die getoond wordt in de normale leermodus.
   useEffect(() => {
@@ -56,9 +64,14 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
       // Reset review-gerelateerde states als we de level filter veranderen
       setReviewedThisRound([]);
       setShowRepeatDone(false);
-      setRepeatCounts({});
     }
   }, [initialFlashcards, levelFilter, isReviewing]);
+
+  useEffect(() => {
+    if (typeof onRepeatCountsChange === 'function') {
+      onRepeatCountsChange(repeatCounts);
+    }
+  }, [repeatCounts, onRepeatCountsChange]);
 
   const handleAssessment = (cardId, assessmentLevel) => {
     onAssessmentsChange({ ...assessments, [cardId]: assessmentLevel });
@@ -97,7 +110,9 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
 
   const generateChatGPTLink = () => {
     if (!currentCard) return '';
-    const prompt = `Leg mij meer uit over de term \'\'\'${currentCard.term}\'\'\' in de context van bindweefselherstel bij fysiotherapie.`;
+    const prompt = `Jij bent een excellente docent fysiotherapie. Leg duidelijk en begrijpelijk uit wat de term "${currentCard.term}" betekent in de context van ${kennisBoosterTitel} binnen de fysiotherapie. Licht de functie of rol van deze term toe, leg uit waarom het relevant is in de praktijk, en geef indien mogelijk een concreet voorbeeld of toepassing.
+
+Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog lastig vindt aan het begrip, bied aan het op een andere manier uit te leggen (bijvoorbeeld met een metafoor of voorbeeld), of stel een verwante term voor om verder te verkennen.`;
     return `https://chat.openai.com/?q=${encodeURIComponent(prompt)}`;
   };
 
@@ -134,7 +149,6 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange }) 
       setShowAnswer(false);
       setReviewedThisRound([]);
       setShowRepeatDone(false);
-      setRepeatCounts({});
     } else {
       alert(`Geen kaarten gevonden voor deze review selectie ${levelFilter !== 'all' ? `binnen ${levelLabels[levelFilter]}` : 'van alle beoordeelde kaarten'}.`);
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import usePersistentToggle from './usePersistentToggle';
 
-function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onScoreChange }) {
+function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onScoreChange, resetKey, onAnswerVersionsChange, kennisBoosterTitel }) {
   const [currentQuestions, setCurrentQuestions] = useState([...questions]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showModelAnswer, setShowModelAnswer] = useState(false);
@@ -14,6 +14,24 @@ function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onSc
   const [showChecklist, setShowChecklist] = useState(false);
   const [answerVersions, setAnswerVersions] = useState({});
   const [currentVersion, setCurrentVersion] = useState({});
+
+  useEffect(() => {
+    setCurrentQuestions([...questions]);
+    setCurrentQuestionIndex(0);
+    setShowModelAnswer(false);
+    setIsAiChecking(false);
+    setAiFeedback('');
+    setSelfAssessment({});
+    setIsReviewing(false);
+    setAnswerVersions({});
+    setCurrentVersion({});
+  }, [resetKey, questions]);
+
+  useEffect(() => {
+    if (typeof onAnswerVersionsChange === 'function') {
+      onAnswerVersionsChange(answerVersions);
+    }
+  }, [answerVersions, onAnswerVersionsChange]);
 
   // Bepaal het huidige pogingnummer voor deze vraag
   const savedVersionCount = answerVersions[currentQuestions[currentQuestionIndex]?.id] ? answerVersions[currentQuestions[currentQuestionIndex].id].length : 0;
@@ -80,11 +98,24 @@ function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onSc
   };
 
   const checkWithAI = (question, answer) => {
+    const checklist = question.type === 'client' ? 
+      `Checklist voor patiënt uitleg:
+- Vermijd medische vaktaal of leg deze meteen eenvoudig uit
+- Gebruik eenvoudige, begrijpelijke zinnen
+- Maak gebruik van metaforen of vergelijkingen (bijv. "de zenuw is als een kabel met isolatie")
+- Focus op wat relevant is voor de patiënt` :
+      `Checklist voor collega uitleg:
+- Gebruik vaktermen en definities correct
+- Leg fysiologische/mechanische processen nauwkeurig en met voldoende diepgang uit
+- Toon onderliggende verbanden of oorzaken-gevolgrelaties`;
+
     const prompt = encodeURIComponent(
-      `Als expert in fysiotherapie, beoordeel het volgende antwoord van een student op een vraag over bindweefselherstel.
+      `Als expert in fysiotherapie, beoordeel het volgende antwoord van een student op een vraag over ${kennisBoosterTitel}.
 
 Vraag:
 ${question.questionText}
+
+${checklist}
 
 Beoordelingscriteria:
 ${question.criteria.map(c => '- ' + c).join('\n')}
@@ -169,7 +200,7 @@ Geef een gestructureerde analyse met:
           {showIntro ? '▼' : '►'} Inleiding
         </button>
         {showIntro && (
-          <div id="checkkennis-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm space-y-4">
+          <div id="checkkennis-intro" className="bg-blue-50 p-4 rounded-lg shadow-sm space-y-4">
             <p className="text-gray-700 leading-relaxed">
               Check je Kennis is jouw persoonlijke voortgangscheck. Hier ontdek je welke kennisonderwerpen je al goed beheerst en waar nog winst te behalen valt. Door jouw kennis actief op te halen uit je geheugen en deze uit te leggen aan een denkbeeldige patiënt of collega, leer je diepgaander en effectiever.
             </p>
@@ -193,7 +224,7 @@ Geef een gestructureerde analyse met:
           {showTips ? '▼' : '►'} Bekijk tips voor effectief oefenen
         </button>
         {showTips && (
-          <div id="checkkennis-tips" className="bg-blue-50 p-6 rounded-lg shadow-sm space-y-4">
+          <div id="checkkennis-tips" className="bg-blue-50 p-4 rounded-lg shadow-sm space-y-4">
             <h3 className="font-semibold text-blue-800 mb-2">Werkwijze</h3>
             <ol className="list-decimal ml-6 space-y-2 text-gray-700">
               <li>Kies een onderwerp en stel je voor dat je het uitlegt aan een patiënt of collega.</li>
@@ -219,18 +250,17 @@ Geef een gestructureerde analyse met:
         )}
       </div>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <h2 className="text-2xl font-semibold text-blue-700">
-            Check je Kennis {isReviewing ? "(Herhaling)" : ""}
-          </h2>
-          <div className="text-gray-600 flex items-center gap-2">
-            <span>Vraag {currentQuestionIndex + 1} van {currentQuestions.length}</span>
-            <span className="text-sm text-gray-500">• Poging {attemptNumber}</span>
-          </div>
+      <div>
+        <div className="mb-6 flex items-center gap-4">
+          <h3 className="text-2xl font-semibold text-blue-700">
+            Vraag {currentQuestionIndex + 1} van {currentQuestions.length}
+          </h3>
+          <span className="bg-blue-600 text-white text-lg font-semibold px-4 py-1 rounded-full shadow-sm">
+            Poging: {attemptNumber}
+          </span>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
           <div className="mb-4">
             <span className="text-sm font-medium text-gray-500">
               {currentQuestion.type === 'client' ? 'Voor Cliënt' : 'Voor Collega'}
@@ -304,7 +334,7 @@ Geef een gestructureerde analyse met:
                 {showModelAnswer ? 'Verberg antwoordsleutel' : 'Toon antwoordsleutel'}
               </button>
               {!answers[currentQuestion.id] && (
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
                   Vul eerst je antwoord in om feedback te krijgen
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                     <div className="border-8 border-transparent border-t-gray-800"></div>
@@ -325,7 +355,7 @@ Geef een gestructureerde analyse met:
                 {isAiChecking ? 'Bezig met controleren...' : 'Controleer met AI'}
               </button>
               {!answers[currentQuestion.id] && (
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
                   Vul eerst je antwoord in om feedback te krijgen
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                     <div className="border-8 border-transparent border-t-gray-800"></div>
@@ -360,7 +390,7 @@ Geef een gestructureerde analyse met:
           <div className="mt-6">
             <h4 className="font-medium text-gray-700 mb-2">Hoe goed denk je dat je het hebt gedaan?</h4>
             <div className="flex flex-col gap-4">
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {['beginner', 'gevorderd', 'expert'].map((level) => (
                   <div key={level} className="relative group">
                     <button
@@ -387,7 +417,7 @@ Geef een gestructureerde analyse met:
                       {level}
                     </button>
                     {!answers[currentQuestion.id] && (
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                      <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
                         Vul eerst je antwoord in om feedback te krijgen
                         <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                           <div className="border-8 border-transparent border-t-gray-800"></div>

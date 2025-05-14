@@ -3,7 +3,7 @@ import usePersistentToggle from './usePersistentToggle';
 
 const BRAINDUMP_STORAGE_KEY = 'basisBraindumps';
 
-function DeBasisSection() {
+function DeBasisSection({ kennisBoosterTitel = 'Bindweefselherstel' }) {
   // Braindump state
   const [braindumps, setBraindumps] = useState(() => {
     const saved = localStorage.getItem(BRAINDUMP_STORAGE_KEY);
@@ -52,8 +52,8 @@ function DeBasisSection() {
   };
 
   // ChatGPT prompt genereren
-  const generateChatGPTLink = (text) => {
-    const prompt = `Geef constructieve feedback op deze braindump over bindweefselherstel, geef tips voor verdieping en leg uit wat goed is en wat beter kan. Braindump: ${text}`;
+  const generateChatGPTLink = (title, text) => {
+    const prompt = `Jij bent docent fysiotherapie.\nGeef constructieve en inhoudelijke feedback op deze braindump van een student fysiotherapie over ${kennisBoosterTitel}. Benoem wat de student al goed doet en wat nog beter kan, en geef concrete tips voor verbetering en verdere verdieping.\n\nDe student heeft aangegeven specifiek deze braindump te hebben gemaakt over het onderwerp: ${title}\n\nBraindump van de student:\n${text}\n\nOpdracht aan jou:\n\nGeef eerst een korte, positieve samenvatting van wat goed gaat.\n\nBenoem vervolgens welke inhoud mist of beter uitgewerkt kan worden.\n\nSluit af met de uitnodiging aan de student om de braindump op basis van de feedback aan te passen en eventueel opnieuw in te dienen voor feedback. Je mag ook suggesties doen voor verdere verdieping over het onderwerp: ${title}.`;
     return `https://chat.openai.com/?q=${encodeURIComponent(prompt)}`;
   };
 
@@ -134,7 +134,7 @@ function DeBasisSection() {
           <h4 className="font-bold text-yellow-900 mb-1">Stap 2: Feedback verzamelen (optioneel)</h4>
           <p className="text-gray-700 text-sm mb-2">Feedback kan komen van ChatGPT, een medestudent of van jezelf na het terugkijken van bronnen. Je kunt hieronder optioneel feedback vragen via ChatGPT.</p>
           <a
-            href={generateChatGPTLink(currentBraindump)}
+            href={generateChatGPTLink(currentTitle, currentBraindump)}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md transition text-sm mt-2 inline-block"
@@ -199,7 +199,7 @@ function DeBasisSection() {
                   <div className="flex items-center gap-2 mt-2 md:mt-0">
                     <span className={`px-2 py-1 rounded text-white text-xs font-semibold ${bd.score === 'Matig' ? 'bg-red-600' : bd.score === 'Redelijk' ? 'bg-yellow-600' : 'bg-green-600'}`}>{bd.score}</span>
                     <a
-                      href={generateChatGPTLink(bd.text)}
+                      href={generateChatGPTLink(bd.title, bd.text)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="ml-2 text-purple-700 underline text-xs"

@@ -134,6 +134,24 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   };
 
+  const [flashcardRepeats, setFlashcardRepeats] = useState(() => {
+    const saved = localStorage.getItem('flashcardRepeats');
+    return saved ? JSON.parse(saved) : {};
+  });
+  const [mcUserAnswers, setMcUserAnswers] = useState({});
+  const [uitlegAnswerVersions, setUitlegAnswerVersions] = useState({});
+  const [toepassenAnswerVersions, setToepassenAnswerVersions] = useState({});
+
+  // Persistente opslag van flashcardRepeats
+  useEffect(() => {
+    localStorage.setItem('flashcardRepeats', JSON.stringify(flashcardRepeats));
+  }, [flashcardRepeats]);
+
+  // Handler die het aantal herhalingen direct overschrijft
+  const handleRepeatCountsChange = (sessionRepeats) => {
+    setFlashcardRepeats(sessionRepeats);
+  };
+
   const handleGeneratePdf = async () => {
     if (loading || error) {
       alert("Data is nog niet geladen of er is een fout opgetreden. PDF kan niet gegenereerd worden.");
@@ -153,6 +171,10 @@ function App() {
         toepassenCases,
         answers,
         basisBraindumps: getBasisBraindumps(),
+        flashcardRepeats,
+        mcUserAnswers,
+        uitlegAnswerVersions,
+        toepassenAnswerVersions,
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -162,7 +184,7 @@ function App() {
 
   const navItems = [
     { id: 'introductie', label: 'Introductie & Werkwijze', interactive: false },
-    { id: 'de_basis', label: 'De Basis', interactive: false },
+    { id: 'de_basis', label: 'De Basis', interactive: true },
     { id: 'begrippen_trainer', label: 'Begrippen Trainer', interactive: true },
     { id: 'mc_vragen', label: 'MC Vragen', interactive: true },
     { id: 'check_je_kennis', label: 'Check je Kennis', interactive: true },
@@ -171,14 +193,13 @@ function App() {
   ];
 
   const getStatus = (sectionId) => {
+    if (sectionId === 'de_basis') {
+      const braindumps = getBasisBraindumps();
+      if (braindumps.length === 0) return 'not';
+      return 'completed';
+    }
     const item = navItems.find(i => i.id === sectionId);
     if (!item?.interactive) {
-      // Speciaal voor 'de_basis' (hoofdstuk 1): check braindump voortgang
-      if (sectionId === 'de_basis') {
-        const braindumps = getBasisBraindumps();
-        if (braindumps.length === 0) return 'not';
-        return 'completed';
-      }
       return 'static';
     }
     // Voorkom errors als data nog niet geladen is
@@ -227,6 +248,8 @@ function App() {
     return (completedCount / interactiveItems.length) * 100;
   })();
 
+  const [resetKey, setResetKey] = useState(0);
+
   const clearAllData = () => {
     if (window.confirm('Weet je zeker dat je alle opgeslagen voortgang wilt wissen? Dit kan niet ongedaan worden gemaakt.')) {
       localStorage.clear();
@@ -237,6 +260,7 @@ function App() {
       setMcScores({});
       setFirstName('');
       setLastName('');
+      setResetKey(prev => prev + 1);
       // Optioneel: navigeer naar de startsectie of refresh de pagina
       // setActiveSection('de_basis'); 
       // window.location.reload(); 
@@ -300,37 +324,47 @@ function App() {
         <main className="flex-grow p-6 container mx-auto max-w-4xl">
           <div className="bg-white p-6 rounded-lg shadow">
             {activeSection === 'introductie' && <IntroductieSection />}
-            {activeSection === 'de_basis' && <DeBasisSection />}
+            {activeSection === 'de_basis' && <DeBasisSection kennisBoosterTitel="Bindweefselherstel" />}
             {activeSection === 'begrippen_trainer' && initialFlashcards.length > 0 && (
               <TermenSection
-                initialFlashcards={initialFlashcards} // Nu uit state
+                initialFlashcards={initialFlashcards}
                 assessments={flashcardAssessments}
                 onAssessmentsChange={handleFlashcardAssessment}
+                onRepeatCountsChange={handleRepeatCountsChange}
+                initialFlashcardRepeats={flashcardRepeats}
+                kennisBoosterTitel="Bindweefselherstel"
               />
             )}
             {activeSection === 'mc_vragen' && mcQuestions.length > 0 && (
               <McVragenSection
-                questions={mcQuestions} // Nu uit state
+                questions={mcQuestions}
                 scores={mcScores}
                 onScoreChange={handleMcScoreChange}
+                onUserAnswersChange={setMcUserAnswers}
               />
             )}
             {activeSection === 'check_je_kennis' && uitlegQuestions.length > 0 && (
               <CheckJeKennisSection
-                questions={uitlegQuestions} // Nu uit state
+                questions={uitlegQuestions}
                 answers={answers}
                 onAnswerChange={handleAnswerChange}
                 scores={uitlegScores}
                 onScoreChange={handleUitlegScoreChange}
+                resetKey={resetKey}
+                onAnswerVersionsChange={setUitlegAnswerVersions}
+                kennisBoosterTitel="Bindweefselherstel"
               />
             )}
             {activeSection === 'klinisch_redeneren' && toepassenCases.length > 0 && (
               <KlinischRedenerenSection
-                cases={toepassenCases} // Nu uit state
+                cases={toepassenCases}
                 answers={answers}
                 onAnswerChange={handleAnswerChange}
                 scores={toepassenScores}
                 onScoreChange={handleToepassenScoreChange}
+                resetKey={resetKey}
+                onAnswerVersionsChange={setToepassenAnswerVersions}
+                kennisBoosterTitel="Bindweefselherstel"
               />
             )}
             {activeSection === 'eJournal' && (

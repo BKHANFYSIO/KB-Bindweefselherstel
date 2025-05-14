@@ -1,6 +1,7 @@
 import { jsPDF } from 'jspdf';
 import QRCode from 'qrcode';
 import hanLogo from '../assets/HAN-logo.png';
+import hanLongLogo from '../assets/Logo-han-hogeschool-van-arnhem-en-nijmegen.jpg';
 
 // Helper function for score color (blijft intern aan deze module)
 const getScoreColor = (score) => {
@@ -122,7 +123,16 @@ const drawWideProgressBar = (pdf, title, details, total, y, margin, contentWidth
   const barH = 22;
   let x = barX;
   let totalFilled = 0;
-  const keys = Object.keys(details);
+  // Geforceerde volgorde: groen, geel, rood, rest
+  const order = [
+    'goed', 'correct', 'expert', // groen
+    'redelijk', 'gevorderd',     // geel
+    'nee', 'matig', 'incorrect', 'beginner' // rood
+  ];
+  const keys = [
+    ...order.filter(k => Object.keys(details).includes(k)),
+    ...Object.keys(details).filter(k => !order.includes(k))
+  ];
   keys.forEach((key) => {
     const val = details[key] || 0;
     if (val > 0) {
@@ -170,7 +180,13 @@ const drawWideProgressBar = (pdf, title, details, total, y, margin, contentWidth
     pdf.setTextColor(120,120,120);
     pdf.text(`Niet ingevuld: ${total-totalFilled}`, dotX + i*dotSpacing + 14, dotY + 4);
   }
-  return dotY + 18;
+  // Extra witruimte en grijze lijn na elke balk
+  const extraSpace = 18;
+  const lineY = dotY + 12;
+  pdf.setDrawColor(220,220,220);
+  pdf.setLineWidth(1);
+  pdf.line(margin, lineY, margin + contentWidth, lineY);
+  return lineY + extraSpace;
 };
 
 export const generateCertificatePDF = async (data) => {
@@ -187,6 +203,10 @@ export const generateCertificatePDF = async (data) => {
     toepassenCases,
     answers,
     basisBraindumps = [],
+    flashcardRepeats = {},
+    mcUserAnswers = {},
+    uitlegAnswerVersions = {},
+    toepassenAnswerVersions = {},
   } = data;
 
   const pdf = new jsPDF('p', 'pt', 'a4');
@@ -211,7 +231,8 @@ export const generateCertificatePDF = async (data) => {
   pdf.setFont(undefined, 'bold');
   pdf.text('CERTIFICAAT', pageWidth / 2, 120, { align: 'center' });
   pdf.setFontSize(24);
-  pdf.text('Bindweefselherstel Leren', pageWidth / 2, 170, { align: 'center' });
+  pdf.text('KennisBooster:', pageWidth / 2, 160, { align: 'center' });
+  pdf.text('Bindweefselherstel', pageWidth / 2, 190, { align: 'center' });
   pdf.setTextColor(0, 0, 0);
   pdf.setFontSize(16);
   pdf.setFont(undefined, 'normal');
@@ -225,6 +246,18 @@ export const generateCertificatePDF = async (data) => {
   pdf.text('de interactieve leermodule over bindweefselherstel heeft doorlopen en actief heeft gewerkt aan kennis, begrip en reflectie.', pageWidth / 2, 310, { align: 'center', maxWidth: contentWidth });
   pdf.setFontSize(14);
   pdf.text(`Datum: ${new Date().toLocaleDateString('nl-NL')}`, pageWidth / 2, 370, { align: 'center' });
+  // Groot HAN lang logo onderaan pagina 1 binnen het blauwe kader
+  const logoMaxWidth = pageWidth - 2 * margin - 80; // iets marge links/rechts
+  const logoAspect = 0.25; // Aangepaste geschatte hoogte/breedte verhouding
+  const logoWidth = logoMaxWidth;
+  const logoHeight = logoWidth * logoAspect;
+  const logoX = margin + 40; // gecentreerd binnen kader (marge + extra ruimte)
+  const logoY = pageHeight - margin - logoHeight - 40;
+  pdf.addImage(hanLongLogo, 'JPEG', logoX, logoY, logoWidth, logoHeight);
+  // Footer onderaan pagina 1
+  pdf.setFontSize(12);
+  pdf.setTextColor(120, 120, 120);
+  pdf.text('© 2025 HAN opleiding Fysiotherapie', pageWidth / 2, pageHeight - margin - 10, { align: 'center' });
   pdf.addPage();
 
   // Voeg HAN-logo rechtsonder toe op het certificaatvoorblad
@@ -268,7 +301,7 @@ export const generateCertificatePDF = async (data) => {
     pdf,
     'De Basis (Braindump)',
     braindumpDetails,
-    1,
+    basisBraindumps.length,
     currentY,
     margin,
     contentWidth,
@@ -353,7 +386,7 @@ export const generateCertificatePDF = async (data) => {
     pdf.setFontSize(11);
     pdf.setFont(undefined, 'normal');
     basisBraindumps.forEach((bd, idx) => {
-      let blockHeight = 60;
+      let blockHeight = 80; // Increased height for title
       const lines = pdf.splitTextToSize(bd.text, contentWidth - 20);
       blockHeight += lines.length * lineHeight;
       if (currentY + blockHeight > pageHeight - bottomMargin) {
@@ -365,7 +398,8 @@ export const generateCertificatePDF = async (data) => {
       pdf.setFont(undefined, 'bold');
       pdf.text(`Braindump ${idx + 1} (${new Date(bd.date).toLocaleDateString('nl-NL')}):`, margin, currentY);
       pdf.setFont(undefined, 'normal');
-      let tempY = addWrappedText(pdf, bd.text, margin + 10, currentY + 15, contentWidth - 20, lineHeight, pageHeight, margin, bottomMargin);
+      let tempY = addWrappedText(pdf, `Titel: ${bd.title || 'Geen titel'}`, margin + 10, currentY + 15, contentWidth - 20, lineHeight, pageHeight, margin, bottomMargin);
+      tempY = addWrappedText(pdf, bd.text, margin + 10, tempY + 5, contentWidth - 20, lineHeight, pageHeight, margin, bottomMargin);
       tempY = addWrappedText(pdf, `Wat ging goed: ${bd.toelichtingGoed || '-'}`, margin + 10, tempY + 5, contentWidth - 20, lineHeight, pageHeight, margin, bottomMargin);
       tempY = addWrappedText(pdf, `Wat kan beter: ${bd.toelichtingBeter || '-'}`, margin + 10, tempY + 5, contentWidth - 20, lineHeight, pageHeight, margin, bottomMargin);
       const scoreColor = getScoreColor((bd.score || '').toLowerCase());
@@ -400,7 +434,7 @@ export const generateCertificatePDF = async (data) => {
     pdf.setFont(undefined, 'normal');
     initialFlashcards.forEach(card => {
       const assessment = flashcardAssessments[card.id] || 'Niet beoordeeld';
-      const repetitions = 1; // TODO: voeg echte herhalingen toe als beschikbaar
+      const repetitions = flashcardRepeats[card.id] || 1;
       let row = [card.term, assessment, `Niveau: ${card.level}`, `Herhalingen: ${repetitions}`];
       x = margin;
       row.forEach((cell, i) => {
@@ -428,13 +462,16 @@ export const generateCertificatePDF = async (data) => {
     pdf.setFontSize(10);
     pdf.setFont(undefined, 'normal');
     mcQuestions.forEach((q, index) => {
-      if (currentY > pageHeight - (bottomMargin + 70)) {
+      if (currentY > pageHeight - (bottomMargin + 120)) {
         pdf.addPage();
         currentY = margin;
       }
       const score = mcScores[q.id];
+      const userAnswerIdx = mcUserAnswers[q.id];
+      const userAnswer = (userAnswerIdx !== undefined && q.options && q.options[userAnswerIdx] !== undefined) ? q.options[userAnswerIdx] : '-';
+      const correctAnswer = (q.correctOptionIndex !== undefined && q.options && q.options[q.correctOptionIndex] !== undefined) ? q.options[q.correctOptionIndex] : '-';
       pdf.setFillColor(249, 250, 251);
-      pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 80, 'F');
+      pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 120, 'F');
       pdf.setFont(undefined, 'bold');
       let tempY = addWrappedText(pdf, `Vraag ${index + 1}:`, margin, currentY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
       pdf.setFont(undefined, 'normal');
@@ -443,6 +480,9 @@ export const generateCertificatePDF = async (data) => {
       pdf.setTextColor(...resultColor);
       pdf.text(`Resultaat: ${score === 'correct' ? 'Correct' : score === 'incorrect' ? 'Incorrect' : 'Niet beantwoord'}`, margin + 10, tempY + 15);
       pdf.setTextColor(0, 0, 0);
+      tempY += 35; // EXTRA witruimte
+      tempY = addWrappedText(pdf, `Jouw antwoord: ${userAnswer}`, margin + 10, tempY, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+      tempY = addWrappedText(pdf, `Correct antwoord: ${correctAnswer}`, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
       currentY = tempY + 40;
     });
     pagesToNumber.push(pdf.internal.getNumberOfPages());
@@ -459,24 +499,54 @@ export const generateCertificatePDF = async (data) => {
     pdf.setFontSize(10);
     pdf.setFont(undefined, 'normal');
     uitlegQuestions.forEach((q, index) => {
-      if (currentY > pageHeight - (bottomMargin + 90)) {
+      if (currentY > pageHeight - (bottomMargin + 150)) {
         pdf.addPage();
         currentY = margin;
       }
-      const answer = answers[q.id] || '[Niet beantwoord]';
-      const score = uitlegScores[q.id] || 'Niet beoordeeld';
+      const answerVersions = uitlegAnswerVersions[q.id] || [];
+      const latestAnswer = answerVersions.length > 0 ? answerVersions[answerVersions.length - 1] : null;
       pdf.setFillColor(249, 250, 251);
-      pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 120, 'F');
+      pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 150, 'F');
       pdf.setFont(undefined, 'bold');
       let tempY = addWrappedText(pdf, `Vraag ${index + 1} (${q.type === 'client' ? 'Cliënt' : 'Collega'}):`, margin, currentY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
       pdf.setFont(undefined, 'normal');
       tempY = addWrappedText(pdf, q.questionText, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
-      tempY = addWrappedText(pdf, `Antwoord: ${answer}`, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
-      const scoreColor = getScoreColor(score.toLowerCase());
-      pdf.setTextColor(...scoreColor);
-      pdf.text(`Niveau: ${score}`, margin + 10, tempY + 15);
-      pdf.setTextColor(0, 0, 0);
-      currentY = tempY + 40;
+      // Latest answer in green box
+      if (latestAnswer) {
+        pdf.setFillColor(220, 255, 220);
+        pdf.roundedRect(margin, tempY + 5, contentWidth, 40, 3, 3, 'F');
+        tempY = addWrappedText(pdf, `Laatste antwoord (${new Date(latestAnswer.timestamp).toLocaleDateString('nl-NL')}):`, margin + 5, tempY + 15, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+        tempY = addWrappedText(pdf, latestAnswer.answer, margin + 5, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+        // Niveau direct onder antwoord
+        const scoreColor = getScoreColor((latestAnswer.score || '').toLowerCase());
+        pdf.setTextColor(...scoreColor);
+        pdf.text(`Niveau: ${latestAnswer.score || '-'}`, margin + 10, tempY + 10);
+        pdf.setTextColor(0, 0, 0);
+        tempY += 25;
+      } else {
+        tempY = addWrappedText(pdf, `Laatste antwoord: -`, margin + 5, tempY + 15, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+      }
+      // Previous versions in gray boxes
+      if (answerVersions.length > 1) {
+        tempY += 10;
+        pdf.setFont(undefined, 'bold');
+        tempY = addWrappedText(pdf, 'Eerdere versies:', margin, tempY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
+        pdf.setFont(undefined, 'normal');
+        for (let i = answerVersions.length - 2; i >= 0; i--) {
+          const version = answerVersions[i];
+          pdf.setFillColor(240, 240, 240);
+          pdf.roundedRect(margin, tempY + 5, contentWidth, 40, 3, 3, 'F');
+          tempY = addWrappedText(pdf, `Versie ${i + 1} (${new Date(version.timestamp).toLocaleDateString('nl-NL')}):`, margin + 5, tempY + 15, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+          tempY = addWrappedText(pdf, version.answer, margin + 5, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+          // Niveau direct onder antwoord
+          const scoreColor = getScoreColor((version.score || '').toLowerCase());
+          pdf.setTextColor(...scoreColor);
+          pdf.text(`Niveau: ${version.score || '-'}`, margin + 10, tempY + 10);
+          pdf.setTextColor(0, 0, 0);
+          tempY += 25;
+        }
+      }
+      currentY = tempY + 20;
     });
     pagesToNumber.push(pdf.internal.getNumberOfPages());
   }
@@ -492,24 +562,54 @@ export const generateCertificatePDF = async (data) => {
     pdf.setFontSize(10);
     pdf.setFont(undefined, 'normal');
     toepassenCases.forEach((c, index) => {
-      if (currentY > pageHeight - (bottomMargin + 90)) {
+      if (currentY > pageHeight - (bottomMargin + 150)) {
         pdf.addPage();
         currentY = margin;
       }
-      const answer = answers[c.id] || '[Niet beantwoord]';
-      const score = toepassenScores[c.id] || 'Niet beoordeeld';
+      const answerVersions = toepassenAnswerVersions[c.id] || [];
+      const latestAnswer = answerVersions.length > 0 ? answerVersions[answerVersions.length - 1] : null;
       pdf.setFillColor(249, 250, 251);
-      pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 120, 'F');
+      pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 150, 'F');
       pdf.setFont(undefined, 'bold');
       let tempY = addWrappedText(pdf, `Casus ${index + 1}:`, margin, currentY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
       pdf.setFont(undefined, 'normal');
       tempY = addWrappedText(pdf, c.caseText, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
-      tempY = addWrappedText(pdf, `Analyse: ${answer}`, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
-      const scoreColor = getScoreColor(score.toLowerCase());
-      pdf.setTextColor(...scoreColor);
-      pdf.text(`Niveau: ${score}`, margin + 10, tempY + 15);
-      pdf.setTextColor(0, 0, 0);
-      currentY = tempY + 40;
+      // Latest answer in green box
+      if (latestAnswer) {
+        pdf.setFillColor(220, 255, 220);
+        pdf.roundedRect(margin, tempY + 5, contentWidth, 40, 3, 3, 'F');
+        tempY = addWrappedText(pdf, `Laatste analyse (${new Date(latestAnswer.timestamp).toLocaleDateString('nl-NL')}):`, margin + 5, tempY + 15, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+        tempY = addWrappedText(pdf, latestAnswer.answer, margin + 5, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+        // Niveau direct onder antwoord
+        const scoreColor = getScoreColor((latestAnswer.score || '').toLowerCase());
+        pdf.setTextColor(...scoreColor);
+        pdf.text(`Niveau: ${latestAnswer.score || '-'}`, margin + 10, tempY + 10);
+        pdf.setTextColor(0, 0, 0);
+        tempY += 25;
+      } else {
+        tempY = addWrappedText(pdf, `Laatste analyse: -`, margin + 5, tempY + 15, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+      }
+      // Previous versions in gray boxes
+      if (answerVersions.length > 1) {
+        tempY += 10;
+        pdf.setFont(undefined, 'bold');
+        tempY = addWrappedText(pdf, 'Eerdere versies:', margin, tempY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
+        pdf.setFont(undefined, 'normal');
+        for (let i = answerVersions.length - 2; i >= 0; i--) {
+          const version = answerVersions[i];
+          pdf.setFillColor(240, 240, 240);
+          pdf.roundedRect(margin, tempY + 5, contentWidth, 40, 3, 3, 'F');
+          tempY = addWrappedText(pdf, `Versie ${i + 1} (${new Date(version.timestamp).toLocaleDateString('nl-NL')}):`, margin + 5, tempY + 15, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+          tempY = addWrappedText(pdf, version.answer, margin + 5, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+          // Niveau direct onder antwoord
+          const scoreColor = getScoreColor((version.score || '').toLowerCase());
+          pdf.setTextColor(...scoreColor);
+          pdf.text(`Niveau: ${version.score || '-'}`, margin + 10, tempY + 10);
+          pdf.setTextColor(0, 0, 0);
+          tempY += 25;
+        }
+      }
+      currentY = tempY + 20;
     });
     pagesToNumber.push(pdf.internal.getNumberOfPages());
   }

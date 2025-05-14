@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import usePersistentToggle from './usePersistentToggle';
 
-function McVragenSection({ questions, scores, onScoreChange }) {
+function McVragenSection({ questions, scores, onScoreChange, onUserAnswersChange }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,6 +31,12 @@ function McVragenSection({ questions, scores, onScoreChange }) {
     });
     setShuffledOptions(shuffledOpts);
   }, [questions]);
+
+  useEffect(() => {
+    if (typeof onUserAnswersChange === 'function') {
+      onUserAnswersChange(selectedAnswers);
+    }
+  }, [selectedAnswers, onUserAnswersChange]);
 
   const handleAnswerSelect = (questionId, optionIndex) => {
     if (!selectedAnswers[questionId]) {

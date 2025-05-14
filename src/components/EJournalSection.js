@@ -130,7 +130,7 @@ function EJournalSection({ onGeneratePDF, firstName, lastName, onFirstNameChange
             </div>
             <div className="mt-6">
               <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
-                <span className="font-semibold text-blue-800">Tip:</span> Wil je meer leren over het maken van een goed portfolio? Volg dan de e-learning over het maken van een goed portfolio (verwachte komst: start studiejaar 2025-2026, te vinden op de FysioAI LeerToolbox).
+                <span className="font-semibold text-blue-800">Tip:</span> Wil je meer leren over het maken van een goed portfolio? Doorloop dan de e-learning over het maken van een goed portfolio (verwachte komst: start studiejaar 2025-2026, te vinden op de FysioAI LeerToolbox).
               </div>
             </div>
           </div>

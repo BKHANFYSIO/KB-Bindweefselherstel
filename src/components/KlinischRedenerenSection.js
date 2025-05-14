@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import usePersistentToggle from './usePersistentToggle';
 
-function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onScoreChange }) {
+function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onScoreChange, resetKey, onAnswerVersionsChange, kennisBoosterTitel }) {
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
   const [showModelAnswer, setShowModelAnswer] = useState(false);
   const [isAiChecking, setIsAiChecking] = useState(false);
@@ -10,6 +10,16 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
   const [showIntro, toggleIntro] = usePersistentToggle('klinisch_redeneren_intro', true);
   const [answerVersions, setAnswerVersions] = useState({});
   const [currentVersion, setCurrentVersion] = useState({});
+
+  useEffect(() => {
+    setCurrentCaseIndex(0);
+    setShowModelAnswer(false);
+    setIsAiChecking(false);
+    setAiFeedback('');
+    setSelfAssessment({});
+    setAnswerVersions({});
+    setCurrentVersion({});
+  }, [resetKey, cases]);
 
   // Bepaal huidige pogingnummer
   const savedVersionCount = answerVersions[cases[currentCaseIndex]?.id] ? (answerVersions[cases[currentCaseIndex].id] || []).length : 0;
@@ -90,24 +100,21 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
     setAiFeedback('');
   };
 
-  const checkWithAI = (casus, answer) => {
+  const checkWithAI = (caseItem, answer) => {
     const prompt = encodeURIComponent(
-      `Als expert in fysiotherapie, beoordeel het volgende antwoord van een student op een klinische casus over bindweefselherstel.
+      `Als expert in fysiotherapie, beoordeel het volgende antwoord van een student op een klinisch redeneer casus over ${kennisBoosterTitel}.
 
 Casus:
-${casus.description}
-
-Vraag:
-${casus.question}
+${caseItem.caseText}
 
 Beoordelingscriteria:
-${casus.criteria.map(c => '- ' + c).join('\n')}
+${caseItem.criteria.map(c => '- ' + c).join('\n')}
 
 Student antwoord:
 ${answer}
 
 Model antwoord ter referentie:
-${casus.modelAnswer}
+${caseItem.modelAnswer}
 
 Geef een gestructureerde analyse met:
 1. Klinisch redeneren (gebruik van kennis, logica en onderbouwing)
@@ -118,6 +125,12 @@ Geef een gestructureerde analyse met:
     );
     window.open(`https://chat.openai.com/?q=${prompt}`, '_blank');
   };
+
+  useEffect(() => {
+    if (typeof onAnswerVersionsChange === 'function') {
+      onAnswerVersionsChange(answerVersions);
+    }
+  }, [answerVersions, onAnswerVersionsChange]);
 
   return (
     <div className="space-y-6">
@@ -133,7 +146,7 @@ Geef een gestructureerde analyse met:
           {showIntro ? '▼' : '►'} Inleiding
         </button>
         {showIntro && (
-          <div id="klinischredeneren-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
+          <div id="klinischredeneren-intro" className="bg-blue-50 p-4 rounded-lg shadow-sm">
             <p className="text-gray-700 leading-relaxed">
               Welkom bij Klinisch Redeneren, waar we de diepte ingaan! Hier leer je om je kennis toe te passen in complexe, realistische situaties. Je ontwikkelt het vermogen om klinische problemen te analyseren, verschillende opties te overwegen en weloverwogen beslissingen te nemen. Dit is waar je leert om theorie om te zetten in praktische vaardigheden.
             </p>
@@ -141,14 +154,17 @@ Geef een gestructureerde analyse met:
         )}
       </div>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <div className="text-gray-600">
-            Casus {currentCaseIndex + 1} van {cases.length} • Poging {attemptNumber}
-          </div>
+      <div>
+        <div className="mb-6 flex items-center gap-4">
+          <h3 className="text-2xl font-semibold text-blue-700">
+            Casus {currentCaseIndex + 1} van {cases.length}
+          </h3>
+          <span className="bg-blue-600 text-white text-lg font-semibold px-4 py-1 rounded-full shadow-sm">
+            Poging: {attemptNumber}
+          </span>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
           <div className="mb-6">
             <h3 className="text-lg font-medium text-gray-800 mb-4">
               {currentCase.caseText}
@@ -184,7 +200,7 @@ Geef een gestructureerde analyse met:
                     {showModelAnswer ? 'Verberg modelantwoord' : 'Toon modelantwoord'}
                   </button>
                   {!answers[currentCase.id] && (
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                    <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
                       Vul eerst je antwoord in om feedback te krijgen
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                         <div className="border-8 border-transparent border-t-gray-800"></div>
@@ -205,7 +221,7 @@ Geef een gestructureerde analyse met:
                     Controleer met AI
                   </button>
                   {!answers[currentCase.id] && (
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                    <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
                       Vul eerst je antwoord in om feedback te krijgen
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                         <div className="border-8 border-transparent border-t-gray-800"></div>
@@ -240,7 +256,7 @@ Geef een gestructureerde analyse met:
               <div className="border-t pt-4 mt-4">
                 <h4 className="font-medium text-gray-700 mb-2">Hoe goed denk je dat je het hebt gedaan?</h4>
                 <div className="flex flex-col gap-4">
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-3">
                     {['beginner', 'gevorderd', 'expert'].map((level) => (
                       <div key={level} className="relative group">
                         <button
@@ -267,7 +283,7 @@ Geef een gestructureerde analyse met:
                           {level}
                         </button>
                         {!answers[currentCase.id] && (
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                          <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
                             Vul eerst je antwoord in om feedback te krijgen
                             <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                               <div className="border-8 border-transparent border-t-gray-800"></div>
