@@ -253,18 +253,37 @@ function McVragenSection({ questions, scores, onScoreChange, onUserAnswersChange
         )}
 
         {(hasAnswered || showReview) && (
-          <div className={`mt-4 p-4 rounded-lg ${
-            selectedAnswers[currentQuestion.id] === shuffledOptions[currentQuestion.id].correctIndex
-              ? 'bg-green-100 text-green-700'
-              : 'bg-red-100 text-red-700'
-          }`}>
-            <p className="font-medium mb-2">
-              {selectedAnswers[currentQuestion.id] === shuffledOptions[currentQuestion.id].correctIndex
-                ? '✓ Correct!'
-                : '✗ Incorrect'}
-            </p>
-            <p className="text-sm">{currentQuestion.feedback}</p>
-          </div>
+          <>
+            <div className={`mt-4 p-4 rounded-lg ${
+              selectedAnswers[currentQuestion.id] === shuffledOptions[currentQuestion.id].correctIndex
+                ? 'bg-green-100 text-green-700'
+                : 'bg-red-100 text-red-700'
+            }`}>
+              <p className="font-medium mb-2">
+                {selectedAnswers[currentQuestion.id] === shuffledOptions[currentQuestion.id].correctIndex
+                  ? '✓ Correct!'
+                  : '✗ Incorrect'}
+              </p>
+              <p className="text-sm">{currentQuestion.feedback}</p>
+            </div>
+            <div className="flex justify-center mt-4 w-full">
+              <a
+                href={(() => {
+                  const vraag = currentQuestion.questionText;
+                  const opties = shuffledOptions[currentQuestion.id]?.options.map((opt, idx) => `${String.fromCharCode(65+idx)}. ${opt}`).join('\\n');
+                  const gegevenAntwoord = selectedAnswers[currentQuestion.id] !== undefined ? shuffledOptions[currentQuestion.id]?.options[selectedAnswers[currentQuestion.id]] : '';
+                  const feedback = currentQuestion.feedback;
+                  const prompt = `Jij bent een docent fysiotherapie. Een student heeft een MC vraag beantwoord. Hier zijn de gegevens van de MC vraag:\n\nVraag: ${vraag}\nAntwoordopties:\n${opties}\n\nJouw antwoord was: ${gegevenAntwoord}\n\nStandaard feedback: ${feedback}\n\nBegin met een overzicht van de MC vraag met daarin: de vraag, de antwoordopties, het door de student gegeven antwoord en de standaard gegeven feedback.\\n\\nGeef daarna duidelijke uitleg aan de student over de inhoud van de vraag, het juiste antwoord en waarom andere antwoordopties niet juist zijn als dat van meerwaarde is. Sluit af met een of meer van de volgende vragen om het leerproces te bevorderen:\n- Is dit duidelijk voor je?\n- Wil je dat ik het op een andere manier uitleg?\n- Zal ik een bepaald onderdeel verder toelichten?\n- Heb je hier nog andere vragen over?\n- Zal ik nog wat dieper op dit onderwerp ingaan?`;
+                  return `https://chat.openai.com/?q=${encodeURIComponent(prompt)}`;
+                })()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow text-sm"
+              >
+                Leer meer over dit onderwerp met AI
+              </a>
+            </div>
+          </>
         )}
       </div>
 

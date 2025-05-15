@@ -10,20 +10,26 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
   const [showIntro, toggleIntro] = usePersistentToggle('klinisch_redeneren_intro', true);
   const [answerVersions, setAnswerVersions] = useState({});
   const [currentVersion, setCurrentVersion] = useState({});
+  const [themeFilter, setThemeFilter] = useState('Alle Thema\'s');
+  const [currentCases, setCurrentCases] = useState([...cases]);
 
   useEffect(() => {
+    let filteredCases = [...cases];
+    if (themeFilter !== 'Alle Thema\'s') {
+      filteredCases = cases.filter(c => c.theme === themeFilter);
+    }
+    setCurrentCases(filteredCases);
     setCurrentCaseIndex(0);
     setShowModelAnswer(false);
     setIsAiChecking(false);
     setAiFeedback('');
     setSelfAssessment({});
-    setAnswerVersions({});
-    setCurrentVersion({});
-  }, [resetKey, cases]);
+    // Antwoorden en versies niet resetten bij filteren
+  }, [resetKey, cases, themeFilter]);
 
   // Bepaal huidige pogingnummer
-  const savedVersionCount = answerVersions[cases[currentCaseIndex]?.id] ? (answerVersions[cases[currentCaseIndex].id] || []).length : 0;
-  const attemptNumber = selfAssessment[cases[currentCaseIndex]?.id] ? savedVersionCount : savedVersionCount + 1;
+  const savedVersionCount = answerVersions[currentCases[currentCaseIndex]?.id] ? (answerVersions[currentCases[currentCaseIndex].id] || []).length : 0;
+  const attemptNumber = selfAssessment[currentCases[currentCaseIndex]?.id] ? savedVersionCount : savedVersionCount + 1;
 
   // Synchroniseer lokale selfAssessment met de doorgegeven scores zodat na herladen
   // de vergrendeling correct is.
@@ -31,10 +37,10 @@ function KlinischRedenerenSection({ cases, answers, onAnswerChange, scores, onSc
     setSelfAssessment(scores);
   }, [scores]);
 
-  const currentCase = cases[currentCaseIndex];
+  const currentCase = currentCases[currentCaseIndex];
 
   const goToNextCase = () => {
-    if (currentCaseIndex < cases.length - 1) {
+    if (currentCaseIndex < currentCases.length - 1) {
       setCurrentCaseIndex(prev => prev + 1);
       setShowModelAnswer(false);
       setAiFeedback('');
@@ -132,6 +138,10 @@ Geef een gestructureerde analyse met:
     }
   }, [answerVersions, onAnswerVersionsChange]);
 
+  // Dynamically get available themes from cases
+  const availableThemes = Array.from(new Set(cases.map(c => c.theme).filter(Boolean)));
+  const filterOptions = ['Alle Thema\'s', ...availableThemes];
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-blue-700">Klinisch Redeneren</h2>
@@ -154,174 +164,209 @@ Geef een gestructureerde analyse met:
         )}
       </div>
 
+      <div className="mb-4 p-4 bg-gray-100 rounded-lg">
+        <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Thema</h3>
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.map(theme => {
+            // Only render filter if it's 'Alle Thema's' or if there are cases for this theme
+            const casesForTheme = theme === 'Alle Thema\'s' ? cases : cases.filter(c => c.theme === theme);
+            if (casesForTheme.length > 0) {
+              return (
+                <button
+                  key={theme}
+                  onClick={() => setThemeFilter(theme)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
+                    ${themeFilter === theme
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                >
+                  {theme}
+                </button>
+              );
+            }
+            return null;
+          })}
+        </div>
+      </div>
+
       <div>
         <div className="mb-6 flex items-center gap-4">
           <h3 className="text-2xl font-semibold text-blue-700">
-            Casus {currentCaseIndex + 1} van {cases.length}
+            Casus {currentCases.length > 0 ? currentCaseIndex + 1 : 0} van {currentCases.length}
           </h3>
-          <span className="bg-blue-600 text-white text-lg font-semibold px-4 py-1 rounded-full shadow-sm">
-            Poging: {attemptNumber}
-          </span>
+          {currentCases.length > 0 && currentCase && (
+            <span className="bg-blue-600 text-white text-lg font-semibold px-4 py-1 rounded-full shadow-sm">
+              Poging: {attemptNumber}
+            </span>
+          )}
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-          <div className="mb-6">
-            <h3 className="text-lg font-medium text-gray-800 mb-4">
-              {currentCase.caseText}
-            </h3>
-            
-            <div className="mb-6">
-              <label className="block text-gray-700 font-medium mb-2">
-                Jouw analyse:
-              </label>
-              <textarea
-                value={answers[currentCase.id] || ''}
-                onChange={(e) => onAnswerChange(currentCase.id, e.target.value)}
-                readOnly={!!selfAssessment[currentCase.id]}
-                className={`w-full h-40 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                  selfAssessment[currentCase.id] ? 'bg-gray-100 cursor-not-allowed' : ''
-                }`}
-                placeholder="Beschrijf hier je klinische redenering..."
-              />
-            </div>
+        {currentCases.length === 0 && (
+          <p className="text-center text-gray-700 mb-4">
+            Geen casussen beschikbaar voor het geselecteerde thema.
+          </p>
+        )}
 
-            <div className="space-y-4">
-              <div className="flex flex-wrap gap-3">
-                <div className="relative group">
-                  <button
-                    onClick={() => setShowModelAnswer(!showModelAnswer)}
-                    disabled={!answers[currentCase.id]}
-                    className={`px-4 py-2 rounded-lg font-medium ${
-                      !answers[currentCase.id]
-                        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                        : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
-                    }`}
-                  >
-                    {showModelAnswer ? 'Verberg modelantwoord' : 'Toon modelantwoord'}
-                  </button>
-                  {!answers[currentCase.id] && (
-                    <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
-                      Vul eerst je antwoord in om feedback te krijgen
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
-                        <div className="border-8 border-transparent border-t-gray-800"></div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="relative group">
-                  <button
-                    onClick={() => checkWithAI(currentCase, answers[currentCase.id] || '')}
-                    disabled={!answers[currentCase.id]}
-                    className={`px-4 py-2 rounded-lg font-medium ${
-                      !answers[currentCase.id]
-                        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                        : 'bg-green-600 text-white hover:bg-green-700'
-                    }`}
-                  >
-                    Controleer met AI
-                  </button>
-                  {!answers[currentCase.id] && (
-                    <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
-                      Vul eerst je antwoord in om feedback te krijgen
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
-                        <div className="border-8 border-transparent border-t-gray-800"></div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+        {currentCase && (
+          <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div className="mb-6">
+              <h3 className="text-lg font-medium text-gray-800 mb-4">
+                {currentCase.caseText}
+              </h3>
+              
+              <div className="mb-6">
+                <label className="block text-gray-700 font-medium mb-2">
+                  Jouw analyse:
+                </label>
+                <textarea
+                  value={answers[currentCase.id] || ''}
+                  onChange={(e) => onAnswerChange(currentCase.id, e.target.value)}
+                  readOnly={!!selfAssessment[currentCase.id]}
+                  className={`w-full h-40 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    selfAssessment[currentCase.id] ? 'bg-gray-100 cursor-not-allowed' : ''
+                  }`}
+                  placeholder="Beschrijf hier je klinische redenering..."
+                />
               </div>
 
-              {showModelAnswer && (
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-blue-800 mb-2">Modelantwoord:</h4>
-                  <p className="text-blue-900">{currentCase.modelAnswer}</p>
-                  <div className="mt-4">
-                    <h4 className="font-medium text-blue-800 mb-2">Beoordelingscriteria:</h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      {currentCase.criteria.map((criterion, index) => (
-                        <li key={index} className="text-blue-900">{criterion}</li>
-                      ))}
-                    </ul>
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-3">
+                  <div className="relative group">
+                    <button
+                      onClick={() => setShowModelAnswer(!showModelAnswer)}
+                      disabled={!answers[currentCase.id]}
+                      className={`px-4 py-2 rounded-lg font-medium ${
+                        !answers[currentCase.id]
+                          ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                          : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                      }`}
+                    >
+                      {showModelAnswer ? 'Verberg modelantwoord' : 'Toon modelantwoord'}
+                    </button>
+                    {!answers[currentCase.id] && (
+                      <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
+                        Vul eerst je antwoord in om feedback te krijgen
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                          <div className="border-8 border-transparent border-t-gray-800"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="relative group">
+                    <button
+                      onClick={() => checkWithAI(currentCase, answers[currentCase.id] || '')}
+                      disabled={!answers[currentCase.id]}
+                      className={`px-4 py-2 rounded-lg font-medium ${
+                        !answers[currentCase.id]
+                          ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                          : 'bg-green-600 text-white hover:bg-green-700'
+                      }`}
+                    >
+                      Controleer met AI
+                    </button>
+                    {!answers[currentCase.id] && (
+                      <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
+                        Vul eerst je antwoord in om feedback te krijgen
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                          <div className="border-8 border-transparent border-t-gray-800"></div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              )}
 
-              {aiFeedback && (
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-green-800 mb-2">AI Analyse:</h4>
-                  <pre className="whitespace-pre-wrap text-green-900 font-sans">{aiFeedback}</pre>
-                </div>
-              )}
+                {showModelAnswer && (
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-blue-800 mb-2">Modelantwoord:</h4>
+                    <p className="text-blue-900">{currentCase.modelAnswer}</p>
+                    <div className="mt-4">
+                      <h4 className="font-medium text-blue-800 mb-2">Beoordelingscriteria:</h4>
+                      <ul className="list-disc list-inside space-y-1">
+                        {currentCase.criteria.map((criterion, index) => (
+                          <li key={index} className="text-blue-900">{criterion}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
 
-              <div className="border-t pt-4 mt-4">
-                <h4 className="font-medium text-gray-700 mb-2">Hoe goed denk je dat je het hebt gedaan?</h4>
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-wrap gap-3">
-                    {['beginner', 'gevorderd', 'expert'].map((level) => (
-                      <div key={level} className="relative group">
-                        <button
-                          onClick={() => handleSelfAssessment(level)}
-                          disabled={!answers[currentCase.id] || selfAssessment[currentCase.id]}
-                          className={`px-4 py-2 rounded-lg font-medium capitalize ${
-                            !answers[currentCase.id] || selfAssessment[currentCase.id]
-                              ? 'opacity-50 cursor-not-allowed'
-                              : ''
-                          } ${
-                            selfAssessment[currentCase.id] === level
-                              ? level === 'beginner' 
+                {aiFeedback && (
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-green-800 mb-2">AI Analyse:</h4>
+                    <pre className="whitespace-pre-wrap text-green-900 font-sans">{aiFeedback}</pre>
+                  </div>
+                )}
+
+                <div className="border-t pt-4 mt-4">
+                  <h4 className="font-medium text-gray-700 mb-2">Hoe goed denk je dat je het hebt gedaan?</h4>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-wrap gap-3">
+                      {['beginner', 'gevorderd', 'expert'].map((level) => (
+                        <div key={level} className="relative group">
+                          <button
+                            onClick={() => handleSelfAssessment(level)}
+                            disabled={!answers[currentCase.id] || selfAssessment[currentCase.id]}
+                            className={`px-4 py-2 rounded-lg font-medium capitalize ${
+                              !answers[currentCase.id] || selfAssessment[currentCase.id]
+                                ? 'opacity-50 cursor-not-allowed'
+                                : ''
+                            } ${
+                              selfAssessment[currentCase.id] === level
+                                ? level === 'beginner' 
+                                  ? 'bg-red-500 hover:bg-red-600 text-white'
+                                  : level === 'gevorderd'
+                                  ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                                  : 'bg-green-500 hover:bg-green-600 text-white'
+                                : level === 'beginner'
                                 ? 'bg-red-500 hover:bg-red-600 text-white'
                                 : level === 'gevorderd'
                                 ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
                                 : 'bg-green-500 hover:bg-green-600 text-white'
-                              : level === 'beginner'
-                              ? 'bg-red-500 hover:bg-red-600 text-white'
-                              : level === 'gevorderd'
-                              ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
-                              : 'bg-green-500 hover:bg-green-600 text-white'
-                          }`}
-                        >
-                          {level}
-                        </button>
-                        {!answers[currentCase.id] && (
-                          <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
-                            Vul eerst je antwoord in om feedback te krijgen
-                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
-                              <div className="border-8 border-transparent border-t-gray-800"></div>
+                            }`}
+                          >
+                            {level}
+                          </button>
+                          {!answers[currentCase.id] && (
+                            <div className="hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg group-hover:block whitespace-nowrap z-10">
+                              Vul eerst je antwoord in om feedback te krijgen
+                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                                <div className="border-8 border-transparent border-t-gray-800"></div>
+                              </div>
                             </div>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {selfAssessment[currentCase.id] && (
-                    <div className="flex flex-col gap-2">
-                      <div className="bg-green-50 p-3 rounded-lg text-green-700">
-                        <p className="font-medium">✓ Antwoord opgeslagen als {selfAssessment[currentCase.id]}</p>
-                        {currentVersion[currentCase.id] > 1 && (
-                          <p className="text-sm mt-1">Dit is je {currentVersion[currentCase.id]}e poging</p>
-                        )}
-                      </div>
-                      <button
-                        onClick={startNewAttempt}
-                        className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200"
-                      >
-                        Opnieuw proberen
-                      </button>
+                          )}
+                        </div>
+                      ))}
                     </div>
-                  )}
+                    
+                    {selfAssessment[currentCase.id] && (
+                      <div className="flex flex-col gap-2">
+                        <div className="bg-green-50 p-3 rounded-lg text-green-700">
+                          <p className="font-medium">✓ Antwoord opgeslagen als {selfAssessment[currentCase.id]}</p>
+                          {currentVersion[currentCase.id] > 1 && (
+                            <p className="text-sm mt-1">Dit is je {currentVersion[currentCase.id]}e poging</p>
+                          )}
+                        </div>
+                        <button
+                          onClick={startNewAttempt}
+                          className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200"
+                        >
+                          Opnieuw proberen
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="flex justify-between items-center">
           <button
             onClick={goToPreviousCase}
-            disabled={currentCaseIndex === 0}
+            disabled={currentCaseIndex === 0 || currentCases.length === 0}
             className={`px-4 py-2 rounded-lg font-medium ${
-              currentCaseIndex === 0
+              currentCaseIndex === 0 || currentCases.length === 0
                 ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
                 : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
             }`}
@@ -331,9 +376,9 @@ Geef een gestructureerde analyse met:
           
           <button
             onClick={goToNextCase}
-            disabled={currentCaseIndex === cases.length - 1}
+            disabled={currentCaseIndex === currentCases.length - 1 || currentCases.length === 0}
             className={`px-4 py-2 rounded-lg font-medium ${
-              currentCaseIndex === cases.length - 1
+              currentCaseIndex === currentCases.length - 1 || currentCases.length === 0
                 ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
