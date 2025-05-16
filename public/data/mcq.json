@@ -1,130 +1,1042 @@
 [
-  {
-    "id": "mc_vraag_1",
-    "questionText": "Welk type collageen is dominant aanwezig in de vroege proliferatiefase van wondgenezing en zorgt voor de initiële matrix?",
-    "options": ["Type I Collageen", "Type II Collageen", "Type III Collageen", "Type IV Collageen"],
-    "correctOptionIndex": 2,
-    "feedback": "Type III collageen wordt vroeg in de wondgenezing afgezet door fibroblasten en vormt een initiële, flexibele matrix die later grotendeels wordt vervangen door het sterkere Type I collageen.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_2",
-    "questionText": "Welke cel is primair verantwoordelijk voor fagocytose (opruimen van celresten en bacteriën) tijdens de ontstekingsfase?",
-    "options": ["Fibroblast", "Macrofagen", "Endotheelcel", "Mastcel"],
-    "correctOptionIndex": 1,
-    "feedback": "Macrofagen zijn cruciale fagocyten in de ontstekingsfase; ze ruimen dode cellen, bacteriën en beschadigd weefsel op en scheiden groeifactoren uit die het herstelproces stimuleren.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_3",
-    "questionText": "Angiogenese, de vorming van nieuwe bloedvaten, is een kenmerk van welke fase van wondgenezing?",
-    "options": ["Hemostase", "Ontstekingsfase", "Proliferatiefase", "Remodelleringsfase"],
-    "correctOptionIndex": 2,
-    "feedback": "Angiogenese is essentieel tijdens de proliferatiefase om het nieuw gevormde granulatieweefsel te voorzien van zuurstof en voedingsstoffen, nodig voor celactiviteit en matrixsynthese.",
-    "niveau": "begrip"
-  },
-  {
-    "id": "mc_vraag_4",
-    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
-    "options": [
-      "Proliferatiefase",
-      "Ontstekingsfase",
-      "Remodelleringsfase",
-      "Hemostase"
-    ],
-    "correctOptionIndex": 3,
-    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_5",
-    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
-    "options": [
-      "Macrofagen",
-      "Fibroblasten",
-      "Mastcellen",
-      "Lymfocyten"
-    ],
-    "correctOptionIndex": 1,
-    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_6",
-    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
-    "options": [
-      "Stimuleren van collageensynthese",
-      "Remmen van ontsteking",
-      "Bevorderen van angiogenese",
-      "Versterken van fibroblasten"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_7",
-    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
-    "options": [
-      "Type I",
-      "Type II",
-      "Type III",
-      "Type IV"
-    ],
-    "correctOptionIndex": 0,
-    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_8",
-    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
-    "options": [
-      "Hemostase",
-      "Ontstekingsfase",
-      "Proliferatiefase",
-      "Remodelleringsfase"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
-    "niveau": "begrip"
-  },
-  {
-    "id": "mc_vraag_9",
-    "questionText": "Wat is het effect van roken op bindweefselherstel?",
-    "options": [
-      "Versnelt angiogenese",
-      "Verhoogt zuurstofaanvoer",
-      "Remt collageensynthese",
-      "Stimuleert ontstekingsreactie"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
-    "niveau": "toepassing"
-  },
-  {
-    "id": "mc_vraag_10",
-    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
-    "options": [
-      "Stimuleren van ontsteking",
-      "Fagocytose van pathogenen",
-      "Contractie van het wondbed",
-      "Vorming van littekenweefsel"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
-    "niveau": "kennis"
-  },
-  {
-    "id": "mc_vraag_11",
-    "questionText": "Welke groeifactor activeert fibroblasten en stimuleert collageenproductie?",
-    "options": [
-      "EGF",
-      "PDGF",
-      "TGF-β",
-      "VEGF"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "TGF-β (Transforming Growth Factor-beta) stimuleert fibroblasten om collageen aan te maken.",
-    "niveau": "kennis"
-  }
-] 
+    {
+      "id": "mc_vraag_1",
+      "questionText": "Welke zijn de drie belangrijkste fasen van bindweefselherstel?",
+      "options": [
+        "Inflammatoire fase, proliferatieve fase, remodelleringsfase",
+        "Beschermingsfase, activeringsfase, herstelfase",
+        "Acute fase, subacute fase, chronische fase",
+        "Hypoxische fase, neovascularisatiefase, maturatiefase"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Bindweefselherstel verloopt in drie opeenvolgende fasen: de inflammatoire fase (eerste 72 uur), gevolgd door de proliferatieve fase (regeneratie en celgroei, enkele dagen tot weken), en tenslotte de remodelleringsfase (collageen maturatie, kan maanden tot jaren duren). Opties B, C en D komen niet overeen met de standaard wetenschappelijke terminologie voor deze processen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_2",
+      "questionText": "Wat is de gebruikelijke duur van de acute inflammatoire fase na een ligamentletsel?",
+      "options": [
+        "1 tot 4 uur",
+        "12 tot 24 uur",
+        "48 tot 72 uur",
+        "5 tot 7 dagen"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "De acute inflammatoire fase begint onmiddellijk na het letsel en duurt gewoonlijk 48 tot 72 uur (C). Deze fase wordt gekenmerkt door de vorming van een bloedstolsel, het vrijkomen van ontstekingsmediatoren en de aankomst van immuuncellen. Opties A en B zijn te kort voor de volledige ontwikkeling van deze fase, en optie D is te lang omdat na 5-7 dagen de proliferatieve fase al begonnen is.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_3",
+      "questionText": "Welk celtype is hoofdzakelijk verantwoordelijk voor de synthese van nieuw collageen tijdens de proliferatieve fase?",
+      "options": [
+        "Erytrocyten",
+        "Fibroblasten",
+        "Osteoblasten",
+        "Myoblasten"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Fibroblasten (B) zijn de belangrijkste cellen die verantwoordelijk zijn voor de synthese van collageen en andere componenten van de extracellulaire matrix tijdens de proliferatieve fase van weefselherstel. Erytrocyten (A) transporteren zuurstof, osteoblasten (C) vormen botweefsel, en myoblasten (D) zijn betrokken bij spierregeneratie, maar spelen geen hoofdrol bij de synthese van ligamentair collageen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_4",
+      "questionText": "Welk type collageen is overwegend aanwezig in gezonde, normale ligamenten?",
+      "options": [
+        "Type I collageen",
+        "Type II collageen",
+        "Type III collageen",
+        "Type IV collageen"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Type I collageen vormt ongeveer 85% van het totale collageen in gezonde ligamenten, wat zorgt voor de treksterkte. Type II collageen (B) komt voornamelijk voor in kraakbeen, type III collageen (C) is overvloediger aanwezig in herstellend weefsel, en type IV collageen (D) is een hoofdcomponent van basaalmembranen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_5",
+      "questionText": "Wat zijn de voornaamste bestanddelen van ligamenten?",
+      "options": [
+        "Water, collageen en diverse aminozuren",
+        "Calcium, fosfor en magnesium",
+        "Glycogeen, myosine en actine",
+        "Keratine, melanine en elastine"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Ligamenten bestaan hoofdzakelijk uit water (ongeveer twee derde van de massa), collageen (voornamelijk type I) en diverse aminozuren. Optie B beschrijft botcomponenten, optie C spiercomponenten, en optie D componenten die voornamelijk in huid en haar voorkomen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_6",
+      "questionText": "Welke term beschrijft de golvende structuur van collageenvezels in een gezond ligament?",
+      "options": [
+        "Crimping (golvingen)",
+        "Striatie",
+        "Parallellisatie",
+        "Fibrillatie"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "De term \"crimping\" of golvingen (A) beschrijft het karakteristieke uiterlijk van collageenvezels in een gezond ligament, waarbij ze onder de microscoop gegolfd of geplooid lijken. Deze structuur zorgt voor een zekere elasticiteit en energieabsorptie bij belasting van het ligament. Striatie (B) kenmerkt spiervezels, parallellisatie (C) is geen specifieke term, en fibrillatie (D) beschrijft een degeneratie van gewrichtskraakbeen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_7",
+      "questionText": "Wat is de naam van de gevasculariseerde buitenste laag die het ligament bedekt?",
+      "options": [
+        "Periligament",
+        "Epiligament",
+        "Paratendon",
+        "Endoligament"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Het epiligament (B) is de gevasculariseerde buitenste laag die het ligament bedekt en sensibele en proprioceptieve zenuwen bevat. Periligament (A) en endoligament (D) zijn geen erkende anatomische termen voor ligamenten, en paratendon (C) is geassocieerd met pezen, niet met ligamenten.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_8",
+      "questionText": "Welke mechanische eigenschap van ligamenten beschrijft hun vermogen om progressief te verlengen onder constante belasting?",
+      "options": [
+        "Elasticiteit",
+        "Plasticiteit",
+        "Kruip (creep)",
+        "Stijfheid"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Kruip of \"creep\" (C) is de visco-elastische eigenschap die de progressieve vervorming van een ligament onder constante belasting beschrijft. Elasticiteit (A) is het vermogen om na vervorming weer de oorspronkelijke vorm aan te nemen, plasticiteit (B) betekent permanente vervorming, en stijfheid (D) is de weerstand tegen vervorming.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_9",
+      "questionText": "Welke sensorische receptoren vind je in ligamenten?",
+      "options": [
+        "Pacini-lichaampjes, Golgi-peeslichaampjes en Ruffini-eindlichaampjes",
+        "Schwann-cellen, sensorische neuronen en gliacellen",
+        "Acetylcholinereceptoren, adrenerge receptoren en natriumkanalen",
+        "Mechanoreceptoren type I, II, III zonder Ruffini-eindlichaampjes"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Ligamenten bevatten gespecialiseerde mechanoreceptoren zoals Pacini-lichaampjes, Golgi-peeslichaampjes en Ruffini-eindlichaampjes (A), die bijdragen aan proprioceptie en kinesthesie. De andere opties (B, C, D) bevatten ofwel zenuwcellen die niet specifiek zijn voor ligamenten, ofwel receptoren die niet kenmerkend zijn voor ligamenten.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_10",
+      "questionText": "Wat is de hoofdfunctie van de ligamento-musculaire reflex?",
+      "options": [
+        "Het vergroten van de gewrichtsmobiliteit",
+        "Het bevorderen van de bloedcirculatie in het ligament",
+        "Het beschermen van het gewricht en voorkomen van letsels bij stress",
+        "Het versnellen van de genezing na ligamentletsel"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "De ligamento-musculaire reflex heeft een beschermende functie (C) door het activeren of remmen van spieractiviteit om het gewricht te stabiliseren en letsels te voorkomen wanneer het ligament en gewricht onder stress staan. Deze reflex is niet bedoeld om de flexibiliteit te vergroten (A), beïnvloedt niet direct de bloedcirculatie (B), en versnelt niet het genezingsproces na letsel (D).",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_11",
+      "questionText": "Welk fenomeen treedt op cellulair niveau op tijdens de eerste 72 uur na een ligamentletsel?",
+      "options": [
+        "Versnelde synthese van type I collageen",
+        "Vorming van een fibrinestolsel en instroom van ontstekingscellen",
+        "Onmiddellijke heroriëntatie van collageenvezels",
+        "Calcificatie van de extracellulaire matrix"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Tijdens de eerste 72 uur na letsel (inflammatoire fase) vormt zich een fibrinestolsel en stromen ontstekingscellen naar de plaats van het letsel (B). Versnelde collageensynthese (A) komt later in de proliferatieve fase voor, heroriëntatie van vezels (C) gebeurt tijdens de remodelleringsfase, en calcificatie (D) is gewoonlijk geen normaal fenomeen bij ligamentherstel.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_12",
+      "questionText": "Wanneer begint normaal gesproken de proliferatieve fase van ligamentherstel?",
+      "options": [
+        "Onmiddellijk na het letsel",
+        "12 tot 24 uur na het letsel",
+        "48 tot 72 uur na het letsel",
+        "2 tot 3 weken na het letsel"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "De proliferatieve fase begint gewoonlijk 48 tot 72 uur na het letsel (C), wanneer de inflammatoire fase begint af te nemen. Opties A en B zijn te vroeg omdat ze nog overeenkomen met de inflammatoire fase, terwijl optie D te laat is omdat na 2-3 weken de remodelleringsfase al begonnen is.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_13",
+      "questionText": "Welke groeifactor is vooral belangrijk voor het stimuleren van de vorming van nieuwe bloedvaten tijdens ligamentherstel?",
+      "options": [
+        "Platelet-Derived Growth Factor (PDGF)",
+        "Transforming Growth Factor Beta (TGF-β)",
+        "Vascular Endothelial Growth Factor (VEGF)",
+        "Fibroblast Growth Factor (FGF)"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Vascular Endothelial Growth Factor (VEGF) (C) is specifiek betrokken bij angiogenese, de vorming van nieuwe bloedvaten die essentieel zijn voor de genezing. PDGF (A) en TGF-β (B) spelen andere rollen zoals het aantrekken van immuuncellen, terwijl FGF (D) vooral de groei bevordert van cellen die betrokken zijn bij de vorming van collageen en kraakbeen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_14",
+      "questionText": "Wat is het karakteristieke uiterlijk van een \"zacht littekenweefsel\" op MRI 8 dagen na een ligamentletsel?",
+      "options": [
+        "Homogeen hypointens signaal op T2",
+        "Hypointens signaal omgeven door een hyperintense halo op T2",
+        "Hyperintens centrum omgeven door een dunne perifere hypointense lijn op T2",
+        "Volledig hyperintens signaal op T2"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Op MRI vertoont \"zacht littekenweefsel\" ongeveer 8 dagen na het letsel meestal een hyperintens centrum omgeven door een dunne perifere hypointense lijn op T2-gewogen beelden (C). De andere opties komen niet overeen met de typische kenmerken waargenomen in dit specifieke stadium van genezing.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_15",
+      "questionText": "Wat is de typische duur van de weefselremodelleringsfase bij ligamentherstel?",
+      "options": [
+        "1 tot 2 weken",
+        "3 tot 6 weken",
+        "2 tot 3 maanden",
+        "Meerdere maanden tot meerdere jaren"
+      ],
+      "correctOptionIndex": 3,
+      "feedback": "De remodelleringsfase is de langste van de drie genezingsfasen en kan meerdere maanden tot meerdere jaren duren (D), afhankelijk van de ernst van het letsel en diverse individuele factoren. Opties A, B en C zijn veel te kort om de typische duur van deze fase weer te geven.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_16",
+      "questionText": "Welke anatomische structuur verbindt ligamenten met botten?",
+      "options": [
+        "Ligamentaire insertie",
+        "Myofasciale junctie",
+        "Neuromusculaire junctie",
+        "Periostale junctie"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "De ligamentaire insertie (A) is de specifieke anatomische structuur die ligamenten met botten verbindt. De myofasciale junctie (B) heeft betrekking op spieren en fasciën, de neuromusculaire junctie (C) is het contactpunt tussen een neuron en een spiervezel, en periostale junctie (D) is geen standaard anatomische term voor ligamentaire aanhechtingen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_17",
+      "questionText": "Welk type collageen wordt hoofdzakelijk gesynthetiseerd tijdens de vroege fase van ligamentherstel?",
+      "options": [
+        "Type I collageen",
+        "Type II collageen",
+        "Type III collageen",
+        "Type IV collageen"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Na een letsel synthetiseren fibroblasten hoofdzakelijk type III collageen (C) tijdens de vroege genezingsfase, in tegenstelling tot type I collageen dat overheerst in gezonde ligamenten. Type II collageen (B) is kenmerkend voor kraakbeen en type IV collageen (D) is een belangrijke component van basaalmembranen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_18",
+      "questionText": "Welk kenmerk onderscheidt ligamentair littekenweefsel van gezond ligamentweefsel?",
+      "options": [
+        "Collageenvezels met grotere diameter",
+        "Meer georganiseerde oriëntatie van vezels",
+        "Verhoogde aanwezigheid van bloedvaten",
+        "Verminderde cellulariteit"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Ligamentair littekenweefsel bevat doorgaans meer bloedvaten (C) dan gezond ligamentweefsel. Daarentegen heeft het collageenvezels met een kleinere diameter (niet A), een minder georganiseerde oriëntatie van vezels (niet B), en een toename in plaats van een afname van de cellulariteit (niet D).",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_19",
+      "questionText": "Welke biomechanische eigenschap is verminderd in een hersteld ligament vergeleken met een normaal ligament?",
+      "options": [
+        "Vermogen tot verlenging",
+        "Treksterkte",
+        "Potentieel voor permanente vervorming",
+        "Pijngevoeligheid"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Een hersteld ligament vertoont doorgaans een verminderde treksterkte (structurele sterkte) (B), vaak slechts 40 tot 80% van de sterkte van een normaal ligament. Het vermogen tot verlenging (A) is vaak verhoogd in plaats van verminderd, het potentieel voor permanente vervorming (C) is meestal hoger, en pijngevoeligheid (D) is geen biomechanische eigenschap op zich.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_20",
+      "questionText": "Wat is de langetermijngevolg van een niet goed genezen ligamentletsel?",
+      "options": [
+        "Compensatoire spierhypertrofie",
+        "Osteoartritis",
+        "Toegenomen gewrichtsmobiliteit",
+        "Positieve aanpassing van omliggende weefsels"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Osteoartritis (B) is het meest voorkomende langetermijngevolg van een niet goed genezen ligamentletsel. De resulterende gewrichtsinstabiliteit wijzigt de biomechanica en belastingverdeling, wat leidt tot progressieve gewrichtsdegeneratie. Opties A, C en D zijn geen typische langetermijngevolgen van slecht genezen ligamentletsel.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_21",
+      "questionText": "Hoe heet de overgangszone tussen de pees/ligament en het bot?",
+      "options": [
+        "Enthese",
+        "Epifyse",
+        "Synaps",
+        "Diafyse"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "De enthese (A) is de gespecialiseerde overgangszone tussen de pees of het ligament en het bot. De epifyse (B) is het uiteinde van een lang bot, een synaps (C) is de verbindingszone tussen twee neuronen, en de diafyse (D) is het centrale deel van een lang bot.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_22",
+      "questionText": "Welke structuur is niet betrokken bij de stabilisatie van de knie?",
+      "options": [
+        "Voorste kruisband (VKB)",
+        "Mediale collaterale ligament (MCL)",
+        "Voorste tibiofibulaire ligament",
+        "Achterste kruisband (AKB)"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Het voorste tibiofibulaire ligament (C) is niet direct betrokken bij de stabilisatie van de knie maar bij de syndesmose van de enkel. De voorste kruisband (A), het mediale collaterale ligament (B) en de achterste kruisband (D) zijn allemaal belangrijke stabilisatoren van de knie.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_23",
+      "questionText": "Welke beeldvormende methode is het meest geschikt voor het evalueren van dynamische ligamentaire laxiteit?",
+      "options": [
+        "Statische MRI",
+        "Standaard röntgenfoto",
+        "Dynamische echografie",
+        "Botscintigrafie"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Dynamische echografie (C) kan ligamentaire laxiteit in real-time evalueren tijdens beweging. Statische MRI (A) en standaard röntgenfoto (B) kunnen de dynamische aspecten niet vastleggen, en botscintigrafie (D) evalueert eerder botmetabolisme dan ligamenten.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_24",
+      "questionText": "Welk oedeem-patroon op MRI rond 4-6 weken na letsel suggereert overbelasting van het herstellende ligament?",
+      "options": [
+        "\"Pluimvormig\" (feathery) oedeem rond het litteken",
+        "Diffuus \"katoenvormig\" (cotton-like) oedeem",
+        "Complete afwezigheid van oedeem",
+        "Oedeem met hypersignaal op T1"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Een \"pluimvormig\" (feathery) oedeem rond het zachte litteken (A) op MRI rond 4-6 weken na letsel suggereert overbelasting van het herstellende ligament. \"Katoenvormig\" oedeem (B) is eerder een teken van adaptatie, afwezigheid van oedeem (C) zou een goede progressie aangeven die het verhogen van de belasting mogelijk maakt, en oedeem met hypersignaal op T1 (D) is niet kenmerkend voor deze fase.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_25",
+      "questionText": "Welke structuur wordt als eerste gevormd op de plaats van ligamentletsel onmiddellijk na de verwonding?",
+      "options": [
+        "Granulatieweefsel",
+        "Fibrinestolsel",
+        "Nieuwe capillairen",
+        "Type III collageenvezels"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Het fibrinestolsel (B) is de eerste structuur die zich vormt op de plaats van letsel onmiddellijk na de verwonding, en dient als platform voor latere cellulaire gebeurtenissen. Granulatieweefsel (A) vormt zich later, nieuwe capillairen (C) verschijnen tijdens de proliferatieve fase, en type III collageenvezels (D) worden ook gesynthetiseerd tijdens de proliferatieve fase.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_26",
+      "questionText": "In welke fase van ligamentherstel verschijnt \"zacht littekenweefsel\"?",
+      "options": [
+        "Vroege inflammatoire fase (1-3 dagen)",
+        "Vroege proliferatieve fase (ongeveer 8 dagen)",
+        "Vroege remodelleringsfase (3-4 weken)",
+        "Late remodelleringsfase (meer dan 12 weken)"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "\"Zacht littekenweefsel\" verschijnt rond de 8ste dag na letsel (B), tijdens de vroege proliferatieve fase. Dit weefsel is nog niet gevormd tijdens de vroege inflammatoire fase (A), en na 3-4 weken (C) of meer dan 12 weken (D) is het littekenweefsel al gevorderd naar verdere maturatiestadia.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_27",
+      "questionText": "Wat zijn de belangrijkste cellulaire mediatoren van de inflammatoire fase?",
+      "options": [
+        "Neutrofielen, macrofagen en lymfocyten",
+        "Fibroblasten, myofibroblasten en keratinocyten",
+        "Osteoblasten, osteoclasten en chondroblasten",
+        "Erytrocyten, trombocyten en adipocyten"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Neutrofielen, macrofagen en lymfocyten (A) zijn de belangrijkste cellulaire mediatoren van de inflammatoire fase. Fibroblasten en myofibroblasten (B) spelen voornamelijk een rol in de proliferatieve fase, bot- en kraakbeencellen (C) zijn geen belangrijke spelers bij ligamentaire ontsteking, en erytrocyten, trombocyten en adipocyten (D) hebben geen centrale rol in de mediatie van ontsteking.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_28",
+      "questionText": "Welk fenomeen is verantwoordelijk voor het vermogen van het ligament om energie te absorberen zonder te scheuren bij lichte spanning?",
+      "options": [
+        "De progressieve rekrutering van gegolfde (crimped) vezels",
+        "De transformatie van type I collageen naar type III collageen",
+        "De vasoconstrictie van bloedvaten in het epiligament",
+        "De activering van de spierstrekreflex"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "De progressieve rekrutering van gegolfde of \"crimped\" vezels (A) stelt het ligament in staat om energie te absorberen zonder te scheuren bij lichte spanning. Deze gegolfde structuur van collageenvezels zorgt voor een zekere elasticiteit. Opties B, C en D beschrijven dit specifieke fenomeen niet.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_29",
+      "questionText": "Op welk moment van ligamentherstel begint littekenweefsel macroscopisch op normaal ligamentweefsel te lijken?",
+      "options": [
+        "2-3 dagen",
+        "2-3 weken",
+        "6-8 weken",
+        "12-14 weken"
+      ],
+      "correctOptionIndex": 3,
+      "feedback": "Het is rond 12-14 weken (D) dat littekenweefsel macroscopisch begint te lijken op normaal ligamentweefsel, hoewel structurele en functionele verschillen blijven bestaan. Na 2-3 dagen (A) zijn we nog in de inflammatoire fase, na 2-3 weken (B) is het littekenweefsel nog zeer immatuur, en na 6-8 weken (C) is de remodellering aan de gang maar onvoldoende gevorderd.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_30",
+      "questionText": "Welke term beschrijft het vermogen van een ligament om terug te keren naar zijn oorspronkelijke vorm na uitrekking?",
+      "options": [
+        "Elasticiteit",
+        "Plasticiteit",
+        "Compliantie",
+        "Viscositeit"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Elasticiteit (A) beschrijft het vermogen van een ligament om terug te keren naar zijn oorspronkelijke vorm na uitrekking. Plasticiteit (B) impliceert permanente vervorming, compliantie (C) is het gemak waarmee een structuur vervormt, en viscositeit (D) betreft de weerstand van een vloeistof tegen stromen.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_31",
+      "questionText": "Welke anatomische structuur is essentieel voor ligamentaire proprioceptie?",
+      "options": [
+        "Mechanoreceptoren in het epiligament",
+        "Myofibrillen in het ligament",
+        "Bloedvaten in het ligament",
+        "Elastische vezels in het ligament"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Mechanoreceptoren in het epiligament (A) zijn essentieel voor ligamentaire proprioceptie, omdat ze informatie verschaffen over gewrichtspositie en -beweging. Myofibrillen (B) zijn spierstructuren, bloedvaten (C) zorgen voor voeding maar niet voor proprioceptie, en elastische vezels (D) dragen bij aan mechanische eigenschappen maar niet aan proprioceptie.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_32",
+      "questionText": "Wat is het geschatte percentage collageen in de droge massa van een normaal ligament?",
+      "options": [
+        "25%",
+        "50%",
+        "75%",
+        "95%"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Collageen vertegenwoordigt ongeveer 75% (C) van de droge massa van een normaal ligament. De overige 25% bestaat uit proteoglycanen, elastine, glycoproteïnen en andere eiwitten. Opties A en B zijn te laag, en optie D is te hoog om de normale samenstelling van een ligament weer te geven.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_33",
+      "questionText": "Welk kenmerk van het MRI-signaal van een ligament in late remodelleringsfase (12-14 weken) is correct?",
+      "options": [
+        "Homogeen hyperintens signaal op T1 en T2",
+        "Homogeen hypointens signaal op T1 en T2",
+        "Hyperintens signaal op T1 en hypointens op T2",
+        "Hypointens signaal op T1 en hyperintens op T2"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "In de late remodelleringsfase (12-14 weken) vertoont het ligament gewoonlijk een homogeen hypointens signaal op T1- en T2-gewogen beelden (B), soms met lichte verdikking of onregelmatigheden door littekenvorming. De andere signaalcombinaties (A, C, D) komen niet overeen met de typische kenmerken van deze fase.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_34",
+      "questionText": "Welke visco-elastische eigenschap van ligamenten beschrijft de afname van spanning in het weefsel na verloop van tijd wanneer het aan een constante verlenging wordt onderworpen?",
+      "options": [
+        "Kruip (creep)",
+        "Spanningsrelaxatie",
+        "Hysterese",
+        "Young's modulus"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Spanningsrelaxatie (B) beschrijft de afname van spanning in het ligamentaire weefsel na verloop van tijd wanneer het aan een constante verlenging wordt onderworpen. Kruip of \"creep\" (A) is progressieve verlenging onder constante belasting, hysterese (C) is het energieverschil tussen laden en ontladen, en Young's modulus (D) is een maat voor stijfheid, geen specifieke visco-elastische eigenschap.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_35",
+      "questionText": "Wat is het geschatte aandeel water in de totale massa van een ligament?",
+      "options": [
+        "Ongeveer een derde",
+        "Ongeveer twee derde",
+        "Ongeveer de helft",
+        "Ongeveer een kwart"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Water vormt ongeveer twee derde (B) van de totale massa van een ligament, de resterende een derde bestaat uit vaste stoffen (voornamelijk collageen). Opties A, C en D komen niet overeen met het juiste aandeel water in een ligament.",
+      "niveau": "kennis"
+    },
+    {
+      "id": "mc_vraag_36",
+      "questionText": "Waarom kunnen ontstekingsremmende medicijnen een negatief effect hebben op het ligamentherstel op lange termijn?",
+      "options": [
+        "Ze veroorzaken een onherstelbare schade aan fibroblastcellen",
+        "Ze remmen de fysiologische ontstekingsreactie die nodig is voor normale genezing",
+        "Ze verhogen het risico op bloedingen rond het ligament",
+        "Ze veranderen de functie van mechanoreceptoren in het ligament"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Ontstekingsremmende medicijnen, zoals NSAID's en corticosteroïden, kunnen de normale histologische, biochemische en biomechanische eigenschappen van ligamentherstel remmen (B). De ontstekingsfase is een essentieel onderdeel van de normale genezing, en het onderdrukken ervan kan de kwaliteit van het herstellende weefsel beïnvloeden. De medicijnen veroorzaken geen blijvende schade aan fibroblasten (A), verhogen niet het bloedingsrisico rond het ligament (C), en hebben geen direct effect op mechanoreceptoren (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_37",
+      "questionText": "Wat is de relatie tussen ligamentlaxiteit en osteoartritis?",
+      "options": [
+        "Ligamentlaxiteit leidt tot verbeterde gewrichtsmobiliteit en vertraagt daardoor artritis",
+        "Ligamentlaxiteit verandert de biomechanica van het gewricht, wat leidt tot abnormale belasting en kraakbeenslijtage",
+        "Ligamentlaxiteit heeft geen verband met osteoartritis; deze ontstaat uitsluitend door leeftijdgerelateerde slijtage",
+        "Ligamentlaxiteit veroorzaakt toename van synoviale vloeistofproductie die kraakbeen beschermt tegen artritis"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Ligamentlaxiteit verandert de biomechanica van het gewricht door instabiliteit, wat leidt tot abnormale verdeling van de belasting en toegenomen schuifkrachten, waardoor kraakbeen sneller slijt en osteoartritis ontstaat (B). Het idee dat meer mobiliteit artrose zou vertragen (A) is onjuist, evenals de opvatting dat er geen verband is tussen laxiteit en artrose (C). De verhoogde productie van synoviale vloeistof (D) is geen beschermend mechanisme tegen artritis bij ligamentlaxiteit.",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_38",
+      "questionText": "Waarom is het belangrijk dat fibroblasten in de herstelperiode zowel type I als type III collageen produceren?",
+      "options": [
+        "Type I zorgt voor trekkracht terwijl type III flexibiliteit biedt, beide zijn nodig voor optimale functie",
+        "Type III vormt zich sneller en wordt later vervangen door het sterkere type I tijdens remodellering",
+        "Type I is nodig voor mechanische sterkte, type III voor vasculaire ondersteuning",
+        "Type I is belangrijk voor de enthese, type III voor het middelste deel van het ligament"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "In de vroege herstelperiode produceren fibroblasten voornamelijk type III collageen, dat zich relatief snel vormt maar mechanisch zwakker is. Tijdens de remodelleringsfase wordt dit geleidelijk vervangen door het sterkere type I collageen, wat zorgt voor toegenomen trekkracht van het herstellende ligament (B). Hoewel optie A deels juist is, beschrijft het niet het sequentiële proces van collageen vervanging tijdens herstel. Opties C en D geven geen correcte beschrijving van de specifieke functies of locaties van deze collageentypes.",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_39",
+      "questionText": "Op welke manier beïnvloedt vroege gecontroleerde mobilisatie het ligamentherstel positief?",
+      "options": [
+        "Het vermindert pijn en zwelling door compressie van bloedvaten",
+        "Het voorkomt overmatige littekenvorming door constante rek op het weefsel",
+        "Het stimuleert collageensynthese en bevordert juiste oriëntatie van vezels",
+        "Het verhoogt het zuurstofgehalte in het ligament door verhoogde doorbloeding"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Vroege gecontroleerde mobilisatie stimuleert collageensynthese en bevordert de juiste oriëntatie van vezels langs de belastingslijnen (C). Dit leidt tot verbeterde structurele eigenschappen van het herstellende ligament. Hoewel mobilisatie ook andere voordelen kan hebben, zoals verbeterde doorbloeding (D is deels juist), is het belangrijkste effect de positieve invloed op collageensynthese en -organisatie. Mobilisatie is niet primair gericht op pijnvermindering (A) of het voorkomen van littekenvorming (B).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_40",
+      "questionText": "Hoe verandert de mechanische sterkte van een herstellend ligament gedurende de remodelleringsfase?",
+      "options": [
+        "De sterkte blijft constant na de initiële wondgenezing",
+        "De sterkte neemt snel toe tot normaal niveau binnen 6-8 weken",
+        "De sterkte neemt geleidelijk toe maar bereikt zelden de oorspronkelijke waarden",
+        "De sterkte neemt toe tot boven normaal niveau als compensatie voor eerdere zwakte"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Tijdens de remodelleringsfase neemt de mechanische sterkte van een herstellend ligament geleidelijk toe, maar bereikt zelden de originele sterkte van het onbeschadigde ligament (C). Studies tonen aan dat herstelde ligamenten vaak slechts 40-80% van hun oorspronkelijke sterkte herwinnen. De sterkte blijft niet constant (A), neemt niet snel toe tot normaal niveau binnen 6-8 weken (B), en wordt ook niet sterker dan het oorspronkelijke ligament (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_41",
+      "questionText": "Waarom zijn biomechanische eigenschappen zoals kruip (creep) en spanningsrelaxatie belangrijk voor de normale functie van ligamenten?",
+      "options": [
+        "Ze maken snelle krachtproductie mogelijk tijdens sporten",
+        "Ze beschermen tegen vermoeidheidsfalen onder constante of herhaalde belasting",
+        "Ze stimuleren de productie van synoviale vloeistof voor gewrichtssmering",
+        "Ze verhogen de energieconsumptie voor efficiënter metabolisme"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Biomechanische eigenschappen zoals kruip (creep) en spanningsrelaxatie beschermen ligamenten tegen vermoeidheidsfalen onder constante of herhaalde belasting (B). Deze visco-elastische eigenschappen stellen ligamenten in staat om zich geleidelijk aan te passen aan verschillende belastingscondities. Deze eigenschappen zijn niet gerelateerd aan krachtproductie (A), stimuleren niet de productie van synoviale vloeistof (C), en verhogen niet de energieconsumptie (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_42",
+      "questionText": "Hoe verklaart het concept van 'crimping' (golvingen in collageenvezels) de niet-lineaire spanning-rek curve van ligamenten?",
+      "options": [
+        "Bij lage spanning worden eerst de gegolfde vezels rechtgetrokken, wat resulteert in grotere rek voor weinig kracht",
+        "Crimping veroorzaakt breuk van sommige vezels, wat resulteert in een geleidelijke stijging van sterkte",
+        "Crimping zorgt voor verhoogde weerstand bij initiële belasting en verminderde weerstand bij hoge belasting",
+        "Crimping is alleen aanwezig in beschadigde ligamenten, wat de veranderde spanning-rek relatie verklaart"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Het concept van 'crimping' verklaart de niet-lineaire spanning-rek curve doordat bij lage spanning eerst de gegolfde vezels worden rechtgetrokken zonder veel weerstand (toe-regio), wat resulteert in relatief grote rek voor weinig kracht (A). Naarmate meer vezels rechtgetrokken worden, wordt de curve steiler (lineaire regio). Crimping veroorzaakt geen vezelbreuk (B), zorgt niet voor verhoogde initiële weerstand (C), en is een normaal kenmerk van gezonde ligamenten, niet alleen van beschadigde (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_43",
+      "questionText": "Wat is het verband tussen de ligamento-musculaire reflex en proprioceptie bij gewrichtsstabiliteit?",
+      "options": [
+        "De proprioceptoren detecteren overmatige rek en activeren reflexmatig de omliggende spieren om het gewricht te beschermen",
+        "De proprioceptoren hebben geen rol in de ligamento-musculaire reflex; deze wordt uitsluitend door pijnreceptoren geactiveerd",
+        "De ligamento-musculaire reflex en proprioceptie zijn onafhankelijke systemen die elkaar niet beïnvloeden",
+        "De proprioceptoren remmen juist de spieractiviteit om overbelasting van het ligament te voorkomen"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Proprioceptoren in ligamenten detecteren overmatige rek of abnormale beweging en activeren reflexmatig de omliggende spieren om het gewricht te stabiliseren en beschermen (A). Dit is de essentie van de ligamento-musculaire reflex. Deze reflex wordt niet uitsluitend door pijnreceptoren geactiveerd (B), de systemen zijn niet onafhankelijk (C), en hoewel er inhibitoire componenten bestaan, is het primaire doel niet om spieractiviteit te remmen maar juist om deze te reguleren voor gewrichtsbescherming (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_44",
+      "questionText": "Hoe is de relatie tussen de dikte van het epiligament en de gevoeligheid van het ligament voor pijn?",
+      "options": [
+        "Een dikker epiligament bevat meer nociceptoren, waardoor het ligament pijngevoeliger is",
+        "Het epiligament bevat de meeste sensibele zenuwuiteinden, vooral dichter bij de botaanhechtingen",
+        "De dikte van het epiligament heeft geen invloed op de pijngevoeligheid van het ligament",
+        "Een dunner epiligament zorgt voor meer oppervlakkige nociceptoren en dus meer pijngevoeligheid"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Het epiligament bevat de meeste sensibele zenuwuiteinden (waaronder nociceptoren voor pijngewaarwording), waarbij de concentratie hoger is nabij de botaanhechtingen van het ligament (B). De dikte van het epiligament op zich bepaalt niet de pijngevoeligheid (C is onjuist), en er is geen directe correlatie tussen epiligamentdikte en aantal nociceptoren (A en D zijn onjuist).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_45",
+      "questionText": "Waarom is de samenstelling van de extracellulaire matrix in herstellende ligamenten anders dan in onbeschadigde ligamenten?",
+      "options": [
+        "Omdat ontstekingscellen permanent in het herstellende weefsel blijven en de matrix veranderen",
+        "Door veranderde genexpressie in fibroblasten die andere verhoudingen van matrixcomponenten produceren",
+        "Omdat de bloedtoevoer in herstellende ligamenten permanent verhoogd blijft",
+        "Door verhoogde activiteit van mechanoreceptoren die de matrixproductie beïnvloeden"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "De samenstelling van de extracellulaire matrix in herstellende ligamenten verschilt doordat fibroblasten een veranderde genexpressie vertonen, wat leidt tot andere verhoudingen van matrixcomponenten (B). Ze produceren bijvoorbeeld meer type III collageen en hebben gewijzigde patronen van proteoglycaansynthese. Ontstekingscellen blijven niet permanent aanwezig (A), hoewel de bloedtoevoer wel enigszins verhoogd kan blijven (C is deels juist maar niet de hoofdreden), en mechanoreceptoren hebben geen directe invloed op matrixproductie (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_46",
+      "questionText": "Hoe beïnvloeden proteoglycanen de mechanische eigenschappen van ligamenten?",
+      "options": [
+        "Ze verhogen de stijfheid door directe binding aan collageenvezels",
+        "Ze slaan water op en dragen bij aan de visco-elastische eigenschappen",
+        "Ze verminderen de trekkracht door verstoring van collageen crosslinks",
+        "Ze verbeteren de sterkte door kristallisatie van de extracellulaire matrix"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Proteoglycanen in ligamenten slaan water op en dragen hierdoor bij aan de visco-elastische eigenschappen van het weefsel (B). Deze eigenschappen stellen ligamenten in staat om progressief te verlengen onder spanning en terug te keren naar hun oorspronkelijke vorm wanneer de spanning wegvalt. Proteoglycanen verhogen niet direct de stijfheid door binding aan collageen (A), verstoren geen collageen crosslinks (C), en veroorzaken geen kristallisatie van de matrix (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_47",
+      "questionText": "Wat is de functionele betekenis van de verschillende typen mechanoreceptoren in ligamenten?",
+      "options": [
+        "Ze dienen uitsluitend om pijn te detecteren tijdens acute blessures",
+        "Ze registreren verschillende aspecten van beweging en positie voor proprioceptie",
+        "Ze regelen actief de doorbloeding van het ligament op basis van belasting",
+        "Ze coördineren de collageen crosslinking tijdens belasting"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "De verschillende typen mechanoreceptoren (Pacini-lichaampjes, Ruffini-eindlichaampjes, Golgi-peesreceptoren) registreren verschillende aspecten van beweging, positie, druk en rek voor proprioceptie (B). Dit stelt het centrale zenuwstelsel in staat om informatie te verkrijgen over gewrichtspositie en -beweging. Ze dienen niet uitsluitend voor pijndetectie (A), regelen niet actief de doorbloeding (C), en zijn niet betrokken bij collageen crosslinking (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_48",
+      "questionText": "Waardoor verschillen de genezingspatronen tussen verschillende ligamenten, zoals de voorste kruisband (VKB) en mediale collaterale ligament (MCL)?",
+      "options": [
+        "De VKB heeft een betere bloedvoorziening dan de MCL, wat leidt tot sneller herstel",
+        "De MCL heeft een betere intrinsieke genezingscapaciteit door betere doorbloeding dan de VKB",
+        "De VKB en MCL genezen in hetzelfde tempo, alleen de mechanische belasting verschilt",
+        "De VKB heeft meer type I collageen, wat leidt tot superieure genezing vergeleken met de MCL"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "De MCL heeft een betere intrinsieke genezingscapaciteit dan de VKB, voornamelijk door betere doorbloeding (B). De VKB heeft juist een beperktere bloedvoorziening en geneest daardoor slechter (A is het tegenovergestelde van de waarheid). De genezingssnelheid verschilt wel degelijk tussen deze ligamenten (C is onjuist), en de hoeveelheid type I collageen is niet de bepalende factor voor genezingsverschillen (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_49",
+      "questionText": "Waarom worden gecombineerde ligamentletsels doorgaans langzamer en met inferieure weefselkwaliteit genezen dan geïsoleerde letsels?",
+      "options": [
+        "Omdat de ontstekingsreactie bij meerdere letsels te sterk wordt en genezing vertraagt",
+        "Door verminderde mobiliteit en excessieve belasting op herstellende weefsels door gewrichtsinstabiliteit",
+        "Omdat beschikbare groeifactoren verdeeld worden over meerdere genezingsgebieden",
+        "Door genetische factoren die bij meerdere letsels sterker tot uiting komen"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Gecombineerde ligamentletsels genezen langzamer en met mindere weefselkwaliteit voornamelijk door de verminderde mobiliteit van pijnlijke, instabiele gewrichten en door excessieve belasting op herstellende weefsels door de verhoogde gewrichtsinstabiliteit (B). Een te sterke ontstekingsreactie is niet de hoofdreden (A), de verdeling van groeifactoren speelt een rol maar is niet de hoofdfactor (C), en genetische factoren worden niet speciaal geactiveerd bij meerdere letsels (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_50",
+      "questionText": "Waarom kan een ligament dat onder constante rek staat zijn vermogen verliezen om naar de oorspronkelijke vorm terug te keren?",
+      "options": [
+        "Door onherstelbare breuk van collageenvezels en verlies van structurele integriteit",
+        "Door veranderingen in crosslinks tussen collageenmoleculen en verstoring van de vezeloriëntatie",
+        "Door versnelde afbraak van proteoglycanen door activering van enzymen",
+        "Door vermindering van het watergehalte in de extracellulaire matrix"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Een ligament dat langdurig onder constante rek staat, ondergaat veranderingen in de crosslinks tussen collageenmoleculen en verstoring van de normale vezeloriëntatie (B), wat leidt tot blijvende verlenging (laxiteit). Dit is niet primair door onherstelbare vezelbreuk (A), hoewel dat bij extreme belasting wel kan voorkomen. De afbraak van proteoglycanen (C) en verandering in watergehalte (D) spelen een minder belangrijke rol in dit fenomeen.",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_51",
+      "questionText": "Hoe beïnvloedt het zuurstofgehalte in een beschadigd ligament het herstelproces?",
+      "options": [
+        "Een laag zuurstofgehalte bevordert angiogenese maar vertraagt de collageensynthese",
+        "Het zuurstofgehalte heeft geen betekenisvolle invloed op ligamentherstel",
+        "Een hoog zuurstofgehalte is altijd bevorderlijk voor alle aspecten van ligamentherstel",
+        "Een cyclisch wisselend zuurstofgehalte stimuleert optimale weefselremodellering"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Een relatief laag zuurstofgehalte (hypoxie) in een beschadigd ligament stimuleert angiogenese door productie van factoren zoals VEGF, maar kan tegelijkertijd de collageensynthese vertragen (A). Het zuurstofgehalte heeft wel degelijk invloed op het herstelproces (B is onjuist). Een hoog zuurstofgehalte is niet altijd bevorderlijk voor alle aspecten van herstel (C is te absoluut gesteld), en er is geen bewijs dat cyclisch wisselende zuurstofspiegel specifiek optimale weefselremodellering bevordert (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_52",
+      "questionText": "Hoe draagt de intra-articulaire omgeving bij aan de beperkte genezingscapaciteit van de voorste kruisband (VKB) vergeleken met extra-articulaire ligamenten?",
+      "options": [
+        "Door verhoogde activiteit van afbrekende enzymen in synoviale vloeistof",
+        "Door de wassing van synoviale vloeistof die verwijdering van bloedstolsels veroorzaakt",
+        "Door verhoogde druk binnen het gewricht die de bloedtoevoer beperkt",
+        "Door het gebrek aan synoviale voedingsstoffen voor ligamentcellen"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "De intra-articulaire omgeving beperkt VKB-genezing deels doordat synoviale vloeistof het bloedstolsel kan wegwassen dat normaal als scaffold dient voor migrerende cellen en regeneratie (B). Hoewel er enzymatische activiteit is in synoviale vloeistof (A is deels juist), is dit niet de hoofdreden. De intra-articulaire druk (C) en het gebrek aan voedingsstoffen (D) zijn minder significante factoren, aangezien synoviale vloeistof juist rijk is aan voedingsstoffen voor avasculaire structuren.",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_53",
+      "questionText": "Hoe verhouden de mechanische eigenschappen van een hersteld ligament zich tot het oorspronkelijke ligament?",
+      "options": [
+        "Een hersteld ligament heeft vaak meer creep en minder stijfheid dan het oorspronkelijke ligament",
+        "Een hersteld ligament heeft minder creep en meer stijfheid dan het oorspronkelijke ligament",
+        "Een hersteld ligament en een oorspronkelijk ligament hebben identieke mechanische eigenschappen",
+        "Een hersteld ligament heeft meer elasticiteit maar minder trekkracht dan het oorspronkelijke ligament"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Een hersteld ligament heeft vaak meer creep (kruip onder constante belasting) en minder stijfheid dan het oorspronkelijke ligament (A). Studies tonen aan dat herstelde ligamenten tot twee keer meer verlengen dan normale ligamenten, zelfs bij lage belasting, en ze hebben inferieure creep-eigenschappen. Een hersteld ligament heeft niet minder creep en meer stijfheid (B), vertoont niet identieke mechanische eigenschappen (C), en hoewel het inderdaad minder trekkracht heeft, is zijn verhoogde vervormbaarheid niet hetzelfde als verhoogde elasticiteit (D is deels juist, maar niet zo accuraat als A).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_54",
+      "questionText": "Welke conclusie kan worden getrokken uit het verschijnsel dat een gearceerd (feathery) oedeem rond het litteken op MRI 4-6 weken na letsel een teken van overbelasting is?",
+      "options": [
+        "Ontstekingsactiviteit is altijd schadelijk tijdens het herstelproces",
+        "Vroege belasting is contraproductiever dan langdurige immobilisatie",
+        "Het herstellende ligament heeft een lagere belastbaarheid dan het oorspronkelijke ligament",
+        "MRI-bevindingen correleren perfect met klinische symptomen van overbelasting"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Het feit dat een gearceerd oedeem op MRI een teken van overbelasting is 4-6 weken na letsel, laat zien dat het herstellende ligament een lagere belastbaarheid heeft dan het oorspronkelijke ligament (C). Dit wijst op de noodzaak van geleidelijke progressie in belasting tijdens revalidatie. Ontstekingsactiviteit is niet altijd schadelijk (A is te absoluut), vroege gecontroleerde belasting is vaak juist beter dan langdurige immobilisatie (B is onjuist), en MRI-bevindingen correleren niet perfect met klinische symptomen (D is onjuist).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_55",
+      "questionText": "Welke uitleg verklaart het best waarom ligamentletsels bij vrouwen vaker voorkomen dan bij mannen?",
+      "options": [
+        "Vrouwen hebben gemiddeld minder spiermassa en zijn meer ligament-dominant in hun stabilisatiestrategie",
+        "Vrouwen hebben physiologisch zwakkere ligamenten met minder type I collageen",
+        "Vrouwen hebben een minder efficiënte proprioceptie waardoor beschermende reflexen trager zijn",
+        "Vrouwen hebben minder elastische ligamenten die eerder scheuren onder belasting"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Vrouwen hebben gemiddeld minder spiermassa en zijn meer ligament-dominant in hun stabilisatiestrategie, terwijl mannen meer spier-dominant zijn (A). Dit betekent dat vrouwen relatief meer op hun ligamenten vertrouwen voor gewrichtsstabiliteit, waardoor deze structuren meer belast worden. Er is geen bewijs dat vrouwen fysiologisch zwakkere ligamenten hebben met minder type I collageen (B), een minder efficiënte proprioceptie bezitten (C), of minder elastische ligamenten hebben (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_56",
+      "questionText": "Wat verklaart het feit dat bij MRI-onderzoek een normaal uitziend ligament toch klinisch lax kan zijn?",
+      "options": [
+        "MRI toont alleen weefselcontrast, niet de kwaliteit of functionaliteit van het weefsel",
+        "Ligamentaire laxiteit is een functionele aandoening, geen structurele",
+        "De MRI-sequenties zijn niet gevoelig genoeg voor subtiele veranderingen",
+        "Ligamentaire laxiteit is vaak een psychologisch fenomeen dat niet met beeldvorming kan worden vastgesteld"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "MRI toont alleen weefselcontrast en structuur, niet de kwaliteit of functionaliteit van het weefsel (A). Een opgerekt ligament kan er normaal uitzien op MRI maar toch zijn mechanische functie verloren hebben. Ligamentaire laxiteit is wel degelijk een structurele aandoening (B is onjuist), hoewel sommige subtiele veranderingen inderdaad gemist kunnen worden door beperkte gevoeligheid van standaard MRI-sequenties (C is deels juist maar niet de hoofdreden), en ligamentaire laxiteit is geen psychologisch fenomeen (D is onjuist).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_57",
+      "questionText": "Waarom is het optreden van ligamentverkalking na letsel problematisch voor de ligamentfunctie?",
+      "options": [
+        "Verkalking maakt het ligament brozer en vatbaarder voor scheuringen",
+        "Verkalking verstoort de visco-elastische eigenschappen die nodig zijn voor normale functie",
+        "Verkalking vermindert het aantal actieve fibroblasten waardoor weefselreparatie vermindert",
+        "Verkalking leidt tot permanente ontstekingsreacties in omliggende weefsels"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Verkalking van ligamentair weefsel verstoort de normale visco-elastische eigenschappen die essentieel zijn voor de juiste functie van het ligament (B). Een verkalkt ligament kan niet meer adequaat verlengen of inkorten in reactie op belasting. Verkalking maakt het ligament inderdaad brozer (A is deels juist), maar het hoofdprobleem is de verstoring van de visco-elasticiteit. Er is geen sterk bewijs dat verkalking het aantal actieve fibroblasten vermindert (C), en hoewel verkalking lokale irritatie kan veroorzaken, leidt het niet noodzakelijk tot permanente ontsteking in omliggende weefsels (D).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_58",
+      "questionText": "Hoe beïnvloedt langdurige immobilisatie de mechanische eigenschappen van een herstellend ligament?",
+      "options": [
+        "Het verbetert de uitlijning van collageenvezels en verhoogt de sterkte",
+        "Het vermindert de stijfheid en verhoogt de elasticiteit, wat gunstig is voor functie",
+        "Het leidt tot verminderde collageensynthese, verhoogde degradatie en meer synoviale adhesies",
+        "Het heeft geen significante invloed op mechanische eigenschappen, alleen op genezingssnelheid"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Langdurige immobilisatie heeft schadelijke effecten op een herstellend ligament, waaronder verminderde collageensynthese, verhoogde collageendegradatie, en de vorming van meer synoviale adhesies (C). Deze veranderingen leiden tot een mechanisch inferieur ligament. Immobilisatie verbetert niet de uitlijning van collageenvezels (A is onjuist), vermindert de elasticiteit in plaats van deze te verhogen (B is onjuist), en heeft wel degelijk significante invloed op de mechanische eigenschappen (D is onjuist).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_59",
+      "questionText": "Hoe draagt voeding bij aan de kwaliteit van ligamentherstel?",
+      "options": [
+        "Voeding is irrelevant voor ligamentherstel, alleen lokale factoren zijn belangrijk",
+        "Eiwitinname is belangrijk, maar vitaminen en mineralen hebben geen invloed",
+        "Adequate voeding met eiwitten, vitaminen en mineralen ondersteunt collageen aanmaak en crosslinking",
+        "Alleen specifieke supplementen zoals glucosamine zijn effectief voor ligamentherstel"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Adequate voeding met voldoende eiwitten (voor aminozuren), vitaminen (zoals vitamine C voor collageensynthese) en mineralen ondersteunt de aanmaak van collageen en de vorming van crosslinks (C). Voeding is zeker relevant voor ligamentherstel (A is onjuist), vitaminen en mineralen zijn wel degelijk belangrijk naast eiwitten (B is onjuist), en hoewel bepaalde supplementen nuttig kunnen zijn, zijn ze niet de enige effectieve factoren voor ligamentherstel (D is te beperkt).",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_60",
+      "questionText": "Welk MRI-patroon rond 15 dagen na ligamentletsel wijst op een gunstig verloop van het herstelproces?",
+      "options": [
+        "Toename van oedeem rond het letsel en hyperintensiteit in het ligament",
+        "Afname van T2-signaalintensiteit van zacht weefseloedeem en heterogener uiterlijk van het littekenweefsel",
+        "Aanhoudend homogeen hoge signaalintensiteit in het ligament",
+        "Volledige terugkeer naar normaal signaal zonder zichtbaar restoedeem"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Een gunstig verloop van het herstelproces rond 15 dagen na ligamentletsel wordt op MRI gekenmerkt door afname van de T2-signaalintensiteit van zacht weefseloedeem en een heterogener uiterlijk van het littekenweefsel (B). Toename van oedeem (A) zou wijzen op een verslechtering of complicatie, aanhoudend homogeen hoog signaal (C) wijst op vertraagde genezing, en volledige terugkeer naar normaal signaal binnen 15 dagen (D) is niet realistisch en zou ongewoon snel herstel suggereren.",
+      "niveau": "begrip"
+    },
+    {
+      "id": "mc_vraag_61",
+      "questionText": "Een 20-jarige voetballer heeft twee weken geleden een graad 2 inversietrauma aan de enkel opgelopen. Hij heeft een fysiotherapeutische behandeling waarbij hij dagelijks ontstekingsremmers (NSAID's) neemt, de enkel immobiliseert in een brace, en rust. Ondanks deze aanpak is het herstel traag. Wat is de meest waarschijnlijke verklaring voor het trage herstel?",
+      "options": [
+        "De ontstekingsremmers vertragen de proliferatieve fase van ligamentherstel",
+        "De immobilisatie is onvoldoende; een gipsbehandeling zou effectiever zijn",
+        "De leeftijd van de patiënt is een risicofactor voor vertraagd ligamentherstel",
+        "De initiële diagnose was onjuist; het betreft waarschijnlijk een graad 3 letsel"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Het gebruik van ontstekingsremmende medicijnen (NSAID's) kan de proliferatieve fase van ligamentherstel vertragen (A). NSAID's remmen de noodzakelijke inflammatoire en proliferatieve processen die essentieel zijn voor optimaal weefselreparatie. Meer immobilisatie (B) zou het herstel waarschijnlijk verder vertragen, niet verbeteren. De jonge leeftijd van de patiënt (C) zou juist een positieve factor voor herstel moeten zijn. En zonder aanvullend onderzoek is er geen reden om aan te nemen dat de initiële diagnose onjuist was (D).",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_62",
+      "questionText": "Een patiënt met een lateraal enkelletsel heeft na 6 weken revalidatie een MRI waarbij \"feathery\" oedeem zichtbaar is rond het ligament. Welke aanpassing in het behandelplan is het meest aangewezen?",
+      "options": [
+        "De belasting in de oefentherapie verhogen om spiersterkte te verbeteren",
+        "De belasting in de oefentherapie verlagen om overbelasting van het herstellende ligament te voorkomen",
+        "Starten met ontstekingsremmende medicatie om het oedeem te verminderen",
+        "Direct overgaan op functionele belasting omdat dit oedeem een normaal verschijnsel is"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "\"Feathery\" oedeem rond het herstellende ligament op MRI na 6 weken wijst op overbelasting van het weefsel. De aangewezen aanpassing is het verlagen van de belasting in de oefentherapie (B) om verdere overbelasting te voorkomen en het herstelproces niet te verstoren. Het verhogen van de belasting (A) zou de overbelasting verergeren, ontstekingsremmers (C) zouden het genezingsproces kunnen verstoren, en \"feathery\" oedeem is geen normaal verschijnsel maar een waarschuwingssignaal, dus is direct functioneel belasten (D) niet aangewezen.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_63",
+      "questionText": "Een 25-jarige atleet heeft 3 maanden geleden een VKB-reconstructie ondergaan. Bij klinisch onderzoek vertoont de knie normale stabiliteit, maar de patiënt klaagt over onzekerheid bij snelle richtingsveranderingen. Welk mechanisme verklaart deze klachten het best?",
+      "options": [
+        "Incomplete hechting van het transplantaat aan de botuiteinden",
+        "Verminderde proprioceptie door beschadiging van mechanoreceptoren",
+        "Onvoldoende kracht in de quadriceps om de knie te stabiliseren",
+        "Psychologische angst zonder fysiologische basis"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "De klachten van onzekerheid bij snelle richtingsveranderingen, ondanks normale stabiliteit bij klinisch onderzoek, wijzen op verminderde proprioceptie door beschadiging van mechanoreceptoren in het originele ligament (B). Deze receptoren worden niet volledig hersteld na VKB-reconstructie. Als er sprake zou zijn van incomplete hechting (A), zou dit waarschijnlijk ook bij klinisch onderzoek zichtbaar zijn. Quadricepszwakte (C) kan bijdragen aan instabiliteit, maar verklaart niet specifiek het probleem bij snelle richtingsveranderingen. Hoewel psychologische factoren een rol kunnen spelen, is er een duidelijke fysiologische basis voor deze klachten, dus is optie D onjuist.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_64",
+      "questionText": "Een vrouwelijke basketbalspeelster van 18 jaar vertoont bij screening een verhoogde anterolaterale rotatie-instabiliteit aan beide knieën zonder voorgeschiedenis van trauma. Welke preventieve interventie zou het meest effectief zijn ter voorkoming van VKB-letsels?",
+      "options": [
+        "Preventieve bracing van beide knieën tijdens het spelen",
+        "Profylactische VKB-reconstructie aan de meest instabiele knie",
+        "Neuromusculaire training gericht op verbetering van landingstechniek en rompstabiliteit",
+        "Beperking van sportparticipatie tot niet-pivoterende activiteiten"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Bij een verhoogde anterolaterale rotatie-instabiliteit zonder voorgeschiedenis van trauma is neuromusculaire training gericht op verbetering van landingstechniek en rompstabiliteit (C) de meest effectieve preventieve interventie. Deze aanpak vermindert bewezen het risico op VKB-letsels, vooral bij vrouwelijke atleten. Preventieve bracing (A) heeft beperkte effectiviteit voor VKB-preventie. Profylactische VKB-reconstructie (B) is een te invasieve aanpak zonder voorafgaand letsel. Het beperken van sportparticipatie (D) zou onnodig restrictief zijn, gezien effectieve preventieve trainingsmethoden beschikbaar zijn.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_65",
+      "questionText": "Een 40-jarige hardloper heeft een chronische achillespeesklacht ontwikkeld. Het echografisch onderzoek toont verdikking van de pees met neovascularisatie. Op basis van de kennis over bindweefselherstel, welke trainingsbenadering zou het meest geschikt zijn?",
+      "options": [
+        "Complete rust totdat alle symptomen zijn verdwenen",
+        "Excentrische belastingsoefeningen met geleidelijke progressie",
+        "Alleen concentrische oefeningen om verdere beschadiging te voorkomen",
+        "Hoge intensiteit intervaltraining om de doorbloeding te stimuleren"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Bij een chronische achillespeestendinopathie met verdikking en neovascularisatie zijn excentrische belastingsoefeningen met geleidelijke progressie (B) bewezen effectief. Deze aanpak stimuleert collageenremodellering en verbetert de structurele eigenschappen van de pees. Complete rust (A) zorgt voor verdere deconditionering en lost het onderliggende probleem niet op. Alleen concentrische oefeningen (C) missen het therapeutische effect van excentrische belasting op tendinopathie. Hoge intensiteit intervaltraining (D) zou waarschijnlijk een te grote belasting vormen en symptomen verergeren.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_66",
+      "questionText": "Een 28-jarige mannelijke voetballer heeft 10 dagen geleden een MCL-letsel (graad 2) opgelopen. De MRI toont een partiële scheur zonder instabiliteit. Welke revalidatiebenadering heeft op basis van kennis over bindweefselherstel de voorkeur?",
+      "options": [
+        "Immobilisatie in een knieorthese voor 4-6 weken om optimale genezing te bereiken",
+        "Vroege, gecontroleerde mobilisatie met graduele toename van belasting",
+        "Directe terugkeer naar sport met ondersteunende tape",
+        "Rust tot alle pijn verdwenen is, vervolgens volledige sporthervatting"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Voor een MCL-letsel (graad 2) heeft vroege, gecontroleerde mobilisatie met graduele toename van belasting (B) de voorkeur. De huidige inzichten in bindweefselherstel tonen dat gecontroleerde belasting de collageenaanmaak en -uitlijning stimuleert, wat leidt tot sterker littekenweefsel. Langdurige immobilisatie (A) verhindert optimale collageenorganisatie en leidt tot zwakker weefsel. Directe terugkeer naar sport (C) zou het herstellende ligament overbelasten, en alleen rusten tot de pijn weg is (D) biedt geen gestructureerde progressie voor optimaal weefselremodelage.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_67",
+      "questionText": "Een fysiotherapeut behandelt een patiënt met een laterale enkelverstuiking (graad 1) die 4 dagen geleden is ontstaan. De patiënt vraagt of ijsapplicatie nog zinvol is. Gebaseerd op de kennis over de fases van bindweefselherstel, wat is het meest correcte antwoord?",
+      "options": [
+        "Ja, ijsapplicatie vermindert ontstekingscellen en bevordert sneller herstel",
+        "Nee, de inflammatoire fase is voorbij en ijsapplicatie kan het herstelproces vertragen",
+        "Ja, maar alleen in combinatie met compressie om verder oedeem te voorkomen",
+        "Nee, ijsapplicatie heeft geen bewezen effect op bindweefselherstel"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Na 4 dagen is de acute inflammatoire fase (die typisch 48-72 uur duurt) grotendeels voorbij en begint de proliferatieve fase. IJsapplicatie is vooral effectief tijdens de acute inflammatoire fase en kan in de proliferatieve fase het herstelproces vertragen door verminderde cellulaire activiteit (B). De opvatting dat ijsapplicatie ontstekingscellen vermindert en daardoor sneller herstel bevordert (A) gaat voorbij aan het feit dat de inflammatoire respons een essentieel onderdeel is van normaal weefselherstel. Hoewel ijsapplicatie met compressie (C) oedeem kan beperken, is dit niet de hoofdoverweging in deze fase. En hoewel de bewijsvoering gemengd is (D), heeft ijsapplicatie wel degelijk effect op het bindweefselherstel.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_68",
+      "questionText": "Een 35-jarige recreatieve sporter heeft 6 maanden geleden een VKB-reconstructie ondergaan en wil nu terugkeren naar voetbal. Ondanks normale kracht- en stabiliteitsmetingen, is het risico op een nieuw VKB-letsel verhoogd. Welk aspect van het ligamentherstel draagt het meest bij aan dit toegenomen risico?",
+      "options": [
+        "Onvolledige ligamentisatie van het transplantaat met suboptimale mechanische eigenschappen",
+        "De gebruikte chirurgische techniek voor de fixatie van het transplantaat",
+        "De genetische aanleg van de patiënt voor ligamentletsels",
+        "Restlaxiteit in de andere ligamenten van de knie"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Zes maanden na VKB-reconstructie is de ligamentisatie (het proces waarbij het transplantaat de eigenschappen van een normaal ligament aanneemt) nog niet voltooid, wat resulteert in suboptimale mechanische eigenschappen (A). Dit verklaart waarom ondanks normale klinische metingen het risico op een nieuw letsel verhoogd blijft. De ligamentisatie kan 1-2 jaar duren. De chirurgische techniek (B) kan bijdragen aan initiële stabiliteit maar verklaart niet het verhoogde risico na 6 maanden bij normale stabiliteitsmetingen. Genetische aanleg (C) is een risicofactor, maar niet specifiek voor het verhoogde risico ná reconstructie. Restlaxiteit in andere ligamenten (D) zou bij klinisch onderzoek opgemerkt moeten worden.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_69",
+      "questionText": "Een 45-jarige vrouw heeft een chronische voorvoetpijn ontwikkeld door een overbelasting van het plantaire ligament. Welke biomechanische eigenschap van het ligament is het meest waarschijnlijk aangetast, wat leidt tot persisterende klachten?",
+      "options": [
+        "Toegenomen stijfheid door overmatige crosslinking van collageenvezels",
+        "Verminderde elasticiteit door degradatie van elastinevezels",
+        "Toegenomen kruipverschijnselen (creep) onder herhaalde belasting",
+        "Afgenomen weerstand tegen compressiekrachten"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Bij chronische overbelasting van het plantaire ligament is toegenomen kruip (creep) onder herhaalde belasting (C) de meest waarschijnlijk aangetaste biomechanische eigenschap. Dit betekent dat het ligament progressief verlengt onder constante of herhaalde belasting en niet volledig terugkeert naar zijn oorspronkelijke lengte, wat leidt tot mechanische inefficiëntie en pijn. Overmatige crosslinking (A) zou eerder leiden tot verminderde flexibiliteit dan tot pijn door overbelasting. Degradatie van elastinevezels (B) speelt een kleinere rol in plantaire ligamentpathologie. Weerstand tegen compressiekrachten (D) is niet de primaire functie van ligamenten, die voornamelijk trekbelasting weerstaan.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_70",
+      "questionText": "Een atleet met een recente mediale enkelverstuiking heeft een MRI-onderzoek ondergaan. De radioloog rapporteert in het verslag \"een intact ligament met licht verhoogde signaalintensiteit\". Welke klinische interpretatie is het meest correct?",
+      "options": [
+        "Het ligament is volledig gezond en functioneel; de klachten moeten een andere oorzaak hebben",
+        "Er is sprake van een graad 3 letsel met functieverlies, ondanks de normale anatomie",
+        "Er is mogelijk sprake van een graad 1 letsel met microtraumata binnen de ligamentaire structuur",
+        "De MRI is niet betrouwbaar; alleen artroscopie kan de definitieve diagnose leveren"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Een intact ligament met licht verhoogde signaalintensiteit op MRI wijst typisch op een graad 1 letsel met microtraumata binnen de ligamentaire structuur (C). Dit past bij gedeeltelijke verstoring van collageenvezels zonder volledige ruptuur. Het ligament is niet volledig gezond (A), ondanks de intacte structuur. Een graad 3 letsel (B) zou zich manifesteren als een complete onderbreking of abnormale configuratie van het ligament op MRI. Hoewel MRI beperkingen heeft, is de conclusie niet dat het onderzoek onbetrouwbaar is (D); de bevindingen passen bij een licht letsel.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_71",
+      "questionText": "Een 16-jarige voetballer heeft een avulsie van de tuberositas tibiae opgelopen. Op basis van kennis over bindweefselstructuren, wat is de meest waarschijnlijke oorzaak van dit letsel?",
+      "options": [
+        "De aanhechtingsplaats van het ligament is sterker dan de botstructuur bij adolescenten",
+        "Een intrinsieke zwakte in het patellaire ligament heeft geleid tot overbelasting van de aanhechting",
+        "De groeischijf is een zwakke plek bij adolescenten en kan bezwijken onder hoge trekkrachten",
+        "Een directe traumatische impact op de knie heeft geleid tot een botfractuur"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Bij adolescenten is de groeischijf (epifysaire plaat) een zwakke plek die kan bezwijken onder hoge trekkrachten (C), wat leidt tot een avulsiefractuur van de tuberositas tibiae. Dit is typisch voor de leeftijdsgroep waarin de groeischijven nog niet volledig gesloten zijn. De aanhechtingsplaats van het ligament is niet sterker dan het bot (A); eerder is het tegenovergestelde waar bij volwassenen. Er is geen reden om aan te nemen dat er een intrinsieke zwakte in het patellaire ligament bestaat (B). Een directe traumatische impact (D) zou eerder leiden tot een andere soort fractuur dan een avulsiefractuur.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_72",
+      "questionText": "Een 50-jarige patiënt met obesitas heeft herhaalde enkelverstuikingen gehad. Er is sprake van chronische instabiliteit van de laterale enkelbanden. Welke therapeutische benadering is het meest aangewezen om progressie naar osteoartritis te vertragen?",
+      "options": [
+        "Langdurige immobilisatie om verdere schade aan de ligamenten te voorkomen",
+        "Gewichtsvermindering in combinatie met neuromusculaire training",
+        "Ontstekingsremmende medicatie om chronische ontsteking in het gewricht te verminderen",
+        "Intra-articulaire hyaluronzuurinjecties om de gewrichtsslijtage te vertragen"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Bij chronische enkelinstabiliteit met obesitas als complicerende factor is gewichtsvermindering in combinatie met neuromusculaire training (B) de meest aangewezen benadering om progressie naar osteoartritis te vertragen. Gewichtsvermindering vermindert de mechanische belasting op het instabiele gewricht, terwijl neuromusculaire training de functionele stabiliteit verbetert. Langdurige immobilisatie (A) zou leiden tot gewrichtscontractuur en spieratrofie, wat de situatie verergert. Ontstekingsremmende medicatie (C) behandelt slechts symptomen en niet de onderliggende mechanische instabiliteit. Hyaluronzuurinjecties (D) kunnen symptomatische verlichting bieden maar hebben geen bewezen effect op gewrichtsinstabiliteit of preventie van osteoartritis.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_73",
+      "questionText": "Een 22-jarige hordeloper heeft 5 weken geleden een hamstringblessure opgelopen aan de musculotendineuze junctie. Hij wil terugkeren naar training, maar de MRI toont nog steeds oedeem rond de reparatiezone. Welk trainingsadvies is het meest aangewezen?",
+      "options": [
+        "Direct hervatten van volledige training; oedeem is een normaal verschijnsel tijdens het herstelproces",
+        "Gecontroleerde belasting met graduele opbouw, met specifieke aandacht voor excentrische kracht",
+        "Alleen concentrische krachtoefeningen tot het oedeem volledig is verdwenen",
+        "Complete rust totdat de MRI normaal is, om recidief te voorkomen"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Bij persisterende MRI-bevindingen 5 weken na een hamstringblessure is gecontroleerde belasting met graduele opbouw, met specifieke aandacht voor excentrische kracht (B), de meest aangewezen aanpak. Deze benadering stimuleert een correcte weefselremodellering en functioneel herstel. Direct hervatten van volledige training (A) zou het risico op recidief verhogen, zelfs als enig oedeem normaal is tijdens het herstel. Beperking tot alleen concentrische oefeningen (C) mist het belangrijke herstellende effect van excentrische training voor hamstringblessures. Complete rust tot normalisatie van de MRI (D) is te conservatief en kan leiden tot deconditionering, terwijl MRI-bevindingen vaak langer zichtbaar blijven dan de functionele beperkingen.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_74",
+      "questionText": "Een 30-jarige patiënt heeft 3 maanden geleden een operatieve behandeling ondergaan van een volledige achillespeesruptuur. De behandelend fysiotherapeut overweegt mechanische belasting van de pees middels een trilplaat. Op basis van kennis over de fasen van bindweefselherstel, wat is de rationale voor deze interventie?",
+      "options": [
+        "De mechanische trillingen stimuleren de inflammatoire fase om meer groeifactoren aan te maken",
+        "De trillingen verbeteren de vascularisatie en verhogen daarmee de zuurstoftoevoer naar de pees",
+        "De laagfrequente mechanische belasting stimuleert collageenuitlijning tijdens de remodelleringsfase",
+        "De trillingen versnellen de resolutie van oedeem door verbeterde lymfedrainage"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Drie maanden na operatie bevindt de achillespees zich in de remodelleringsfase. Laagfrequente mechanische belasting via een trilplaat kan de collageenuitlijning stimuleren tijdens deze fase (C), wat leidt tot verbeterde biomechanische eigenschappen van het herstellende weefsel. De inflammatoire fase (A) is na 3 maanden lang voorbij en wordt niet opnieuw gestimuleerd door trillingen. Hoewel verbeterde vascularisatie (B) en lymfedrainage (D) bijkomende effecten kunnen zijn, is het primaire mechanische effect op collageenremodellering het belangrijkste doel van deze interventie in deze fase.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_75",
+      "questionText": "Een 26-jarige handbalster is 8 weken na een VKB-reconstructie bezig met revalidatie. Ze klaagt over toegenomen zwelling en pijn na een trainingssessie waarin ze is begonnen met lichte sprongvormen. Wat is de meest waarschijnlijke verklaring voor deze reactie?",
+      "options": [
+        "Ze heeft een nieuwe acute scheur van het VKB-transplantaat opgelopen",
+        "Het transplantaat is nog in de ligamentisatiefase en kan nog niet goed omgaan met sprongbelasting",
+        "Er is sprake van een allergische reactie op het gebruikte transplantaatmateriaal",
+        "Ze heeft waarschijnlijk een meniscusletsel ontwikkeld door de toegenomen belasting"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Acht weken na VKB-reconstructie bevindt het transplantaat zich nog in de ligamentisatiefase (B), waarin het weefsel nog niet volledig geremodelleerd is tot een functioneel ligament met adequate belastbaarheid. Sprongvormen op dit moment zijn meestal te belastend voor het herstellende transplantaat, wat resulteert in een ontstekingsreactie. Een nieuwe acute scheur (A) zou waarschijnlijk leiden tot meer dramatische symptomen en instabiliteit. Een allergische reactie op transplantaatmateriaal (C) zou zich niet specifiek na sprongbelasting manifesteren. Een nieuw meniscusletsel (D) is mogelijk maar minder waarschijnlijk dan overbelasting van het nog niet volledig geregenereerde transplantaat.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_76",
+      "questionText": "Een 40-jarige patiënt heeft 10 dagen geleden een graad 2 MCL-letsel opgelopen. De fysiotherapeut merkt dat de patiënt moeite heeft met het inschatten van de kniepositie tijdens gesloten-keten oefeningen. Welke therapeutische interventie is het meest geschikt om dit probleem aan te pakken?",
+      "options": [
+        "Pijn management met NSAID's om de proprioceptieve oefeningen mogelijk te maken",
+        "Neuromusculaire training met visuele feedback, geleidelijk afbouwend naar training zonder visuele controle",
+        "Krachttraining met hoge weerstand om de musculaire stabiliteit te verbeteren",
+        "Mobilisatie van de knie om de bewegingsvrijheid te vergroten"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Bij een MCL-letsel zijn de mechanoreceptoren in het ligament beschadigd, wat leidt tot verminderde proprioceptie. Neuromusculaire training met visuele feedback, geleidelijk afbouwend naar training zonder visuele controle (B) is het meest geschikt om proprioceptief bewustzijn te herstellen. Deze aanpak helpt het centraal zenuwstelsel om te compenseren voor het verlies aan ligamentaire feedback. NSAID's (A) behandelen pijn maar verbeteren de proprioceptie niet en kunnen zelfs het natuurlijke herstel vertragen. Krachttraining met hoge weerstand (C) is te vroeg in deze fase en adresseert niet direct het proprioceptieve tekort. Mobilisatie (D) verbetert bewegingsvrijheid maar niet primair de proprioceptie.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_77",
+      "questionText": "Een 17-jarige basketbalspeler heeft een graad 2 inversietrauma van de enkel opgelopen. Na 12 weken revalidatie is de pijn verdwenen en de functie goed hersteld, maar dynamisch echografisch onderzoek toont nog steeds lichte instabiliteit van het laterale ligament. Welke sportspecifieke training is het meest geschikt om het risico op recidieven te minimaliseren?",
+      "options": [
+        "Uitsluitend lineair loopwerk om zijdelingse instabiliteit te vermijden",
+        "Functionele training met richtingsveranderingen op een onstabiel oppervlak",
+        "Impact-loopvormen om de ligamentkracht te vergroten door progressieve belasting",
+        "Uitsluitend concentrische krachttraining voor de peroneale spieren"
+      ],
+      "correctOptionIndex": 1,
+      "feedback": "Bij een functioneel herstelde enkel met lichte ligamentaire instabiliteit is functionele training met richtingsveranderingen op een onstabiel oppervlak (B) het meest geschikt om het risico op recidieven te minimaliseren. Deze training verbetert de neuromusculaire controle en proprioceptie, waardoor het lichaam leert compenseren voor de licht blijvende instabiliteit. Het vermijden van zijdelingse bewegingen (A) is geen functionele oplossing voor een basketbalspeler. Impact-loopvormen (C) zouden overbelasting kunnen veroorzaken zonder specifiek het neuromusculaire controleaspect te trainen. Uitsluitend concentrische krachttraining (D) mist de functionele en proprioceptieve componenten die nodig zijn voor sporthervatting.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_78",
+      "questionText": "Een 28-jarige patient heeft 4 maanden geleden een capsulaire scheur in het AC-gewricht opgelopen. Ondanks fysiotherapie blijft er sprake van chronische pijn en lichte subluxatie. Welke biologische factor speelt het meest waarschijnlijk een rol bij het inadequate herstel?",
+      "options": [
+        "De continue beweging in het AC-gewricht verhindert stabiele collageenvorming",
+        "De beperkte vascularisatie van het gewrichtskapsel vertraagt het herstelproces",
+        "Ontstekingsremmende medicatie die de patiënt gebruikt heeft voor pijnverlichting",
+        "Een te vroege terugkeer naar belasting tijdens de inflammatoire fase"
+      ],
+      "correctOptionIndex": 0,
+      "feedback": "Bij inadequaat herstel van een capsulaire scheur in het AC-gewricht is de continue beweging in het gewricht (A) de meest waarschijnlijke biologische factor. Deze constante beweging verstoort de vorming van stabiel collageen en leidt tot een langdurig inadequaat herstel. Het AC-gewricht heeft geen beperkte vascularisatie (B); het is juist relatief goed doorbloed. Zonder specifieke informatie over medicatiegebruik is optie C speculatief. Een te vroege terugkeer naar belasting (D) zou 4 maanden na het letsel niet meer de hoofdreden zijn voor aanhoudende problemen.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_79",
+      "questionText": "Een 45-jarige patiënt heeft 6 maanden geleden een VKB-reconstructie ondergaan met een hamstringautograft. Bij klinisch onderzoek is er goede stabiliteit, maar de patiënt blijft last houden van anterieure kniepijn bij traplopen. De kracht van de hamstrings is 85% vergeleken met de niet-aangedane zijde. Wat is de meest waarschijnlijke oorzaak van de aanhoudende klachten?",
+      "options": [
+        "Het VKB-transplantaat is geïrriteerd en licht ontstoken door overmatige dagelijkse belasting",
+        "De donorplek van het hamstringtransplantaat is nog niet volledig hersteld",
+        "Verstoring van de normale kniebiomechanica door patellofemorale overbelasting",
+        "De proprioceptieveranderingen na VKB-reconstructie leiden tot abnormale pijnperceptie"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "De anterieure kniepijn bij traplopen, ondanks goede stabiliteit, wijst op verstoring van de normale kniebiomechanica door patellofemorale overbelasting (C). Na VKB-reconstructie treedt vaak quadricepsatrofie op, wat leidt tot verminderde dynamische controle en verhoogde belasting op het patellofemorale gewricht, vooral bij traplopen. Een geïrriteerd VKB-transplantaat (A) zou eerder leiden tot diepe, centraal gelokaliseerde kniepijn. De donorplek van het hamstringtransplantaat (B) is meestal binnen 6 maanden voldoende hersteld en zou eerder posterieure dan anterieure pijn veroorzaken. Proprioceptieveranderingen (D) beïnvloeden eerder het bewegingsgevoel dan de pijnperceptie specifiek bij traplopen.",
+      "niveau": "toepassing"
+    },
+    {
+      "id": "mc_vraag_80",
+      "questionText": "Een 32-jarige voetballer revalideert na een graad 2 MCL-letsel en wil zo snel mogelijk terugkeren naar competitie. Welk criterium gebaseerd op bindweefselherstel is het belangrijkst om te bepalen of terugkeer naar sport veilig is?",
+      "options": [
+        "Afwezigheid van pijn bij palpatie van het aangedane ligament",
+        "Normalisatie van de MRI-bevindingen zonder restoedeem",
+        "Normale valgus-stabiliteit bij klinische testen en functionele belasting",
+        "Subjectief vertrouwen van de patiënt in de stabiliteit van het gewricht"
+      ],
+      "correctOptionIndex": 2,
+      "feedback": "Bij terugkeer naar sport na een MCL-letsel is normale valgus-stabiliteit bij klinische testen én functionele belasting (C) het belangrijkste criterium. Dit geeft aan dat het ligament voldoende mechanische sterkte heeft herwonnen om de sportspecifieke belasting te weerstaan. Afwezigheid van pijn bij palpatie (A) is niet noodzakelijk een indicator van adequate weefselsterkte. MRI-bevindingen (B) normaliseren vaak pas lang na functioneel herstel en zijn geen betrouwbare indicator voor veilige sportterugkeer. Subjectief vertrouwen (D) is belangrijk maar onvoldoende om de objectieve stabiliteit van het gewricht te beoordelen.",
+      "niveau": "toepassing"
+    }
+  ]
