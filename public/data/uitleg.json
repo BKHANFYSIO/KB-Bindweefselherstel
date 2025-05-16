@@ -23,5 +23,245 @@
       "Gebruik eventueel een eenvoudige analogie (bv. 'bouwstenen leggen')."
     ],
     "modelAnswer": "Na het verstuiken van je enkel reageert je lichaam met een natuurlijke 'opruimreactie', dat noemen we ontsteking. Dit is nodig voor herstel. De eerste paar dagen is het slim om je enkel wat rust te geven, zodat deze reactie goed kan verlopen en je de enkel beschermt. Zie het als de fundering leggen voor een nieuw muurtje. Daarna is het juist goed om voorzichtig te gaan bewegen op geleide van de pijn. Vergelijk het met de 'bouwstenen' (het nieuwe weefsel) in de juiste richting leggen en langzaam sterker maken. Door gedoseerd te bewegen, help je je enkel om weer sterk en stabiel te worden."
+  },
+  {
+    "id": "uitleg_vraag_collega_2",
+    "type": "colleague",
+    "questionText": "Bespreek met een collega de cellulaire en vasculaire responsen die kenmerkend zijn voor de ontstekingsfase van bindweefselherstel en hun klinische relevantie.",
+    "criteria": [
+      "Beschrijf de initiële vasculaire respons (vasodilatatie, verhoogde permeabiliteit).",
+      "Benoem de belangrijkste ontstekingscellen en hun functies.",
+      "Leg uit hoe deze processen bijdragen aan wondgenezing.",
+      "Bespreek de klinische implicaties voor fysiotherapeutische behandeling."
+    ],
+    "modelAnswer": "De ontstekingsfase wordt gekenmerkt door een snelle vasculaire respons met vasodilatatie en verhoogde permeabiliteit, wat leidt tot de klassieke ontstekingsverschijnselen. Neutrofielen zijn de eerste ontstekingscellen die arriveren, gevolgd door macrofagen. Deze cellen ruimen celresten op en scheiden groeifactoren uit die essentieel zijn voor de overgang naar de proliferatiefase. Klinisch gezien is het belangrijk om deze fase niet te onderdrukken, maar wel te monitoren op tekenen van overmatige ontsteking."
+  },
+  {
+    "id": "uitleg_vraag_client_2",
+    "type": "client",
+    "questionText": "Leg aan een patiënt met een acute spierverrekking uit waarom de eerste dagen zwelling, roodheid en pijn optreden en wat het lichaam hiermee probeert te bereiken.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Leg uit dat deze reactie een normaal en noodzakelijk proces is.",
+      "Verklaar het doel van de ontstekingsreactie.",
+      "Gebruik een passende analogie."
+    ],
+    "modelAnswer": "De zwelling, roodheid en pijn die je ervaart zijn eigenlijk tekenen dat je lichaam hard aan het werk is om de schade te herstellen. Het is vergelijkbaar met een 'noodreparatieteam' dat naar de plek van de schade gaat. De zwelling ontstaat doordat er meer bloed naar het gebied gaat om bouwstoffen aan te voeren en afvalstoffen af te voeren. De pijn zorgt ervoor dat je het gebied ontziet, zodat het rustig kan herstellen. Dit is allemaal een normaal en belangrijk proces in de eerste fase van herstel."
+  },
+  {
+    "id": "uitleg_vraag_collega_3",
+    "type": "colleague",
+    "questionText": "Analyseer voor een collega de verschillende rollen van macrofagen (bv. M1 vs. M2 fenotypes) gedurende de diverse fasen van bindweefselherstel.",
+    "criteria": [
+      "Beschrijf de M1 en M2 fenotypes en hun specifieke functies.",
+      "Leg uit hoe macrofagen bijdragen aan de overgang tussen fasen.",
+      "Benoem de belangrijkste signaalmoleculen die betrokken zijn.",
+      "Bespreek de klinische relevantie van macrofaagpolarisatie."
+    ],
+    "modelAnswer": "Macrofagen ondergaan een dynamische polarisatie van pro-inflammatoir M1 naar regeneratief M2 fenotype. M1 macrofagen domineren de vroege ontstekingsfase en zijn betrokken bij pathogeen-eliminatie en weefselopruiming. M2 macrofagen, die later verschijnen, bevorderen weefselregeneratie door secretie van groeifactoren en anti-inflammatoire mediatoren. Deze polarisatie is cruciaal voor de overgang van ontsteking naar proliferatie en wordt beïnvloed door lokale micro-omgevingsfactoren."
+  },
+  {
+    "id": "uitleg_vraag_client_3",
+    "type": "client",
+    "questionText": "Vertel een patiënt met een peesblessure op een eenvoudige manier hoe bepaalde 'opruimcellen' in hun lichaam helpen bij het schoonmaken van het beschadigde gebied en het voorbereiden op herstel.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het concept van 'opruimcellen' zonder technische termen.",
+      "Leg uit hoe dit proces bijdraagt aan herstel.",
+      "Gebruik een passende analogie."
+    ],
+    "modelAnswer": "Je lichaam heeft speciale 'opruimcellen' die werken als een schoonmaakploeg. Wanneer je pees beschadigd is, komen deze cellen in actie om alle beschadigde deeltjes op te ruimen, net zoals je eerst een kamer zou opruimen voordat je nieuwe meubels neerzet. Ze maken het gebied schoon en bereiden het voor op de aanleg van nieuw, gezond weefsel. Dit is een belangrijk onderdeel van het natuurlijke herstelproces."
+  },
+  {
+    "id": "uitleg_vraag_collega_4",
+    "type": "colleague",
+    "questionText": "Detailleer voor een collega het proces van collageensynthese, -afzetting en -reorganisatie tijdens de proliferatie- en remodelleringsfase, inclusief de verschillende collagentypes.",
+    "criteria": [
+      "Beschrijf de rol van fibroblasten in collageensynthese.",
+      "Leg uit hoe type III collageen wordt vervangen door type I.",
+      "Benoem de factoren die collageenreorganisatie beïnvloeden.",
+      "Bespreek de klinische implicaties voor belastingsopbouw."
+    ],
+    "modelAnswer": "Tijdens de proliferatiefase produceren fibroblasten voornamelijk type III collageen, dat een voorlopige matrix vormt. In de remodelleringsfase wordt dit geleidelijk vervangen door sterker type I collageen. De reorganisatie wordt beïnvloed door mechanische belasting via mechanotransductie, waarbij de collageenvezels zich oriënteren volgens de belastingsrichting. Dit proces is cruciaal voor de uiteindelijke mechanische eigenschappen van het herstelde weefsel."
+  },
+  {
+    "id": "uitleg_vraag_client_4",
+    "type": "client",
+    "questionText": "Leg aan een patiënt die herstelt van een operatieve ingreep (bv. voorste kruisbandreconstructie) uit hoe het nieuwe weefsel (littekenweefsel) wordt opgebouwd en waarom het tijd kost voordat dit weefsel weer sterk is.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het proces van weefselopbouw zonder technische details.",
+      "Leg uit waarom tijd nodig is voor sterkte-opbouw.",
+      "Gebruik een passende analogie."
+    ],
+    "modelAnswer": "Het nieuwe weefsel dat na je operatie wordt aangemaakt, is in het begin als een voorlopig 'steigermateriaal' - het houdt alles bij elkaar, maar is nog niet zo sterk. Net zoals bij het bouwen van een huis, moet dit materiaal geleidelijk worden vervangen door sterker materiaal en in de juiste richting worden georganiseerd. Dit kost tijd, omdat je lichaam het weefsel stap voor stap moet opbouwen en versterken. Daarom is het belangrijk om geduldig te zijn en de belasting geleidelijk op te bouwen."
+  },
+  {
+    "id": "uitleg_vraag_collega_5",
+    "type": "colleague",
+    "questionText": "Verklaar aan een collega het belang en de regulatie van angiogenese tijdens bindweefselherstel en de mogelijke implicaties als dit proces verstoord raakt.",
+    "criteria": [
+      "Beschrijf de rol van angiogenese in weefselherstel.",
+      "Benoem de belangrijkste groeifactoren die betrokken zijn.",
+      "Leg uit hoe angiogenese wordt gereguleerd.",
+      "Bespreek klinische situaties waarbij angiogenese verstoord kan zijn."
+    ],
+    "modelAnswer": "Angiogenese is essentieel voor weefselherstel omdat het zorgt voor zuurstof en voedingsstoffen. Het proces wordt voornamelijk gestimuleerd door VEGF en wordt gereguleerd door de balans tussen pro- en anti-angiogene factoren. Verstoring van angiogenese, zoals bij diabetes of roken, kan leiden tot vertraagd herstel, verminderde weefselkwaliteit en verhoogd risico op complicaties."
+  },
+  {
+    "id": "uitleg_vraag_client_5",
+    "type": "client",
+    "questionText": "Leg aan een patiënt met een diepe wond uit waarom een goede doorbloeding zo belangrijk is voor de genezing en hoe nieuwe, kleine bloedvaatjes hierbij helpen.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het belang van bloedtoevoer voor herstel.",
+      "Leg uit hoe nieuwe bloedvaatjes worden gevormd.",
+      "Gebruik een passende analogie."
+    ],
+    "modelAnswer": "Een goede doorbloeding is cruciaal voor de genezing van je wond, net zoals een plant water nodig heeft om te groeien. Je lichaam maakt nieuwe, kleine bloedvaatjes aan die als een transportnetwerk fungeren. Ze brengen zuurstof en bouwstoffen naar het beschadigde gebied en voeren afvalstoffen af. Zonder deze nieuwe bloedvaatjes zou het herstelproces veel langzamer gaan of zelfs stagneren."
+  },
+  {
+    "id": "uitleg_vraag_collega_6",
+    "type": "colleague",
+    "questionText": "Beschrijf aan een collega de mechanismen achter de remodelleringsfase, inclusief de balans tussen collageenproductie en -afbraak, en hoe dit de mechanische eigenschappen van het herstelde weefsel beïnvloedt.",
+    "criteria": [
+      "Beschrijf de rol van MMPs en TIMPs.",
+      "Leg uit hoe mechanische belasting de reorganisatie beïnvloedt.",
+      "Benoem de factoren die de balans kunnen verstoren.",
+      "Bespreek de klinische implicaties voor behandeling."
+    ],
+    "modelAnswer": "De remodelleringsfase wordt gekenmerkt door een dynamisch evenwicht tussen matrixsynthese en -afbraak, gereguleerd door MMPs en TIMPs. Mechanische belasting stimuleert via mechanotransductie de reorganisatie van collageenvezels, wat resulteert in verbeterde mechanische eigenschappen. Verstoring van deze balans, bijvoorbeeld door overbelasting of onderbelasting, kan leiden tot suboptimaal herstel."
+  },
+  {
+    "id": "uitleg_vraag_client_6",
+    "type": "client",
+    "questionText": "Leg aan een patiënt die na enkele weken fysiotherapie voor een hamstringblessure merkt dat het litteken soepeler wordt, uit hoe het lichaam het nieuwe weefsel langzaam sterker en beter organiseert, vergelijkbaar met het sterker maken van een touw door de vezels goed te ordenen.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het proces van weefselreorganisatie.",
+      "Leg uit waarom dit tijd kost.",
+      "Gebruik de touw-analogie effectief."
+    ],
+    "modelAnswer": "Het proces dat je ervaart is vergelijkbaar met het maken van een sterk touw. In het begin zijn de vezels (in jouw geval het nieuwe weefsel) nog wat chaotisch georganiseerd. Door de juiste oefeningen en bewegingen help je je lichaam om deze vezels netjes parallel te ordenen, net zoals de vezels in een touw. Dit maakt het weefsel geleidelijk sterker en soepeler. Het kost tijd omdat je lichaam dit stap voor stap moet doen, maar door gedoseerd te oefenen help je dit proces."
+  },
+  {
+    "id": "uitleg_vraag_collega_7",
+    "type": "colleague",
+    "questionText": "Bespreek met een collega hoe factoren zoals roken, diabetes mellitus of inadequate belasting het bindweefselherstel negatief kunnen beïnvloeden op cellulair en weefselniveau.",
+    "criteria": [
+      "Beschrijf de effecten van roken op weefselherstel.",
+      "Leg uit hoe diabetes het herstelproces beïnvloedt.",
+      "Benoem de gevolgen van inadequate belasting.",
+      "Bespreek mogelijke interventiestrategieën."
+    ],
+    "modelAnswer": "Roken vermindert de doorbloeding en zuurstofvoorziening, wat leidt tot verminderde collageensynthese en verhoogd risico op complicaties. Bij diabetes veroorzaakt hyperglycemie verhoogde glycatie van eiwitten en microvasculaire schade, wat resulteert in vertraagd en verminderd herstel. Inadequate belasting kan leiden tot disfunctionele matrixreorganisatie en verminderde weefselkwaliteit."
+  },
+  {
+    "id": "uitleg_vraag_client_7",
+    "type": "client",
+    "questionText": "Leg aan een patiënt met een vertraagd herstel van een enkelverzwikking uit hoe bepaalde leefstijlfactoren (bv. roken) of gezondheidsproblemen (bv. diabetes) de genezing kunnen remmen en wat ze eventueel zelf kunnen doen om dit te verbeteren.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar de impact van leefstijlfactoren.",
+      "Geef praktische adviezen voor verbetering.",
+      "Wees motiverend en ondersteunend."
+    ],
+    "modelAnswer": "Sommige factoren kunnen het herstel van je enkel vertragen. Roken bijvoorbeeld vermindert de doorbloeding, waardoor je lichaam minder goed bouwstoffen kan aanvoeren. Bij diabetes kan de suikerspiegel het herstel beïnvloeden. Gelukkig kun je hier zelf wat aan doen: stoppen met roken, gezond eten, en je suikerspiegel goed reguleren als je diabetes hebt. Deze aanpassingen kunnen je lichaam helpen om beter te herstellen."
+  },
+  {
+    "id": "uitleg_vraag_collega_8",
+    "type": "colleague",
+    "questionText": "Leg aan een collega het concept van mechanotransductie uit en hoe gecontroleerde mechanische belasting de cellen in het bindweefsel stimuleert tot adaptatie en herstel tijdens de latere fasen.",
+    "criteria": [
+      "Beschrijf het principe van mechanotransductie.",
+      "Leg uit hoe cellen mechanische signalen omzetten.",
+      "Benoem de belangrijkste signaalwegen.",
+      "Bespreek de klinische toepassing."
+    ],
+    "modelAnswer": "Mechanotransductie is het proces waarbij cellen mechanische prikkels omzetten in biochemische signalen. Via integrines en het cytoskelet worden mechanische krachten doorgegeven aan de celkern, wat leidt tot aanpassingen in genexpressie en celgedrag. Dit mechanisme is cruciaal voor de adaptatie van bindweefsel aan mechanische belasting tijdens de remodelleringsfase."
+  },
+  {
+    "id": "uitleg_vraag_client_8",
+    "type": "client",
+    "questionText": "Leg aan een patiënt met een achillespeesontsteking uit waarom het belangrijk is om de pees gedoseerd te belasten tijdens het herstel en hoe 'slimme' cellen in de pees reageren op beweging om sterker te worden.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het belang van gedoseerde belasting.",
+      "Leg uit hoe cellen reageren op beweging.",
+      "Gebruik een passende analogie."
+    ],
+    "modelAnswer": "De cellen in je achillespees zijn eigenlijk best slim. Ze reageren op beweging door sterker te worden, net zoals spieren sterker worden door training. Maar net zoals je niet meteen zware gewichten tilt bij krachttraining, moet je de pees ook geleidelijk belasten. Door de juiste hoeveelheid beweging geven we de cellen het signaal om nieuw, sterk weefsel aan te maken. Te weinig beweging maakt de pees zwak, te veel beweging kan schadelijk zijn. Het is dus belangrijk om de juiste balans te vinden."
+  },
+  {
+    "id": "uitleg_vraag_collega_9",
+    "type": "colleague",
+    "questionText": "Analyseer voor een collega de factoren die de kwaliteit en functionaliteit van littekenweefsel bepalen en hoe fysiotherapeutische interventies hierop kunnen aangrijpen.",
+    "criteria": [
+      "Beschrijf de belangrijkste factoren die littekenkwaliteit bepalen.",
+      "Leg uit hoe mechanische belasting de matrixreorganisatie beïnvloedt.",
+      "Benoem specifieke fysiotherapeutische interventies.",
+      "Bespreek de timing van verschillende interventies."
+    ],
+    "modelAnswer": "De kwaliteit van littekenweefsel wordt bepaald door factoren zoals collageenorganisatie, crosslinking, en vasculaire voorziening. Fysiotherapeutische interventies kunnen deze factoren beïnvloeden door gecontroleerde mechanische belasting, manuele technieken, en specifieke oefeningen. De timing van interventies is cruciaal en moet worden afgestemd op de fase van weefselherstel."
+  },
+  {
+    "id": "uitleg_vraag_client_9",
+    "type": "client",
+    "questionText": "Leg aan een patiënt die zich zorgen maakt over een zichtbaar of stug litteken na een operatie uit dat littekenweefsel anders is dan het oorspronkelijke weefsel en hoe oefeningen en eventuele manuele technieken kunnen helpen om het soepeler en functioneler te maken.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het verschil tussen littekenweefsel en normaal weefsel.",
+      "Leg uit hoe behandeling kan helpen.",
+      "Wees geruststellend en realistisch."
+    ],
+    "modelAnswer": "Een litteken is inderdaad anders dan het oorspronkelijke weefsel - het is als een reparatie die je lichaam heeft gemaakt. Het kan in het begin wat stug aanvoelen, maar dat is normaal. Door specifieke oefeningen en manuele technieken kunnen we het littekenweefsel helpen om soepeler en functioneler te worden. Het zal nooit exact hetzelfde worden als het oorspronkelijke weefsel, maar we kunnen het wel optimaliseren zodat het goed functioneert en minder klachten geeft."
+  },
+  {
+    "id": "uitleg_vraag_collega_10",
+    "type": "colleague",
+    "questionText": "Bespreek met een collega de pathofysiologische kenmerken van chronische tendinopathie als een voorbeeld van een verstoord of mislukt bindweefselherstelproces, in tegenstelling tot acuut herstel.",
+    "criteria": [
+      "Beschrijf de pathofysiologie van chronische tendinopathie.",
+      "Leg uit hoe dit verschilt van acuut herstel.",
+      "Benoem de belangrijkste histologische veranderingen.",
+      "Bespreek de klinische implicaties."
+    ],
+    "modelAnswer": "Chronische tendinopathie wordt gekenmerkt door een verstoorde balans tussen matrixsynthese en -afbraak, met degeneratieve veranderingen in plaats van normaal herstel. Histologisch zien we disorganisatie van collageenvezels, verhoogde vascularisatie, en veranderingen in de celpopulatie. Dit verschilt van acuut herstel waar een geordend proces van ontsteking, proliferatie en remodellering plaatsvindt."
+  },
+  {
+    "id": "uitleg_vraag_client_10",
+    "type": "client",
+    "questionText": "Leg aan een patiënt met een langdurige tenniselleboog (chronische tendinopathie) uit dat de pijn niet meer komt door een actieve ontsteking zoals bij een verse blessure, maar dat de pees van mindere kwaliteit is geworden en hoe gerichte oefentherapie kan helpen dit te verbeteren.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het verschil tussen acute en chronische peesklachten.",
+      "Leg uit hoe oefentherapie kan helpen.",
+      "Wees realistisch over het herstelproces."
+    ],
+    "modelAnswer": "Bij een langdurige tenniselleboog is de situatie anders dan bij een verse blessure. De pees is niet meer actief ontstoken, maar de kwaliteit van het weefsel is verminderd, vergelijkbaar met een versleten elastiek. Door gerichte oefeningen kunnen we de pees geleidelijk sterker maken. Dit is een proces dat tijd kost, maar door consequent te oefenen kunnen we de kwaliteit van het weefsel verbeteren en de klachten verminderen."
+  },
+  {
+    "id": "uitleg_vraag_collega_11",
+    "type": "colleague",
+    "questionText": "Detailleer voor een collega de rol van specifieke macronutriënten en micronutriënten (bv. eiwitten, vitamine C, zink) in de verschillende fasen van bindweefselherstel.",
+    "criteria": [
+      "Beschrijf de rol van eiwitten in weefselherstel.",
+      "Leg uit hoe vitamine C bijdraagt aan collageensynthese.",
+      "Benoem de functie van zink en andere micronutriënten.",
+      "Bespreek de klinische relevantie."
+    ],
+    "modelAnswer": "Eiwitten zijn essentieel als bouwstenen voor nieuw weefsel en voor de synthese van groeifactoren. Vitamine C is een cofactor voor enzymen betrokken bij collageensynthese, terwijl zink belangrijk is voor DNA-synthese en celproliferatie. Andere micronutriënten zoals koper en mangaan spelen een rol in matrixvorming en crosslinking. Een adequate inname van deze nutriënten is cruciaal voor optimaal weefselherstel."
+  },
+  {
+    "id": "uitleg_vraag_client_11",
+    "type": "client",
+    "questionText": "Leg aan een patiënt die herstelt van een botbreuk of een grote spierscheur uit hoe gezonde voeding, met name voldoende eiwitten en bepaalde vitamines, kan bijdragen aan een sneller en beter herstel van het beschadigde weefsel, vergelijkbaar met bouwstenen voor een huis.",
+    "criteria": [
+      "Gebruik eenvoudige, begrijpelijke taal.",
+      "Verklaar het belang van goede voeding voor herstel.",
+      "Geef praktische voedingsadviezen.",
+      "Gebruik de bouwstenen-analogie effectief."
+    ],
+    "modelAnswer": "Goede voeding is cruciaal voor je herstel, net zoals je de juiste bouwstenen nodig hebt om een huis te bouwen. Eiwitten zijn als de bakstenen - ze vormen de basis voor nieuw weefsel. Vitamine C is als de cement die alles bij elkaar houdt, en andere vitamines en mineralen zijn als de speciale materialen die het gebouw sterk maken. Door gezond en gevarieerd te eten, geef je je lichaam alle materialen die het nodig heeft om goed te herstellen."
   }
 ] 
