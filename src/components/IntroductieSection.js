@@ -11,6 +11,22 @@ function IntroductieSection() {
           <QRCodeComponent size={48} />
         </div>
       </div>
+
+      {/* Banner highlighting the unique focus */}
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+        <div className="flex items-start space-x-4">
+          <div className="flex-shrink-0">
+            <span className="text-4xl">🎯</span>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold mb-2">Niet alleen WAT, maar vooral HOE je leert!</h2>
+            <p className="text-lg opacity-90">
+              Deze KennisBooster is uniek: we focussen niet alleen op de informatie zelf, maar vooral op HOE je deze kennis effectief in je langetermijngeheugen opslaat. Met bewezen leermethodes help je je brein om informatie écht te onthouden.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4 rounded">
         <span className="font-semibold text-yellow-800 block mb-1">Let op: jouw voortgang wordt lokaal opgeslagen</span>
         <span className="text-yellow-900 text-sm block">

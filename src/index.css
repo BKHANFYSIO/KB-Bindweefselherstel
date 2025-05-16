@@ -14,4 +14,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.hyphens-auto {
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  /* For Dutch hyphenation support */
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  lang: nl;
 } 
