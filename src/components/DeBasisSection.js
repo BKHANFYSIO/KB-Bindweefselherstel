@@ -135,6 +135,17 @@ function DeBasisSection({ kennisBoosterTitel = 'Bindweefselherstel' }) {
                   <li>Vraag feedback via ChatGPT.</li>
                   <li>Beoordeel zelf je braindump en geef een korte toelichting. Sla je braindump automatisch op door op een van de knoppen te klikken.</li>
                 </ol>
+                <p className="text-gray-700 mt-3">
+                  <b>Tip:</b> Wil je liever spreken dan typen? Gebruik dan bijvoorbeeld:
+                </p>
+                <ul className="list-disc ml-6 text-gray-700 mb-3">
+                  <li>De sneltoets van Windows: Windows-logotoets + H</li>
+                  <li>Op een Mac is dit meestal Fn (twee keer)</li>
+                  <li>Of spreek je uitleg in bij ChatGPT (gebruik de microfoonfunctie en kopieer de tekst naar deze app).</li>
+                </ul>
+                <p className="text-gray-700 mb-3">
+                  Je gesproken tekst wordt automatisch omgezet naar tekst.
+                </p>
               </div>
             )}
             {/* Stap 1 */}

@@ -612,9 +612,10 @@ export const generateCertificatePDF = async (data) => {
       pdf.setFillColor(249, 250, 251);
       pdf.rect(margin - 5, currentY - 15, contentWidth + 10, 150, 'F');
       pdf.setFont(undefined, 'bold');
-      let tempY = addWrappedText(pdf, `Casus ${index + 1}:`, margin, currentY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
+      let tempY = addWrappedText(pdf, `${c.title}:`, margin, currentY, contentWidth, lineHeight, pageHeight, margin, bottomMargin);
       pdf.setFont(undefined, 'normal');
-      tempY = addWrappedText(pdf, c.caseText, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+      tempY = addWrappedText(pdf, c.caseDescription, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
+      tempY = addWrappedText(pdf, c.question, margin + 10, tempY + 5, contentWidth - 10, lineHeight, pageHeight, margin, bottomMargin);
       // Latest answer in green box
       if (latestAnswer) {
         pdf.setFillColor(220, 255, 220);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import usePersistentToggle from './usePersistentToggle';
+import PogingBadge from './PogingBadge';
 
 function CheckJeKennisSection({ questions, answers, onAnswerChange, scores, onScoreChange, resetKey, onAnswerVersionsChange, kennisBoosterTitel }) {
   const [currentQuestions, setCurrentQuestions] = useState([...questions]);
@@ -283,9 +284,7 @@ Geef een gestructureerde analyse met:
           <h3 className="text-2xl font-semibold text-blue-700">
             Vraag {currentQuestionIndex + 1} van {currentQuestions.length}
           </h3>
-          <span className="bg-blue-600 text-white text-lg font-semibold px-4 py-1 rounded-full shadow-sm">
-            Poging: {attemptNumber}
-          </span>
+          <PogingBadge attemptNumber={attemptNumber} afgerond={!!selfAssessment[currentQuestion?.id]} />
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-4 mb-6">

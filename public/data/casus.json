@@ -1,13 +1,227 @@
 [
   {
     "id": "toepassen_casus_1",
-    "caseText": "Een patiënt heeft een enkelverstuiking (graad 2 inversietrauma) opgelopen. Welke bindweefselstructuren zijn waarschijnlijk beschadigd en welke cellen spelen een hoofdrol in het vroege herstel?",
+    "title": "Lateraal enkelbandletsel bij voetbal (Casus 1 van 15)",
+    "caseDescription": "Een 19‑jarige voetballer verzwikte twee dagen geleden zijn rechterenkel tijdens een spronglanding. Hij hoorde een 'knak' en binnen een uur ontstond een forse zwelling en hematoom lateraal. Lopen lukt moeizaam door pijn aan de buitenzijde van de enkel. Hij heeft gekoeld en een drukverband aangelegd.",
+    "question": "In welke fase van het bindweefselherstel bevindt deze enkel zich nu en welke behandelaanpak past bij deze fase? Denk aan belastbaarheid, oefentherapie en eventuele beschermende maatregelen.",
     "criteria": [
-      "Identificeer specifieke ligamenten die vaak betrokken zijn bij een inversietrauma (bv. Lig. Talofibulare Anterius).",
-      "Noem de primaire cel(len) actief in de ontstekings- en vroege proliferatiefase (bv. neutrofielen, macrofagen, fibroblasten).",
-      "Beschrijf kort de functie van deze cel(len) in dit stadium (bv. opruimen, matrix productie starten)."
+      "Herkenning van de juiste herstelfase (ontstekingsfase).",
+      "Koppeling van klinische tekenen (zwelling, pijn, warmte) aan deze fase.",
+      "Voorstellen van evidence‑based acute interventies (PRICE/POLICE, brace/tape).",
+      "Passend advies over relatieve rust vs. vroege mobilisatie.",
+      "Concrete voorbeelden van oefentherapie binnen pijngrens."
     ],
-    "modelAnswer": "Bij een graad 2 inversietrauma is er vaak sprake van een (partiële) ruptuur van het Lig. Talofibulare Anterius (LTA) en mogelijk het Lig. Calcaneofibulare (LCF). In de vroege fase (ontsteking/proliferatie) zijn neutrofielen en macrofagen actief voor het opruimen van debris (fagocytose). Fibroblasten worden geactiveerd en migreren naar het gebied om te starten met de productie van een nieuwe, ongeorganiseerde ECM, voornamelijk type III collageen.",
-    "theme": "Return-2-Performance"
+    "modelAnswer": "Twee dagen post‑trauma bevindt de enkel zich in de acute ontstekingsfase. Protectie en compressie beperken verdere schade, maar volledig immobiliseren is af te raden. Relatieve rust met brace of tape, hoogleggen en intermitterend koelen verminderen zwelling. Vroege mobiliserende oefeningen (pijnvrij plantair/dorsaalflexie) bevorderen circulatie. Naarmate zwelling en pijn dalen, wordt belasting progressief opgevoerd richting proprioceptie‑ en krachtoefeningen.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_2",
+    "title": "Acute hamstringscheur bij sprinten (Casus 2 van 15)",
+    "caseDescription": "Een 22‑jarige sprinter voelde een plotselinge scherpe pijn in de achterzijde van het linkerbovenbeen tijdens een maximale sprint. Hij stopte direct. Nu, een week later, is er lokale zwelling en ecchymose halverwege de hamstrings; wandelen lukt, hardlopen niet.",
+    "question": "Hoe verloopt het herstel van een hamstringblessure en welke adviezen en oefentherapie geef je deze atleet in deze fase?",
+    "criteria": [
+      "Juist inschatten van ernst en verwachte hersteltijd.",
+      "Toepassen van vroege, pijnvrije activatieprincipes.",
+      "Progressieve opbouw van kracht (isometrisch → excentrisch).",
+      "Specifieke return‑to‑sprint criteria formuleren.",
+      "Educatie over recidiefpreventie (Nordic hamstrings, load‑management)."
+    ],
+    "modelAnswer": "Een week na het letsel is de atleet in de vroege proliferatiefase. Lichte isometrische spanningsoefeningen en pijnvrije ROM zijn aangewezen; absolute rust verlengt herstel. Verwacht 4–8 weken voor graad II. Progressief excentrisch krachtprogramma, gevolgd door loop‑ en sprintschema, voorkomt littekenverkorting en recidief. Criteria: pijnvrije 90% sprint, symmetrische excentrische kracht en negatieve functionele testen alvorens volledige training.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_3",
+    "title": "Mediaal kniebandletsel (graad II) bij hockey (Casus 3 van 15)",
+    "caseDescription": "Een 25‑jarige hockeyspeler kreeg een impact aan de buitenzijde van de rechterknie. Nu geringe zwelling en drukpijn mediaal, buigen gaat moeilijk. Huisarts stelde graad II MCL‑letsel vast en adviseerde een kniebrace.",
+    "question": "Wat is de prognose en hoe ziet de conservatieve behandeling eruit in de eerste weken?",
+    "criteria": [
+      "Hersteltijd realistisch schatten (4–6 weken).",
+      "Argumenteren voor brace + gecontroleerde mobilisatie.",
+      "Opstellen van progressief oefenprogramma (ROM → spierkracht → balans).",
+      "Aangeven wanneer sporthervatting veilig is.",
+      "Risico‑factoren voor instabiliteit benoemen."
+    ],
+    "modelAnswer": "Een gedeeltelijke MCL‑scheur geneest doorgaans binnen 4–6 weken vanwege goede vascularisatie. Een valgus‑stabiliserende brace beschermt de band terwijl vroege mobilisatie stijfheid voorkomt. Start met actieve extensie/flexie binnen pijngrens, gevolgd door gesloten‑keten quadriceps‑ en hamstringkracht en balans. Sporthervatting bij pijnvrije volledige ROM en stabiele valgus‑stress.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_4",
+    "title": "Quadricepscontusie bij voetbal (Casus 4 van 15)",
+    "caseDescription": "Een 20‑jarige voetballer kreeg een knietrap tegen de linkerdij. Er is uitgebreide zwelling en ecchymose, kniebuiging is beperkt.",
+    "question": "Welke aandachtspunten zijn er bij de behandeling van een spiercontusie in het bovenbeen, inclusief preventie van myositis ossificans?",
+    "criteria": [
+      "Acute PRICE‑maatregelen juist toepassen.",
+      "Vermijden van massage/rek in eerste 48–72 uur.",
+      "Plan voor geleidelijke mobilisatie en krachtopbouw.",
+      "Herkennen van signalen myositis ossificans.",
+      "Tijdlijn voor veilige sporthervatting formuleren."
+    ],
+    "modelAnswer": "Eerste 48 u: rust, ijs, compressie, elevatie; knie licht gebogen en drukverband om bloeding te beperken. Geen diepe massage. Na 3–5 dagen starten met pijnvrije ROM‑oefeningen, daarna lichte rekoefeningen en isometrische quadriceps. Progressie naar dynamische kracht en plyometrie zodra ROM hersteld is. Waakzaamheid voor toegenomen pijn/stijfheid na 2–3 w (mogelijke myositis ossificans). Volle sportbelasting meestal na 4–8 weken bij ernstige contusie.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_5",
+    "title": "Liesblessure (adductor) bij voetbal (Casus 5 van 15)",
+    "caseDescription": "Een 24‑jarige voetballer heeft 10 dagen liespijn na een steek bij een zijwaartse beweging. Drukpijn op de aanhechting m. adductor longus; adductiekracht pijnlijk verminderd.",
+    "question": "Welke herstelfase is dit en hoe begeleid je verder herstel (doelen en oefeningen)?",
+    "criteria": [
+      "Correcte fasebepaling (proliferatie).",
+      "Passende load‑management strategie beschrijven.",
+      "Specifieke adductor‑krachtprogressie uitleggen.",
+      "Integreren van core/hip‑stabiliteitstraining.",
+      "Return‑to‑play criteria formuleren (pijnvrije adductiepiek, sport‑specifieke drills)."
+    ],
+    "modelAnswer": "Dag 10: vroege proliferatiefase. Belasting verminderen tot pijn <3/10. Start isometrische adductie (bal tussen knieën) en core‑stabiliteit. Opbouw naar dynamische band‑adducties, Copenhagen‑variaties en zijwaartse lunges. Integratie van sprint- en schietoefeningen pas pijnvrij. Sporthervatting bij symmetrische adductorkracht, pijnvrije pivots en acceleraties (~4–6 weken).",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_6",
+    "title": "Tennisleg – kuitspierscheur (Casus 6 van 15)",
+    "caseDescription": "Een 45‑jarige tennisser voelde een knap in de mediale kuit. Ecchymose zichtbaar, moeite met op tenen staan.",
+    "question": "Welke diagnose‑stappen en eerste herstelstappen neem je, en wat is de genezingstijd?",
+    "criteria": [
+      "Achillespeesruptuur uitsluiten (Thompson‑test).",
+      "Differentiatie spier vs. peesletsel toelichten.",
+      "Acute behandeling en load‑management beschrijven.",
+      "Progressieve kracht‑ en excentrische training plannen.",
+      "Tijdlijn voor joggen/sprinten weergeven."
+    ],
+    "modelAnswer": "Diagnose: vermoedelijke mediale gastrocnemiusruptuur; Achillespees intact bij Thompson. Acute fase: RICE, relatieve ontlasting. Na 3–5 dagen pijnvrije ROM en isometrische kuitcontractie → opbouw naar excentrische calf raises. Joggen na ~3–4 w, volle tennis na 6–8 w bij volledige enkel‑plantairflexiekracht en pijnvrij springen.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_7",
+    "title": "Voorste kruisbandruptuur (ACL) (Casus 7 van 15)",
+    "caseDescription": "Een 17‑jarige voetbalster scheurde haar ACL; MRI bevestigt ruptuur zonder bijkomende letsels. Ze overweegt operatieve reconstructie.",
+    "question": "Waarom geneest een ACL zelden spontaan en hoe ziet het revalidatietraject eruit bij reconstructie?",
+    "criteria": [
+      "Uitleg geringe vascularisatie ACL.",
+      "Stap‑voor‑stap revalidatiefases (0–12 mnd).",
+      "Belang van kracht- en neuromusculaire criteria benadrukken.",
+      "Risico's van te vroege return‑to‑sport benoemen.",
+      "Patient‑educatie over lange revalidatiebehoefte."
+    ],
+    "modelAnswer": "De intra‑articulaire ACL heeft weinig bloedvoorziening; ruptuur groeit niet aan. Post‑operatieve revalidatie bestaat uit ontzwelling, ROM‑herstel, quadricepsactivatie (0–6 w), progressieve kracht/balans (6 w–4 mnd), sportspecifieke drills (4–9 mnd) en return‑to‑sport pas ≥9 mnd met ≥90 % kracht‑ en hop‑test symmetrie.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_8",
+    "title": "Patellapees‑tendinopathie (Jumper's knee) (Casus 8 van 15)",
+    "caseDescription": "Een 18‑jarige volleyballer heeft geleidelijk ontstaan pijn onder de knieschijf bij springen en landen. Rust vermindert de pijn, maar bij belasting keert deze terug.",
+    "question": "Leg uit waarom dit geen acute ontsteking is en noem twee effectieve interventies.",
+    "criteria": [
+      "Differentiëren tussen tendinitis en tendinopathie.",
+      "Belang van load‑management formuleren.",
+      "Beschrijving excentrisch / heavy‑slow resistance protocol.",
+      "Aanpak van spring‑specifieke herintroductie.",
+      "Langdurige revalidatieduur realistisch schetsen."
+    ],
+    "modelAnswer": "Tendinopathie is degeneratief, niet inflammatoir. Effectieve aanpak: 1) belastingreductie + gestructureerde excentrische squats (decline board) of heavy‑slow resistance 12 w, 2) progressieve kracht en plyometrie met monitoring pijn ≤4/10. Revalidatie 3–6 mnd, met graduele herintroductie van sprongactiviteiten.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_9",
+    "title": "Achillespees‑tendinopathie bij hardloper (Casus 9 van 15)",
+    "caseDescription": "Een 32‑jarige man heeft 4 maanden achillespijn, vooral ochtendstijfheid en startpijn. Verdikking mid‑portion Achillespees.",
+    "question": "Welke conservatieve behandeling is aangewezen en hoe lang duurt herstel?",
+    "criteria": [
+      "Uitleg excentrische Alfredson‑protocol.",
+      "Load‑management tijdens hardlopen.",
+      "Progressie naar HSR en plyometrie.",
+      "Duur en verwachtingen (12+ weken).",
+      "Educatie over pijnmonitoring (pijn als gids)."
+    ],
+    "modelAnswer": "Dagelijks 2×15 excentrische heel‑drops gestrekt en gebogen knie 12 w, progressief verzwaren. Hardloopbelasting tijdelijk verlagen, heuvels en sprints vermijden. Na 6 w eerste verbetering; volledige herstel 3–6 mnd. Later heavy‑slow resistance en plyometrie toevoegen. Pijn tijdens oefening tot 3/10 is acceptabel.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_10",
+    "title": "Fasciitis plantaris (Casus 10 van 15)",
+    "caseDescription": "Een 30‑jarige loopster heeft 3 maanden hielpijn onder de voet, vooral 's ochtends na opstaan en na lang lopen.",
+    "question": "Wat zijn de belangrijkste conservatieve behandelcomponenten en wat is de prognose?",
+    "criteria": [
+      "Gerichte fascia‑ en kuitstretch correct uitleggen.",
+      "Aanpassing schoeisel/inlays toelichten.",
+      "Belastingsaanpassing benoemen.",
+      "Tijdlijn herstel (3–12 mnd) realistisch schetsen.",
+      "Eventuele adjuncten (nachtspalk, shockwave) verantwoord plaatsen."
+    ],
+    "modelAnswer": "Dagelijkse plantar fascia‑stretch en kuitrekken, schokabsorberende schoenen en hielcup, loopbelasting minderen. Prognose: verbetering binnen 2–3 mnd, volledig herstel meestal <1 jaar. Nachtspalk of ESWT kan bij hardnekkige pijn. Volhouden oefeningen essentieel om recidief te voorkomen.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_11",
+    "title": "Osgood‑Schlatter bij jeugdige basketballer (Casus 11 van 15)",
+    "caseDescription": "Een 15‑jarige jongen in groeispurt heeft pijn en knobbelvorming bij de tuberositas tibiae, verergerend bij springen.",
+    "question": "Wat is de oorzaak en begeleidingsstrategie en wat is de lange‑termijnprognose?",
+    "criteria": [
+      "Pathofysiologie apofysitis helder uitleggen.",
+      "Relative rest en alternatieve training aangeven.",
+      "Stretching quadriceps/hamstrings en kracht heup uitleggen.",
+      "Uitleg dat klachten zelf‑limiterend zijn (12–18 mnd).",
+      "Communicatie met ouders/coaches over belasting."
+    ],
+    "modelAnswer": "Apofysitis door trekkrachten tijdens snelle groei. Adviseer vermindering sprongbelasting, quadriceps‑ en hamstringstretch en core/heupkracht. Klachten verdwijnen meestal bij skeletmaturiteit binnen 1–2 jaar; doel is pijnmanagement zonder volledige sportstop.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_12",
+    "title": "Chronische enkelinstabiliteit (Casus 12 van 15)",
+    "caseDescription": "Een 20‑jarige basketballer heeft herhaald inversietrauma en voelt de enkel instabiel bij snel bewegen.",
+    "question": "Hoe behandel je dit en wat vermindert recidiefrisico?",
+    "criteria": [
+      "Balans‑/proprioceptietraining programma omschrijven.",
+      "Krachtperonei en kuit integreren.",
+      "Gebruik brace/tape onderbouwen.",
+      "Schoeiseladviezen geven.",
+      "Onderhoudsoefeningen op lange termijn benadrukken."
+    ],
+    "modelAnswer": "8–12 w neuromusculair programma met eenbenig balans (vlak, bosu), eversietraining, plyometrie. Enkelbrace tijdens sport eerste 6–12 mnd. Hoge basketbalschoenen, continue onderhoudsoefeningen. Verwacht duidelijke stabiliteitsverbetering en 50 % minder recidieven.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_13",
+    "title": "Totale Achillespeesruptuur (conservatief) (Casus 13 van 15)",
+    "caseDescription": "Een 42‑jarige badmintonner scheurde zijn Achillespees en kiest voor functionele niet‑operatieve behandeling met brace in spitsstand.",
+    "question": "Waarom duurt herstel lang en welke fases doorloopt hij? Kan hij na een jaar weer sporten?",
+    "criteria": [
+      "Biologische genezing pees (langzame collageenrijping) uitleggen.",
+      "Fase‑specifieke mobilisatie‑ en belastingsstappen beschrijven.",
+      "Vergelijking operatief vs conservatief kort verwoorden.",
+      "Return‑to‑sport criteria (kracht, hop‑tests) noemen.",
+      "Risico her‑ruptuur en blijvende krachtafname bespreken."
+    ],
+    "modelAnswer": "Collageen in pees rijpt langzaam; immobilisatie 0–6 w, progressieve ROM/belasting 6‑12 w, kracht/hertrain 3‑6 mnd, sport‑specifiek 6‑12 mnd. Conservatief met functioneel protocol geeft vergelijkbare uitkomst als operatie. Volledig badminton op competitie‑niveau realistisch rond 9–12 mnd mits 90 % kracht en pijnvrij springen.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_14",
+    "title": "Meniscusscheur bij voetbal (Casus 14 van 15)",
+    "caseDescription": "Een 23‑jarige voetballer heeft mediale knieklachten 3 weken na verdraaiing; MRI laat een meniscusscheur zien.",
+    "question": "Welke factoren bepalen spontaan herstel en wat betekent dit voor behandeling?",
+    "criteria": [
+      "Uitleg rode‑ versus witte‑zone meniscus.",
+      "Besluitvorming conservatief vs operatief toelichten.",
+      "Rol van fysiotherapie bij kleine scheuren beschrijven.",
+      "Indicatoren voor doorverwijzing (slot, persisterende pijn).",
+      "Informatievoorziening over artrose‑preventie door meniscus‑sparing."
+    ],
+    "modelAnswer": "Alleen perifere rode‑zone‑scheuren kunnen genezen; avasculaire witte‑zone scheuren niet. Kleine, stabiele randletsels: 6‑12 w conservatief met spierkracht en belastingreductie. Grote of witte‑zone scheuren → arthroscopie (hechting of resectie). Bespreek risico op artrose en belang meniscusbehoud.",
+    "theme": "Return2performance"
+  },
+  {
+    "id": "toepassen_casus_15",
+    "title": "Rectus femoris spierscheur bij trap (Casus 15 van 15)",
+    "caseDescription": "Een 21‑jarige voetballer voelde een scherpe pijn aan de voorkant van het bovenbeen bij een krachtige trap. Er is lichte zwelling en blauwe plek hoog in het dijbeen.",
+    "question": "Hoe verschilt behandeling van deze blessure van een hamstringscheur en wat is de hersteltijd?",
+    "criteria": [
+      "Fase‑gerichte aanpak (acute→excentrisch→plyo) uiteenzetten.",
+      "Specifieke aandacht bi‑articulaire functie rectus femoris.",
+      "Progressie naar schiet‑specifieke drills beschrijven.",
+      "Return‑to‑play criteria (pijnvrije trap, sprint) formuleren.",
+      "Hersteltijd realistisch inschatten (6–8 w)."
+    ],
+    "modelAnswer": "Eerst PRICE, dan pijnvrije isometrie, snel over op ROM en concentrisch; excentrisch en heup‑gestrekte oefeningen vroeg introduceren. Schietoefeningen pas week 6. Verschil met hamstring: andere bewegingsketen en testcriteria (volle knie‑extensie kracht). Terugkeer voetbal na 6–8 w bij symmetrische kracht en pijnvrije maximale trap.",
+    "theme": "Return2performance"
   }
 ] 

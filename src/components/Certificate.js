@@ -53,8 +53,9 @@ function Certificate({
             const caseVersions = answerVersions[casus.id] || [];
             return (
               <div key={casus.id} className="mb-6 p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-medium mb-2">Casus {index + 1}</h4>
-                <p className="mb-3">{casus.caseText}</p>
+                <h4 className="font-medium mb-2">{casus.title}</h4>
+                <p className="mb-2 text-gray-600">{casus.caseDescription}</p>
+                <p className="mb-3 font-medium">{casus.question}</p>
                 
                 {caseVersions.map((version, vIndex) => (
                   <div key={vIndex} className="mb-4 p-3 bg-white rounded border">

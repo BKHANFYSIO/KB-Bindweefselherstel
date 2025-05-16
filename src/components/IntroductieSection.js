@@ -32,6 +32,9 @@ function IntroductieSection() {
         <span className="text-yellow-900 text-sm block">
           Alle antwoorden, beoordelingen en voortgang in deze KennisBooster worden <b>uitsluitend lokaal</b> in je browser opgeslagen (op je eigen computer). Je gegevens zijn niet zichtbaar voor anderen en worden niet online bewaard. Je kunt je voortgang wissen met de knop <b>"wis alle voortgang"</b> in het menu. Let op: als je je browsergegevens wist, een andere computer gebruikt of je apparaat opnieuw instelt, kan je voortgang verloren gaan.
         </span>
+        <span className="text-yellow-900 text-sm block mt-2">
+          <b>Let op bij ChatGPT links:</b> Wanneer je op een ChatGPT link klikt, wordt deze geopend in een nieuw venster. Je werkt dan in je eigen ChatGPT account (gratis of betaald). Alle gesprekken worden opgeslagen in jouw ChatGPT account, afhankelijk van je eigen instellingen. Wees je hiervan bewust bij het gebruik van deze functie.
+        </span>
       </div>
       <div className="bg-blue-50 p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-2">Welkom bij de KennisBooster Bindweefselherstel!</h2>

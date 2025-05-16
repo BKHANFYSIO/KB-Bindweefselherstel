@@ -24,201 +24,98 @@
     "niveau": "begrip"
   },
   {
-    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
-    "options": [
-      "Proliferatiefase",
-      "Ontstekingsfase",
-      "Remodelleringsfase",
-      "Hemostase"
-    ],
-    "correctOptionIndex": 3,
-    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
-    "id": "mc_vraag_1",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
-    "options": [
-      "Macrofagen",
-      "Fibroblasten",
-      "Mastcellen",
-      "Lymfocyten"
-    ],
-    "correctOptionIndex": 1,
-    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
-    "id": "mc_vraag_2",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
-    "options": [
-      "Stimuleren van collageensynthese",
-      "Remmen van ontsteking",
-      "Bevorderen van angiogenese",
-      "Versterken van fibroblasten"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
-    "id": "mc_vraag_3",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
-    "options": [
-      "Type I",
-      "Type II",
-      "Type III",
-      "Type IV"
-    ],
-    "correctOptionIndex": 0,
-    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
     "id": "mc_vraag_4",
+    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
+    "options": [
+      "Proliferatiefase",
+      "Ontstekingsfase",
+      "Remodelleringsfase",
+      "Hemostase"
+    ],
+    "correctOptionIndex": 3,
+    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
     "niveau": "kennis"
   },
   {
-    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
-    "options": [
-      "Hemostase",
-      "Ontstekingsfase",
-      "Proliferatiefase",
-      "Remodelleringsfase"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
     "id": "mc_vraag_5",
-    "niveau": "begrip"
+    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
+    "options": [
+      "Macrofagen",
+      "Fibroblasten",
+      "Mastcellen",
+      "Lymfocyten"
+    ],
+    "correctOptionIndex": 1,
+    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
+    "niveau": "kennis"
   },
   {
-    "questionText": "Wat is het effect van roken op bindweefselherstel?",
-    "options": [
-      "Versnelt angiogenese",
-      "Verhoogt zuurstofaanvoer",
-      "Remt collageensynthese",
-      "Stimuleert ontstekingsreactie"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
     "id": "mc_vraag_6",
-    "niveau": "toepassing"
-  },
-  {
-    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
+    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
     "options": [
-      "Stimuleren van ontsteking",
-      "Fagocytose van pathogenen",
-      "Contractie van het wondbed",
-      "Vorming van littekenweefsel"
+      "Stimuleren van collageensynthese",
+      "Remmen van ontsteking",
+      "Bevorderen van angiogenese",
+      "Versterken van fibroblasten"
     ],
     "correctOptionIndex": 2,
-    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
+    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
+    "niveau": "kennis"
+  },
+  {
     "id": "mc_vraag_7",
+    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
+    "options": [
+      "Type I",
+      "Type II",
+      "Type III",
+      "Type IV"
+    ],
+    "correctOptionIndex": 0,
+    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
     "niveau": "kennis"
   },
   {
-    "questionText": "Welke groeifactor activeert fibroblasten en stimuleert collageenproductie?",
-    "options": [
-      "EGF",
-      "PDGF",
-      "TGF-β",
-      "VEGF"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "TGF-β (Transforming Growth Factor-beta) stimuleert fibroblasten om collageen aan te maken.",
     "id": "mc_vraag_8",
-    "niveau": "kennis"
+    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
+    "options": [
+      "Hemostase",
+      "Ontstekingsfase",
+      "Proliferatiefase",
+      "Remodelleringsfase"
+    ],
+    "correctOptionIndex": 2,
+    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
+    "niveau": "begrip"
   },
   {
-    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
-    "options": [
-      "Proliferatiefase",
-      "Ontstekingsfase",
-      "Remodelleringsfase",
-      "Hemostase"
-    ],
-    "correctOptionIndex": 3,
-    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
     "id": "mc_vraag_9",
-    "niveau": "kennis"
+    "questionText": "Wat is het effect van roken op bindweefselherstel?",
+    "options": [
+      "Versnelt angiogenese",
+      "Verhoogt zuurstofaanvoer",
+      "Remt collageensynthese",
+      "Stimuleert ontstekingsreactie"
+    ],
+    "correctOptionIndex": 2,
+    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
+    "niveau": "toepassing"
   },
   {
-    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
-    "options": [
-      "Macrofagen",
-      "Fibroblasten",
-      "Mastcellen",
-      "Lymfocyten"
-    ],
-    "correctOptionIndex": 1,
-    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
     "id": "mc_vraag_10",
+    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
+    "options": [
+      "Stimuleren van ontsteking",
+      "Fagocytose van pathogenen",
+      "Contractie van het wondbed",
+      "Vorming van littekenweefsel"
+    ],
+    "correctOptionIndex": 2,
+    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
     "niveau": "kennis"
   },
   {
-    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
-    "options": [
-      "Stimuleren van collageensynthese",
-      "Remmen van ontsteking",
-      "Bevorderen van angiogenese",
-      "Versterken van fibroblasten"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
     "id": "mc_vraag_11",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
-    "options": [
-      "Type I",
-      "Type II",
-      "Type III",
-      "Type IV"
-    ],
-    "correctOptionIndex": 0,
-    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
-    "id": "mc_vraag_12",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
-    "options": [
-      "Hemostase",
-      "Ontstekingsfase",
-      "Proliferatiefase",
-      "Remodelleringsfase"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
-    "id": "mc_vraag_13",
-    "niveau": "begrip"
-  },
-  {
-    "questionText": "Wat is het effect van roken op bindweefselherstel?",
-    "options": [
-      "Versnelt angiogenese",
-      "Verhoogt zuurstofaanvoer",
-      "Remt collageensynthese",
-      "Stimuleert ontstekingsreactie"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
-    "id": "mc_vraag_14",
-    "niveau": "toepassing"
-  },
-  {
-    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
-    "options": [
-      "Stimuleren van ontsteking",
-      "Fagocytose van pathogenen",
-      "Contractie van het wondbed",
-      "Vorming van littekenweefsel"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
-    "id": "mc_vraag_15",
-    "niveau": "kennis"
-  },
-  {
     "questionText": "Welke groeifactor activeert fibroblasten en stimuleert collageenproductie?",
     "options": [
       "EGF",
@@ -228,319 +125,6 @@
     ],
     "correctOptionIndex": 2,
     "feedback": "TGF-β (Transforming Growth Factor-beta) stimuleert fibroblasten om collageen aan te maken.",
-    "id": "mc_vraag_16",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
-    "options": [
-      "Proliferatiefase",
-      "Ontstekingsfase",
-      "Remodelleringsfase",
-      "Hemostase"
-    ],
-    "correctOptionIndex": 3,
-    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
-    "id": "mc_vraag_17",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
-    "options": [
-      "Macrofagen",
-      "Fibroblasten",
-      "Mastcellen",
-      "Lymfocyten"
-    ],
-    "correctOptionIndex": 1,
-    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
-    "id": "mc_vraag_18",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
-    "options": [
-      "Stimuleren van collageensynthese",
-      "Remmen van ontsteking",
-      "Bevorderen van angiogenese",
-      "Versterken van fibroblasten"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
-    "id": "mc_vraag_19",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
-    "options": [
-      "Type I",
-      "Type II",
-      "Type III",
-      "Type IV"
-    ],
-    "correctOptionIndex": 0,
-    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
-    "id": "mc_vraag_20",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
-    "options": [
-      "Hemostase",
-      "Ontstekingsfase",
-      "Proliferatiefase",
-      "Remodelleringsfase"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
-    "id": "mc_vraag_21",
-    "niveau": "begrip"
-  },
-  {
-    "questionText": "Wat is het effect van roken op bindweefselherstel?",
-    "options": [
-      "Versnelt angiogenese",
-      "Verhoogt zuurstofaanvoer",
-      "Remt collageensynthese",
-      "Stimuleert ontstekingsreactie"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
-    "id": "mc_vraag_22",
-    "niveau": "toepassing"
-  },
-  {
-    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
-    "options": [
-      "Stimuleren van ontsteking",
-      "Fagocytose van pathogenen",
-      "Contractie van het wondbed",
-      "Vorming van littekenweefsel"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
-    "id": "mc_vraag_23",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke groeifactor activeert fibroblasten en stimuleert collageenproductie?",
-    "options": [
-      "EGF",
-      "PDGF",
-      "TGF-β",
-      "VEGF"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "TGF-β (Transforming Growth Factor-beta) stimuleert fibroblasten om collageen aan te maken.",
-    "id": "mc_vraag_24",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
-    "options": [
-      "Proliferatiefase",
-      "Ontstekingsfase",
-      "Remodelleringsfase",
-      "Hemostase"
-    ],
-    "correctOptionIndex": 3,
-    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
-    "id": "mc_vraag_25",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
-    "options": [
-      "Macrofagen",
-      "Fibroblasten",
-      "Mastcellen",
-      "Lymfocyten"
-    ],
-    "correctOptionIndex": 1,
-    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
-    "id": "mc_vraag_26",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
-    "options": [
-      "Stimuleren van collageensynthese",
-      "Remmen van ontsteking",
-      "Bevorderen van angiogenese",
-      "Versterken van fibroblasten"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
-    "id": "mc_vraag_27",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
-    "options": [
-      "Type I",
-      "Type II",
-      "Type III",
-      "Type IV"
-    ],
-    "correctOptionIndex": 0,
-    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
-    "id": "mc_vraag_28",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
-    "options": [
-      "Hemostase",
-      "Ontstekingsfase",
-      "Proliferatiefase",
-      "Remodelleringsfase"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
-    "id": "mc_vraag_29",
-    "niveau": "begrip"
-  },
-  {
-    "questionText": "Wat is het effect van roken op bindweefselherstel?",
-    "options": [
-      "Versnelt angiogenese",
-      "Verhoogt zuurstofaanvoer",
-      "Remt collageensynthese",
-      "Stimuleert ontstekingsreactie"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
-    "id": "mc_vraag_30",
-    "niveau": "toepassing"
-  },
-  {
-    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
-    "options": [
-      "Stimuleren van ontsteking",
-      "Fagocytose van pathogenen",
-      "Contractie van het wondbed",
-      "Vorming van littekenweefsel"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
-    "id": "mc_vraag_31",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke groeifactor activeert fibroblasten en stimuleert collageenproductie?",
-    "options": [
-      "EGF",
-      "PDGF",
-      "TGF-β",
-      "VEGF"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "TGF-β (Transforming Growth Factor-beta) stimuleert fibroblasten om collageen aan te maken.",
-    "id": "mc_vraag_32",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de eerste fase van wondgenezing na een acuut letsel?",
-    "options": [
-      "Proliferatiefase",
-      "Ontstekingsfase",
-      "Remodelleringsfase",
-      "Hemostase"
-    ],
-    "correctOptionIndex": 3,
-    "feedback": "Hemostase is de onmiddellijke fase na een letsel waarbij bloedingen worden gestelpt.",
-    "id": "mc_vraag_33",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke cel is verantwoordelijk voor het afzetten van collageen in de proliferatiefase?",
-    "options": [
-      "Macrofagen",
-      "Fibroblasten",
-      "Mastcellen",
-      "Lymfocyten"
-    ],
-    "correctOptionIndex": 1,
-    "feedback": "Fibroblasten synthetiseren collageen en andere ECM-componenten tijdens de proliferatiefase.",
-    "id": "mc_vraag_34",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Wat is de rol van VEGF tijdens wondgenezing?",
-    "options": [
-      "Stimuleren van collageensynthese",
-      "Remmen van ontsteking",
-      "Bevorderen van angiogenese",
-      "Versterken van fibroblasten"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "VEGF (vascular endothelial growth factor) stimuleert de vorming van nieuwe bloedvaten.",
-    "id": "mc_vraag_35",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welk collageentype domineert in het littekenweefsel na volledige genezing?",
-    "options": [
-      "Type I",
-      "Type II",
-      "Type III",
-      "Type IV"
-    ],
-    "correctOptionIndex": 0,
-    "feedback": "Type I collageen is het sterkste type en komt uiteindelijk in littekenweefsel het meest voor.",
-    "id": "mc_vraag_36",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Tijdens welke fase van wondgenezing worden fibroblasten geactiveerd?",
-    "options": [
-      "Hemostase",
-      "Ontstekingsfase",
-      "Proliferatiefase",
-      "Remodelleringsfase"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "In de proliferatiefase nemen fibroblasten een centrale rol in voor weefselopbouw.",
-    "id": "mc_vraag_37",
-    "niveau": "begrip"
-  },
-  {
-    "questionText": "Wat is het effect van roken op bindweefselherstel?",
-    "options": [
-      "Versnelt angiogenese",
-      "Verhoogt zuurstofaanvoer",
-      "Remt collageensynthese",
-      "Stimuleert ontstekingsreactie"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Roken remt de collageensynthese en vertraagt daarmee het wondgenezingsproces.",
-    "id": "mc_vraag_38",
-    "niveau": "toepassing"
-  },
-  {
-    "questionText": "Wat is de functie van myofibroblasten tijdens genezing?",
-    "options": [
-      "Stimuleren van ontsteking",
-      "Fagocytose van pathogenen",
-      "Contractie van het wondbed",
-      "Vorming van littekenweefsel"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "Myofibroblasten trekken het wondbed samen om het wondoppervlak te verkleinen.",
-    "id": "mc_vraag_39",
-    "niveau": "kennis"
-  },
-  {
-    "questionText": "Welke groeifactor activeert fibroblasten en stimuleert collageenproductie?",
-    "options": [
-      "EGF",
-      "PDGF",
-      "TGF-β",
-      "VEGF"
-    ],
-    "correctOptionIndex": 2,
-    "feedback": "TGF-β (Transforming Growth Factor-beta) stimuleert fibroblasten om collageen aan te maken.",
-    "id": "mc_vraag_40",
     "niveau": "kennis"
   }
 ] 
