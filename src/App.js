@@ -210,7 +210,18 @@ function App() {
         const completed = Object.keys(flashcardAssessments).length;
         if (initialFlashcards.length === 0 && completed === 0) return 'not'; // Geen data, niet gestart
         if (completed === 0) return 'not';
-        if (completed === initialFlashcards.length) return 'completed';
+        
+        // Check of alle basis kaarten (inclusief reverse) ten minste één keer zijn beantwoord
+        const allCards = initialFlashcards.flatMap(card => {
+          const cards = [card.id];
+          if (card.reverse) {
+            cards.push(`${card.id}_reverse`);
+          }
+          return cards;
+        });
+        
+        const allCardsAssessed = allCards.every(cardId => flashcardAssessments[cardId]);
+        if (allCardsAssessed) return 'completed';
         return 'partial';
       }
       case 'mc_vragen': {
@@ -260,6 +271,7 @@ function App() {
       setMcScores({});
       setFirstName('');
       setLastName('');
+      setFlashcardRepeats({}); // Reset flashcard herhalingen
       setResetKey(prev => prev + 1);
       // Optioneel: navigeer naar de startsectie of refresh de pagina
       // setActiveSection('de_basis'); 

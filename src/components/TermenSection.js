@@ -26,12 +26,12 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange, on
   const [showRepeatDone, setShowRepeatDone] = useState(false);
   const [reviewedThisRound, setReviewedThisRound] = useState([]);
 
+  // Initialiseer repeatCounts alleen bij mount en reset
   useEffect(() => {
-    // Initialiseer of update repeatCounts als initialFlashcardRepeats verandert
-    // en verschilt van de huidige state, om onnodige updates te voorkomen.
-    if (JSON.stringify(initialFlashcardRepeats) !== JSON.stringify(repeatCounts)) {
-      setRepeatCounts(initialFlashcardRepeats || {});
-    }
+    setRepeatCounts(initialFlashcardRepeats || {});
+    setShowRepeatDone(false);
+    setCurrentCardIndex(0);
+    setShowAnswer(false);
   }, [initialFlashcardRepeats]);
 
   // Deze effect hook beheert de set kaarten die getoond wordt in de normale leermodus.
@@ -40,22 +40,36 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange, on
       let cardsToDisplay = [];
       const validInitialFlashcards = Array.isArray(initialFlashcards) ? initialFlashcards : [];
 
+      // Maak een uitgebreide lijst met zowel normale als reverse kaarten
+      const expandedFlashcards = validInitialFlashcards.flatMap(card => {
+        const cards = [card];
+        if (card.reverse) {
+          // Maak een reverse versie van de kaart met een unieke ID
+          cards.push({
+            ...card,
+            id: `${card.id}_reverse`,
+            isReverse: true, // Flag om aan te geven dat dit een reverse kaart is
+          });
+        }
+        return cards;
+      });
+
       switch (levelFilter) {
         case 'level1':
-          cardsToDisplay = validInitialFlashcards.filter(card => card && card.level === 1);
+          cardsToDisplay = expandedFlashcards.filter(card => card && card.level === 1);
           break;
         case 'level2':
-          cardsToDisplay = validInitialFlashcards.filter(card => card && card.level === 2);
+          cardsToDisplay = expandedFlashcards.filter(card => card && card.level === 2);
           break;
         case 'level3':
-          cardsToDisplay = validInitialFlashcards.filter(card => card && card.level === 3);
+          cardsToDisplay = expandedFlashcards.filter(card => card && card.level === 3);
           break;
         case 'level1_2':
-          cardsToDisplay = validInitialFlashcards.filter(card => card && (card.level === 1 || card.level === 2));
+          cardsToDisplay = expandedFlashcards.filter(card => card && (card.level === 1 || card.level === 2));
           break;
         case 'all':
         default:
-          cardsToDisplay = [...validInitialFlashcards];
+          cardsToDisplay = [...expandedFlashcards];
           break;
       }
       setActiveFlashcards(shuffleArray(cardsToDisplay));
@@ -67,29 +81,35 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange, on
     }
   }, [initialFlashcards, levelFilter, isReviewing]);
 
-  useEffect(() => {
-    if (typeof onRepeatCountsChange === 'function') {
-      onRepeatCountsChange(repeatCounts);
-    }
-  }, [repeatCounts, onRepeatCountsChange]);
+
 
   const handleAssessment = (cardId, assessmentLevel) => {
+    const baseId = cardId.endsWith('_reverse') ? cardId.replace('_reverse', '') : cardId;
     onAssessmentsChange({ ...assessments, [cardId]: assessmentLevel });
+    
+    // Update herhalingen en stuur direct naar parent
+    const newRepeatCounts = { 
+      ...repeatCounts, 
+      [cardId]: (repeatCounts[cardId] || 0) + 1 
+    };
+    setRepeatCounts(newRepeatCounts);
+    onRepeatCountsChange(newRepeatCounts);
+    
     if (isReviewing) {
-      setRepeatCounts(prev => ({ ...prev, [cardId]: (prev[cardId] || 0) + 1 }));
       setReviewedThisRound(prev => prev.includes(cardId) ? prev : [...prev, cardId]);
     }
+    
     setTimeout(() => {
-      if (isReviewing) {
-        if (activeFlashcards.length > 0 && reviewedThisRound.length + (reviewedThisRound.includes(cardId) ? 0 : 1) >= activeFlashcards.length) {
-          setShowRepeatDone(true);
-          return;
-        }
+      const nextIndex = (currentCardIndex + 1) % activeFlashcards.length;
+      
+      // Check of we een complete ronde hebben gedaan
+      if (nextIndex === 0) {
+        setShowRepeatDone(true);
+        return;
       }
-      if (activeFlashcards.length > 0) {
-        setShowAnswer(false);
-        setCurrentCardIndex((prevIndex) => (prevIndex + 1) % activeFlashcards.length);
-      }
+      
+      setShowAnswer(false);
+      setCurrentCardIndex(nextIndex);
     }, 200);
   };
 
@@ -134,12 +154,18 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
     const cardsToConsiderForReview = getCardsForCurrentLevelFilter();
     let filteredForReviewSession = [];
 
-    if (assessmentFilterType === 'Niet') {
-      filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id] === 'Niet');
-    } else if (assessmentFilterType === 'Niet_Redelijk') {
-      filteredForReviewSession = cardsToConsiderForReview.filter(card => card && (assessments[card.id] === 'Niet' || assessments[card.id] === 'Redelijk'));
-    } else { // 'Alles' (alle beoordeelde kaarten binnen het huidige filter)
-      filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id]);
+    switch (assessmentFilterType) {
+      case 'Niet':
+        filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id] === 'Niet');
+        break;
+      case 'Redelijk':
+        filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id] === 'Redelijk');
+        break;
+      case 'Niet_Redelijk':
+        filteredForReviewSession = cardsToConsiderForReview.filter(card => card && (assessments[card.id] === 'Niet' || assessments[card.id] === 'Redelijk'));
+        break;
+      default: // 'Alles' (alle beoordeelde kaarten binnen het huidige filter)
+        filteredForReviewSession = cardsToConsiderForReview.filter(card => card && assessments[card.id]);
     }
 
     if (filteredForReviewSession.length > 0) {
@@ -164,11 +190,40 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
   // Zijn alle kaarten in de HUIDIGE LEERSET (gefilteredd op level) beoordeeld?
   const allCardsInCurrentSetAssessed = cardsInCurrentLearningSet.length > 0 && cardsInCurrentLearningSet.every(card => card && assessments[card.id]);
 
-  // Tellingen voor review knoppen, gebaseerd op kaarten binnen het huidige level filter
+  // Statistieken en tellingen voor de huidige set/filter
+  const getStatistics = (cards) => {
+    const stats = {
+      goed: 0,
+      redelijk: 0,
+      niet: 0,
+      totaal: 0,
+      nietBeoordeeld: 0
+    };
+    
+    cards.forEach(card => {
+      const assessment = assessments[card.id];
+      if (assessment) {
+        switch(assessment) {
+          case 'Goed': stats.goed++; break;
+          case 'Redelijk': stats.redelijk++; break;
+          case 'Niet': stats.niet++; break;
+        }
+        stats.totaal++;
+      } else {
+        stats.nietBeoordeeld++;
+      }
+    });
+    
+    return stats;
+  };
+
   const cardsForCurrentFilterForCounts = getCardsForCurrentLevelFilter();
-  const countNeeInFilter = cardsForCurrentFilterForCounts.filter(c => c && assessments[c.id] === 'Niet').length;
-  const countNeeRedelijkInFilter = cardsForCurrentFilterForCounts.filter(c => c && (assessments[c.id] === 'Niet' || assessments[c.id] === 'Redelijk')).length;
-  const countAssessedInFilter = cardsForCurrentFilterForCounts.filter(c => c && assessments[c.id]).length;
+  const currentStats = getStatistics(cardsForCurrentFilterForCounts);
+  const activeStats = getStatistics(activeFlashcards);
+  
+  const countNeeInFilter = currentStats.niet;
+  const countNeeRedelijkInFilter = currentStats.niet + currentStats.redelijk;
+  const countAssessedInFilter = currentStats.totaal;
 
   // Fallback UI als er geen kaarten zijn
   if (!currentCard && activeFlashcards.length === 0) {
@@ -275,39 +330,74 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
                aria-expanded={showInstructions}
                aria-controls="flashcard-instructions"
             >
-              {showInstructions ? '▼' : '►'} Bekijk de stappen & tips
+              {showInstructions ? '▼' : '►'} Bekijk de stappen
             </button>
             {showInstructions && (
               <div id="flashcard-instructions" className="bg-blue-50 p-6 rounded-lg shadow-sm mt-2">
-                <strong>Stappen & tips:</strong>
+                <strong>Stappen:</strong>
                 <ol className="list-decimal ml-5 mt-2 space-y-1">
                   {!isReviewing && <li>Selecteer eerst een niveau hierboven.</li>}
-                  <li>Kijk goed naar de term. Probeer zélf het antwoord te bedenken.</li>
-                  <li>Klik op \'Toon Antwoord\'.</li>
+                  <li>Kijk goed naar de kaart. Soms zie je de term, soms de uitleg. Probeer zélf het juiste antwoord te bedenken.</li>
+                  <li>Neem de tijd om goed na te denken! Het is juist goed als het even moeilijk voelt - dat zijn de momenten waarop je brein nieuwe verbindingen aanlegt. Voel je dat het antwoord ergens zit maar kom je er net niet bij? Blijf even nadenken voordat je de kaart omdraait.</li>
+                  <li>Klik op 'Toon Antwoord'.</li>
                   <li>Beoordeel eerlijk hoe goed je het wist.</li>
                   {allCardsInCurrentSetAssessed && !isReviewing && <li>Alle kaarten van dit niveau beoordeeld? Kies hieronder of je specifieke kaarten wilt herhalen.</li>}
                   {isReviewing && <li>Herhaal de kaarten die je nog niet goed kent.</li>}
                 </ol>
+                <p className="mt-2 text-blue-700">Let op: Sommige kaarten zijn omgedraaid (blauwe achtergrond). Je ziet dan eerst de uitleg en moet de term raden!</p>
+                <p className="mt-2 text-blue-700">Tip: Het voelt misschien ongemakkelijk om even te wachten met het omdraaien van de kaart, maar dit is juist cruciaal voor diep leren. Deze momenten van 'bijna weten' zijn de krachtigste momenten voor je langetermijngeheugen. Geef je brein de tijd om de verbindingen te maken!</p>
               </div>
             )}
           </div>
 
-          {/* Flashcard zelf */}
-          {currentCard && (
-            <div className="border p-6 rounded-lg shadow-md bg-yellow-50 min-h-[200px] flex flex-col justify-between items-center mb-4">
-              <p className="text-xl font-bold text-gray-800 text-center mb-4">{currentCard.term}</p>
-              <div className="flex-grow flex items-center justify-center w-full">
-                {showAnswer ? (
-                  <p className="text-gray-700 text-center">{currentCard.definition}</p>
+          {/* Flashcard zelf - alleen tonen als we niet klaar zijn met de set */}
+          {currentCard && !showRepeatDone && (
+            <div className={`border p-6 rounded-lg shadow-md min-h-[200px] flex flex-col justify-between items-center mb-4 relative ${currentCard.reverse ? 'bg-blue-50 border-blue-400' : 'bg-yellow-50 border-yellow-400'}`}>
+              {/* Status indicator (eerste keer of aantal herhalingen) */}
+              <div className="absolute top-2 right-2 text-sm">
+                {repeatCounts[currentCard.id] > 0 ? (
+                  <span className="text-blue-600 font-medium">
+                    Herhaald: {repeatCounts[currentCard.id]}×
+                  </span>
                 ) : (
-                  <button
-                    onClick={toggleAnswer}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
-                  >
-                    Toon Antwoord
-                  </button>
+                  <span className="text-green-600 font-medium">
+                    Eerste keer
+                  </span>
                 )}
               </div>
+              {currentCard.reverse ? (
+                <>
+                  <div className="flex-grow flex flex-col items-center justify-center w-full">
+                    <p className="text-gray-700 text-center mb-4">{currentCard.definition}</p>
+                    {showAnswer ? (
+                      <p className="text-xl font-bold text-gray-800 text-center">{currentCard.term}</p>
+                    ) : (
+                      <button
+                        onClick={toggleAnswer}
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
+                      >
+                        Toon Antwoord
+                      </button>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-xl font-bold text-gray-800 text-center mb-4">{currentCard.term}</p>
+                  <div className="flex-grow flex items-center justify-center w-full">
+                    {showAnswer ? (
+                      <p className="text-gray-700 text-center">{currentCard.definition}</p>
+                    ) : (
+                      <button
+                        onClick={toggleAnswer}
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-150 ease-in-out shadow"
+                      >
+                        Toon Antwoord
+                      </button>
+                    )}
+                  </div>
+                </>
+              )}
               {showAnswer && (
                 <>
                   <div className="mt-4 flex flex-col items-center">
@@ -344,61 +434,114 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
                   </div>
                 </>
               )}
-              {isReviewing && repeatCounts[currentCard.id] > 0 && (
-                <div className="mt-2 text-xs text-gray-500">Herhaald: {repeatCounts[currentCard.id]}x</div>
-              )}
             </div>
           )}
 
-          {/* Melding & Knop als herhaalronde (review) klaar is */}
-          {showRepeatDone && isReviewing && (
-            <div className="text-center text-green-700 font-semibold mb-4 p-4 bg-green-50 rounded-lg">
-              <p>Je hebt alle kaarten in deze herhaalronde ({levelLabels[levelFilter] !== 'Alle Niveaus' ? levelLabels[levelFilter] : 'Alle Beoordeelde'}) afgerond.</p>
-              <div className="mt-4">
-                <button
-                  onClick={startOriginalSet} // Gaat terug naar leermodus, respecteert actieve levelFilter
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md"
-                >
-                  Terug naar Leermodus
-                </button>
+          {/* Verbeterde afronding melding met statistieken */}
+          {showRepeatDone && (
+            <div className="text-center mb-4 p-8 bg-blue-50 rounded-lg border-2 border-blue-200 shadow-lg">
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-blue-800 mb-4">
+                  {isReviewing ? '🎯 Herhaling Afgerond!' : '🎉 Set Afgerond!'}
+                </h3>
+                <p className="text-lg text-gray-700 mb-4">
+                  Je hebt alle {activeFlashcards.length} kaarten in {isReviewing ? 'deze herhaalronde' : 'deze set'} ({levelLabels[levelFilter]}) doorgenomen.
+                </p>
+                
+                {/* Statistieken */}
+                <div className="bg-white p-4 rounded-lg shadow-inner mb-6">
+                  <h4 className="text-gray-700 font-semibold mb-3">Resultaten deze ronde:</h4>
+                  <div className="flex justify-center gap-6">
+                    <div className="text-green-600">
+                      <div className="text-2xl font-bold">{activeStats.goed}</div>
+                      <div className="text-sm">Goed</div>
+                    </div>
+                    <div className="text-yellow-600">
+                      <div className="text-2xl font-bold">{activeStats.redelijk}</div>
+                      <div className="text-sm">Redelijk</div>
+                    </div>
+                    <div className="text-red-600">
+                      <div className="text-2xl font-bold">{activeStats.niet}</div>
+                      <div className="text-sm">Niet</div>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-gray-600 mb-4">
+                  Wat wil je nu doen?
+                </p>
+              </div>
+              
+              <div className="flex flex-col gap-4 max-w-md mx-auto">
+                {isReviewing ? (
+                  <>
+                    <button
+                      onClick={startOriginalSet}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                    >
+                      Terug naar Leermodus
+                    </button>
+                    {(activeStats.niet > 0 || activeStats.redelijk > 0) && (
+                      <button
+                        onClick={() => {
+                          setShowRepeatDone(false);
+                          setCurrentCardIndex(0);
+                        }}
+                        className="w-full bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                      >
+                        Herhaal deze kaarten nog een keer
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {/* Herhaalopties voor verschillende niveaus */}
+                    {activeStats.niet > 0 && (
+                      <button
+                        onClick={() => startReview('Niet')}
+                        className="w-full bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                      >
+                        Herhaal vragen die je niet kent ({activeStats.niet})
+                      </button>
+                    )}
+                    {activeStats.redelijk > 0 && (
+                      <button
+                        onClick={() => startReview('Redelijk')}
+                        className="w-full bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                      >
+                        Herhaal vragen die je redelijk kent ({activeStats.redelijk})
+                      </button>
+                    )}
+                    {(activeStats.niet > 0 || activeStats.redelijk > 0) && (
+                      <button
+                        onClick={() => startReview('Niet_Redelijk')}
+                        className="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                      >
+                        Herhaal alle vragen die je nog moet oefenen ({activeStats.niet + activeStats.redelijk})
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setLevelFilter('')}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                    >
+                      Kies een ander niveau
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowRepeatDone(false);
+                        setCurrentCardIndex(0);
+                      }}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+                    >
+                      Nog een keer deze set
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           )}
           
-          {/* Herhaal-knoppen (alleen tonen als alle kaarten in huidige leerset beoordeeld zijn en niet in review-mode) */}
-          {allCardsInCurrentSetAssessed && !isReviewing && cardsInCurrentLearningSet.length > 0 && (
-            <div className="mt-8 text-center p-6 bg-blue-50 rounded-lg">
-              <p className="text-xl font-medium text-gray-800 mb-2">
-                Alle ({cardsInCurrentLearningSet.length}) kaarten van {levelLabels[levelFilter]} beoordeeld!
-              </p>
-              <p className="text-sm text-gray-600 mb-4">
-                Herhaal specifieke groepen binnen {levelLabels[levelFilter]}.
-              </p>
-              <div className="flex justify-center gap-4 flex-wrap">
-                <button
-                  onClick={() => startReview('Niet')}
-                  disabled={countNeeInFilter === 0}
-                  className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeInFilter > 0 ? 'bg-orange-600 hover:bg-orange-700' : 'bg-gray-400 cursor-not-allowed'}`}
-                >
-                  Herhaal 'Niet' ({countNeeInFilter})
-                </button>
-                <button
-                  onClick={() => startReview('Niet_Redelijk')}
-                  disabled={countNeeRedelijkInFilter === 0}
-                  className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countNeeRedelijkInFilter > 0 ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-gray-400 cursor-not-allowed'}`}
-                >
-                  Herhaal 'Niet & Redelijk' ({countNeeRedelijkInFilter})
-                </button>
-                <button
-                  onClick={() => startReview('Alles')}
-                  disabled={countAssessedInFilter === 0}
-                  className={`px-4 py-2 rounded-lg font-medium text-white transition-colors shadow-md text-sm ${countAssessedInFilter > 0 ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'}`}
-                >
-                  Herhaal Alle Beoordeelde ({countAssessedInFilter})
-                </button>
-              </div>
-            </div>
-          )}
+
         </div>
       ) : (
         <div className="text-center text-gray-500 italic mt-8">Kies eerst een niveau om te starten met de flashcards.</div>

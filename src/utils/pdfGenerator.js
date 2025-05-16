@@ -422,7 +422,7 @@ export const generateCertificatePDF = async (data) => {
     pdf.setFontSize(10);
     pdf.setFont(undefined, 'normal');
     // Tabel header
-    const colWidths = [0.32, 0.22, 0.18, 0.18]; // som = 1
+    const colWidths = [0.45, 0.20, 0.18, 0.17]; // som = 1, meer ruimte voor term
     const headers = ['Term', 'Beoordeling', 'Niveau', 'Herhalingen'];
     let x = margin;
     headers.forEach((h, i) => {
@@ -432,20 +432,61 @@ export const generateCertificatePDF = async (data) => {
     });
     currentY += 18;
     pdf.setFont(undefined, 'normal');
-    initialFlashcards.forEach(card => {
-      const assessment = flashcardAssessments[card.id] || 'Niet beoordeeld';
-      const repetitions = flashcardRepeats[card.id] || 1;
-      let row = [card.term, assessment, `Niveau: ${card.level}`, `Herhalingen: ${repetitions}`];
-      x = margin;
-      row.forEach((cell, i) => {
-        let cellText = pdf.splitTextToSize(cell, colWidths[i] * contentWidth - 4);
-        pdf.text(cellText, x, currentY, { maxWidth: colWidths[i] * contentWidth - 4 });
-        x += colWidths[i] * contentWidth;
-      });
-      currentY += 16 + (row.map((cell, i) => pdf.splitTextToSize(cell, colWidths[i] * contentWidth - 4).length).reduce((a, b) => Math.max(a, b), 1) - 1) * lineHeight;
-      if (currentY > pageHeight - bottomMargin - 20) {
+
+    // Sorteer de flashcards op niveau en dan op term
+    const sortedFlashcards = [...initialFlashcards].sort((a, b) => {
+      if (a.level !== b.level) return a.level - b.level;
+      return a.term.localeCompare(b.term);
+    });
+
+    // Voeg zowel normale als reverse kaarten toe aan de lijst
+    const allFlashcards = sortedFlashcards.flatMap(card => {
+      const cards = [{ ...card }];  // Clone the card to avoid reference issues
+      if (card.reverse) {
+        // Voor reverse kaarten, maak een nieuwe kaart met de juiste ID
+        const reverseCard = {
+          ...card,
+          id: `${card.id}_reverse`,
+          term: `${card.term} (omgekeerd)`,
+          isReverse: true,
+          originalId: card.id  // Bewaar het originele ID voor referentie
+        };
+        cards.push(reverseCard);
+      }
+      return cards;
+    });
+
+    allFlashcards.forEach(card => {
+      if (currentY > pageHeight - bottomMargin) {
         pdf.addPage();
-        currentY = margin + 18;
+        currentY = margin;
+        pagesToNumber.push(pdf.internal.getNumberOfPages());
+      }
+
+      x = margin;
+      const assessment = flashcardAssessments[card.id];
+      if (assessment) {
+        // Term - met text wrapping als nodig
+        const termWidth = colWidths[0] * contentWidth - 10; // 10px marge
+        const wrappedTerm = pdf.splitTextToSize(card.term, termWidth);
+        pdf.text(wrappedTerm, x, currentY);
+        x += colWidths[0] * contentWidth;
+        
+        // Beoordeling
+        pdf.text(assessment, x, currentY);
+        x += colWidths[1] * contentWidth;
+        
+        // Niveau
+        pdf.text(`Niveau ${card.level}`, x, currentY);
+        x += colWidths[2] * contentWidth;
+        
+        // Herhalingen
+        let repeats = 0;
+        const cardId = card.isReverse ? `${card.originalId}_reverse` : card.id;
+        repeats = flashcardRepeats[cardId] || 0;
+        pdf.text(repeats.toString(), x, currentY);
+        
+        currentY += 14;
       }
     });
     pagesToNumber.push(pdf.internal.getNumberOfPages());
