@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { shuffleArray } from '../utils';
 import usePersistentToggle from './usePersistentToggle';
 
@@ -25,6 +25,9 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange, on
   const [repeatCounts, setRepeatCounts] = useState(initialFlashcardRepeats || {});
   const [showRepeatDone, setShowRepeatDone] = useState(false);
   const [reviewedThisRound, setReviewedThisRound] = useState([]);
+  const [cardSideFilter, setCardSideFilter] = useState('both'); // 'both', 'normal', 'reverse'
+  const [infoOpen, setInfoOpen] = useState(false);
+  const infoRef = useRef();
 
   // Initialiseer repeatCounts alleen bij mount en reset
   useEffect(() => {
@@ -42,46 +45,71 @@ function TermenSection({ initialFlashcards, assessments, onAssessmentsChange, on
 
       // Maak een uitgebreide lijst met zowel normale als reverse kaarten
       const expandedFlashcards = validInitialFlashcards.flatMap(card => {
-        const cards = [card];
+        const cards = [];
+        
+        // Voeg altijd de normale versie toe
+        cards.push({
+          ...card,
+          isReverse: false
+        });
+        
+        // Als de kaart reverse is, voeg ook de reverse versie toe
         if (card.reverse) {
-          // Maak een reverse versie van de kaart met een unieke ID
           cards.push({
             ...card,
             id: `${card.id}_reverse`,
-            isReverse: true, // Flag om aan te geven dat dit een reverse kaart is
+            isReverse: true
           });
         }
+        
         return cards;
       });
 
+      // Filter op kaartzijde
+      let filteredBySide = expandedFlashcards;
+      if (cardSideFilter === 'normal') {
+        filteredBySide = expandedFlashcards.filter(card => !card.isReverse);
+      } else if (cardSideFilter === 'reverse') {
+        filteredBySide = expandedFlashcards.filter(card => card.isReverse);
+      }
+
       switch (levelFilter) {
         case 'level1':
-          cardsToDisplay = expandedFlashcards.filter(card => card && card.level === 1);
+          cardsToDisplay = filteredBySide.filter(card => card && card.level === 1);
           break;
         case 'level2':
-          cardsToDisplay = expandedFlashcards.filter(card => card && card.level === 2);
+          cardsToDisplay = filteredBySide.filter(card => card && card.level === 2);
           break;
         case 'level3':
-          cardsToDisplay = expandedFlashcards.filter(card => card && card.level === 3);
+          cardsToDisplay = filteredBySide.filter(card => card && card.level === 3);
           break;
         case 'level1_2':
-          cardsToDisplay = expandedFlashcards.filter(card => card && (card.level === 1 || card.level === 2));
+          cardsToDisplay = filteredBySide.filter(card => card && (card.level === 1 || card.level === 2));
           break;
         case 'all':
         default:
-          cardsToDisplay = [...expandedFlashcards];
+          cardsToDisplay = [...filteredBySide];
           break;
       }
       setActiveFlashcards(shuffleArray(cardsToDisplay));
       setCurrentCardIndex(0);
       setShowAnswer(false);
-      // Reset review-gerelateerde states als we de level filter veranderen
       setReviewedThisRound([]);
       setShowRepeatDone(false);
     }
-  }, [initialFlashcards, levelFilter, isReviewing]);
+  }, [initialFlashcards, levelFilter, isReviewing, cardSideFilter]);
 
-
+  // Click-away listener voor popover
+  useEffect(() => {
+    if (!infoOpen) return;
+    function handleClick(event) {
+      if (infoRef.current && !infoRef.current.contains(event.target)) {
+        setInfoOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [infoOpen]);
 
   const handleAssessment = (cardId, assessmentLevel) => {
     const baseId = cardId.endsWith('_reverse') ? cardId.replace('_reverse', '') : cardId;
@@ -284,7 +312,7 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
           {showIntro && (
             <div id="begrippen-intro" className="bg-blue-50 p-6 rounded-lg shadow-sm">
               <p className="text-gray-700 leading-relaxed">
-                De Begrippen Trainer helpt je om de belangrijkste termen en concepten rondom bindweefselherstel eigen te maken. Gebruik de filters hieronder om op niveau te oefenen.
+                De Begrippen Trainer helpt je om de belangrijkste termen en concepten rondom bindweefselherstel eigen te maken. Gebruik de filters hieronder om op kaartzijde en/of het niveau naar keuze te oefenen.
               </p>
             </div>
           )}
@@ -295,7 +323,7 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
       {!isReviewing && (
         <div className="mb-4 p-4 bg-gray-100 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-2">
             {levelOrder.map(levelKey => (
               <button
                 key={levelKey}
@@ -309,6 +337,47 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
                 {levelLabels[levelKey]}
               </button>
             ))}
+          </div>
+          <div className="flex flex-wrap gap-2 items-center mt-2 relative">
+            <span className="font-semibold text-gray-700 mr-2">Kaartzijde:</span>
+            <button
+              type="button"
+              onClick={() => setInfoOpen((v) => !v)}
+              className="rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 w-7 h-7 flex items-center justify-center border border-blue-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 mr-2"
+              aria-label="Uitleg kaartzijde filter"
+              ref={infoRef}
+            >
+              <span className="text-lg font-bold">i</span>
+            </button>
+            {infoOpen && (
+              <div className="absolute left-0 top-10 z-20 bg-white border border-blue-300 rounded-lg shadow-lg p-4 w-80 text-sm text-gray-800 animate-fadeIn">
+                <strong className="block mb-2 text-blue-700">Uitleg kaartzijde filter</strong>
+                <ul className="list-disc pl-5 mb-2">
+                  <li><b>Voorkant → achterkant</b>: Je ziet de term en oefent vooral de betekenis van het begrip.</li>
+                  <li><b>Achterkant → voorkant</b>: Je ziet de uitleg en oefent vooral het onthouden van de termnaam zelf.</li>
+                  <li><b>Beide kanten</b>: Je oefent beide varianten door elkaar voor diepgaand leren.</li>
+                </ul>
+                <span className="text-xs text-gray-500">Klik buiten dit venster of op het i-tje om te sluiten.</span>
+              </div>
+            )}
+            <button
+              onClick={() => setCardSideFilter('both')}
+              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${cardSideFilter === 'both' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              Beide kanten
+            </button>
+            <button
+              onClick={() => setCardSideFilter('normal')}
+              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${cardSideFilter === 'normal' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              Alleen voorkant → achterkant
+            </button>
+            <button
+              onClick={() => setCardSideFilter('reverse')}
+              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${cardSideFilter === 'reverse' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              Alleen achterkant → voorkant
+            </button>
           </div>
         </div>
       )}
@@ -344,8 +413,12 @@ Sluit af met een uitnodiging tot verdere verdieping: vraag wat de student nog la
                   {allCardsInCurrentSetAssessed && !isReviewing && <li>Alle kaarten van dit niveau beoordeeld? Kies hieronder of je specifieke kaarten wilt herhalen.</li>}
                   {isReviewing && <li>Herhaal de kaarten die je nog niet goed kent.</li>}
                 </ol>
-                <p className="mt-2 text-blue-700">Let op: Sommige kaarten zijn omgedraaid (blauwe achtergrond). Je ziet dan eerst de uitleg en moet de term raden!</p>
-                <p className="mt-2 text-blue-700">Tip: Het voelt misschien ongemakkelijk om even te wachten met het omdraaien van de kaart, maar dit is juist cruciaal voor diep leren. Deze momenten van 'bijna weten' zijn de krachtigste momenten voor je langetermijngeheugen. Geef je brein de tijd om de verbindingen te maken!</p>
+                <p className="mt-2 text-blue-700"><b>Let op:</b> Sommige kaarten zijn omgedraaid (blauwe achtergrond). Je ziet dan eerst de uitleg en moet de term raden!</p>
+                <div className="mt-4 p-4 bg-yellow-100 rounded-lg border-l-4 border-yellow-500">
+                  <p className="text-yellow-900">
+                    <span className="font-bold">Tip:</span> Het voelt misschien ongemakkelijk om even te wachten met het omdraaien van de kaart, maar dit is juist cruciaal voor diep leren. Deze momenten van 'bijna weten' zijn de krachtigste momenten voor je langetermijngeheugen. Geef je brein de tijd om de verbindingen te maken!
+                  </p>
+                </div>
               </div>
             )}
           </div>
