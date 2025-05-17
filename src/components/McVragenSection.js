@@ -174,20 +174,27 @@ function McVragenSection({ questions, scores, onScoreChange, onUserAnswersChange
       </div>
 
       <div className="mb-4 p-4 bg-gray-100 rounded-lg">
-        <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Niveau</h3>
-        <div className="flex flex-wrap gap-2">
-          {niveauOptions.map(opt => (
-            <button
-              key={opt.value}
-              onClick={() => setNiveauFilter(opt.value)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
-                ${niveauFilter === opt.value
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-            >
-              {opt.label}
-            </button>
-          ))}
+        <h3 className="text-lg font-semibold text-gray-700 mb-4">Filters</h3>
+        <div className="flex flex-wrap gap-6 items-end flex-col sm:flex-row">
+          {/* Niveau */}
+          <div>
+            <div className="text-xs font-semibold text-gray-500 mb-1 pl-1">Niveau</div>
+            <div className="flex gap-2">
+              {niveauOptions.map(opt => (
+                <button
+                  key={opt.value}
+                  onClick={() => setNiveauFilter(opt.value)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors border border-gray-300
+                    ${niveauFilter === opt.value
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-gray-700 hover:bg-blue-100'}
+                  `}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

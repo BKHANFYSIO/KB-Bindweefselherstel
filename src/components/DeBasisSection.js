@@ -352,7 +352,6 @@ function DeBasisSection({ kennisBoosterTitel = 'Bindweefselherstel' }) {
                     <tr>
                       <th className="px-3 py-2 border break-words w-1/6 min-w-[90px]">Fase (NL)</th>
                       <th className="px-3 py-2 border break-words w-2/6 min-w-[120px] max-w-[220px]">Alternatieve termen (NL)</th>
-                      <th className="px-3 py-2 border break-words w-1/6 min-w-[90px]">Engelse term</th>
                       <th className="px-3 py-2 border break-words w-2/6 min-w-[120px] max-w-[200px]">Kernproces</th>
                     </tr>
                   </thead>
@@ -360,25 +359,21 @@ function DeBasisSection({ kennisBoosterTitel = 'Bindweefselherstel' }) {
                     <tr>
                       <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Homeostase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[220px]">Hemostase, acute fase</td>
-                      <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Hemostasis</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[200px]">Bloedstelping, stolling</td>
                     </tr>
                     <tr>
                       <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Ontstekingsfase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[220px]">Inflammatiefase</td>
-                      <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Inflammation phase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[200px]">Opruimen, ontsteking</td>
                     </tr>
                     <tr>
                       <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Proliferatiefase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[220px]">Granulatiefase, regeneratiefase</td>
-                      <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Proliferation phase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[200px]">Weefselopbouw, celdeling</td>
                     </tr>
                     <tr>
                       <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Remodelleringsfase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[220px]">Vroege/late remodelleringsfase, reorganisatiefase, integratiefase, maturatiefase</td>
-                      <td className="border px-3 py-2 break-words w-1/6 min-w-[90px]">Remodeling phase</td>
                       <td className="border px-3 py-2 break-words w-2/6 min-w-[120px] max-w-[200px]">Matrix reorganisatie, uitlijning, versterking</td>
                     </tr>
                   </tbody>

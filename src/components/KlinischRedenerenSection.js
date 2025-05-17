@@ -210,27 +210,33 @@ Geef een gestructureerde analyse met:
       </div>
 
       <div className="mb-4 p-4 bg-gray-100 rounded-lg">
-        <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Thema</h3>
-        <div className="flex flex-wrap gap-2">
-          {filterOptions.map(theme => {
-            // Only render filter if it's 'Alle Thema's' or if there are cases for this theme
-            const casesForTheme = theme === 'Alle Thema\'s' ? cases : cases.filter(c => c.theme === theme);
-            if (casesForTheme.length > 0) {
-              return (
-                <button
-                  key={theme}
-                  onClick={() => setThemeFilter(theme)}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
-                    ${themeFilter === theme
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-                >
-                  {theme}
-                </button>
-              );
-            }
-            return null;
-          })}
+        <h3 className="text-lg font-semibold text-gray-700 mb-4">Filters</h3>
+        <div className="flex flex-wrap gap-6 items-end flex-col sm:flex-row">
+          {/* Thema */}
+          <div>
+            <div className="text-xs font-semibold text-gray-500 mb-1 pl-1">Thema</div>
+            <div className="flex gap-2">
+              {filterOptions.map(theme => {
+                const casesForTheme = theme === 'Alle Thema\'s' ? cases : cases.filter(c => c.theme === theme);
+                if (casesForTheme.length > 0) {
+                  return (
+                    <button
+                      key={theme}
+                      onClick={() => setThemeFilter(theme)}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition-colors border border-gray-300
+                        ${themeFilter === theme
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-white text-gray-700 hover:bg-blue-100'}
+                      `}
+                    >
+                      {theme}
+                    </button>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -442,6 +448,30 @@ Geef een gestructureerde analyse met:
             </div>
           </div>
         )}
+        <div className="flex justify-between items-center mt-6">
+          <button
+            onClick={goToPreviousCase}
+            disabled={currentCaseIndex === 0 || currentCases.length === 0}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              currentCaseIndex === 0 || currentCases.length === 0
+                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
+          >
+            ← Vorige
+          </button>
+          <button
+            onClick={goToNextCase}
+            disabled={currentCaseIndex === currentCases.length - 1 || currentCases.length === 0}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              currentCaseIndex === currentCases.length - 1 || currentCases.length === 0
+                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            Volgende →
+          </button>
+        </div>
       </div>
     </div>
   );
