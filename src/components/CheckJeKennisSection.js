@@ -262,20 +262,27 @@ Geef een gestructureerde analyse met:
       </div>
 
       <div className="mb-4 p-4 bg-gray-100 rounded-lg">
-        <h3 className="text-lg font-semibold text-gray-700 mb-2">Filter op Uitlegtype</h3>
-        <div className="flex flex-wrap gap-2">
-          {['allebij', 'uitleg aan patienten', 'uitleg aan collega\'s'].map(filterType => (
-            <button
-              key={filterType}
-              onClick={() => setAudienceFilter(filterType)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
-                ${audienceFilter === filterType
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-            >
-              {filterType.charAt(0).toUpperCase() + filterType.slice(1).replace("collega\'s", "collega's")}
-            </button>
-          ))}
+        <h3 className="text-lg font-semibold text-gray-700 mb-4">Filters</h3>
+        <div className="flex flex-wrap gap-6 items-end flex-col sm:flex-row">
+          {/* Uitlegtype */}
+          <div>
+            <div className="text-xs font-semibold text-gray-500 mb-1 pl-1">Uitlegtype</div>
+            <div className="flex gap-2">
+              {['allebij', 'uitleg aan patienten', 'uitleg aan collega\'s'].map(filterType => (
+                <button
+                  key={filterType}
+                  onClick={() => setAudienceFilter(filterType)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors border border-gray-300
+                    ${audienceFilter === filterType
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-gray-700 hover:bg-blue-100'}
+                  `}
+                >
+                  {filterType.charAt(0).toUpperCase() + filterType.slice(1).replace("collega's", "collega's")}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -285,6 +292,30 @@ Geef een gestructureerde analyse met:
             Vraag {currentQuestionIndex + 1} van {currentQuestions.length}
           </h3>
           <PogingBadge attemptNumber={attemptNumber} afgerond={!!selfAssessment[currentQuestion?.id]} />
+        </div>
+        <div className="flex justify-between items-center mb-6">
+          <button
+            onClick={goToPreviousQuestion}
+            disabled={currentQuestionIndex === 0}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              currentQuestionIndex === 0
+                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
+          >
+            ← Vorige
+          </button>
+          <button
+            onClick={goToNextQuestion}
+            disabled={currentQuestionIndex === currentQuestions.length - 1}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              currentQuestionIndex === currentQuestions.length - 1
+                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            Volgende →
+          </button>
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-4 mb-6">
@@ -486,32 +517,6 @@ Geef een gestructureerde analyse met:
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="flex justify-between items-center">
-            <button
-              onClick={goToPreviousQuestion}
-              disabled={currentQuestionIndex === 0}
-              className={`px-4 py-2 rounded-lg font-medium ${
-                currentQuestionIndex === 0
-                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
-              }`}
-            >
-              ← Vorige
-            </button>
-            
-            <button
-              onClick={goToNextQuestion}
-              disabled={currentQuestionIndex === currentQuestions.length - 1}
-              className={`px-4 py-2 rounded-lg font-medium ${
-                currentQuestionIndex === currentQuestions.length - 1
-                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              }`}
-            >
-              Volgende →
-            </button>
-          </div>
-
           <div className="border-t pt-6">
             <h3 className="text-lg font-semibold mb-3 text-center text-blue-700">Herhaling Opties</h3>
             <p className="text-center text-gray-600 mb-4">
@@ -545,6 +550,30 @@ Geef een gestructureerde analyse met:
                 </button>
               )}
             </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <button
+              onClick={goToPreviousQuestion}
+              disabled={currentQuestionIndex === 0}
+              className={`px-4 py-2 rounded-lg font-medium ${
+                currentQuestionIndex === 0
+                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+              }`}
+            >
+              ← Vorige
+            </button>
+            <button
+              onClick={goToNextQuestion}
+              disabled={currentQuestionIndex === currentQuestions.length - 1}
+              className={`px-4 py-2 rounded-lg font-medium ${
+                currentQuestionIndex === currentQuestions.length - 1
+                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
+            >
+              Volgende →
+            </button>
           </div>
         </div>
       </div>
