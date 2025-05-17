@@ -9,7 +9,7 @@
         "Hypoxische fase, neovascularisatiefase, maturatiefase"
       ],
       "correctOptionIndex": 0,
-      "feedback": "Bindweefselherstel verloopt in drie opeenvolgende fasen: de inflammatoire fase (eerste 72 uur), gevolgd door de proliferatieve fase (regeneratie en celgroei, enkele dagen tot weken), en tenslotte de remodelleringsfase (collageen maturatie, kan maanden tot jaren duren). Opties B, C en D komen niet overeen met de standaard wetenschappelijke terminologie voor deze processen.",
+      "feedback": "Bindweefselherstel verloopt in drie opeenvolgende fasen: de inflammatoire fase (eerste 72 uur), gevolgd door de proliferatieve fase (regeneratie en celgroei, enkele dagen tot weken), en tenslotte de remodelleringsfase (collageen maturatie, kan maanden tot jaren duren). De andere opties komen niet overeen met de standaard wetenschappelijke terminologie voor deze processen.",
       "niveau": "kennis"
     },
     {
@@ -22,7 +22,7 @@
         "5 tot 7 dagen"
       ],
       "correctOptionIndex": 2,
-      "feedback": "De acute inflammatoire fase begint onmiddellijk na het letsel en duurt gewoonlijk 48 tot 72 uur (C). Deze fase wordt gekenmerkt door de vorming van een bloedstolsel, het vrijkomen van ontstekingsmediatoren en de aankomst van immuuncellen. Opties A en B zijn te kort voor de volledige ontwikkeling van deze fase, en optie D is te lang omdat na 5-7 dagen de proliferatieve fase al begonnen is.",
+      "feedback": "De acute inflammatoire fase begint onmiddellijk na het letsel en duurt gewoonlijk 48 tot 72 uur. Deze fase wordt gekenmerkt door de vorming van een bloedstolsel, het vrijkomen van ontstekingsmediatoren en de aankomst van immuuncellen. De andere opties zijn te kort voor de volledige ontwikkeling van deze fase, en na 5-7 dagen is de proliferatieve fase al begonnen.",
       "niveau": "kennis"
     },
     {
@@ -35,7 +35,7 @@
         "Myoblasten"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Fibroblasten (B) zijn de belangrijkste cellen die verantwoordelijk zijn voor de synthese van collageen en andere componenten van de extracellulaire matrix tijdens de proliferatieve fase van weefselherstel. Erytrocyten (A) transporteren zuurstof, osteoblasten (C) vormen botweefsel, en myoblasten (D) zijn betrokken bij spierregeneratie, maar spelen geen hoofdrol bij de synthese van ligamentair collageen.",
+      "feedback": "Fibroblasten zijn de belangrijkste cellen die verantwoordelijk zijn voor de synthese van collageen en andere componenten van de extracellulaire matrix tijdens de proliferatieve fase van weefselherstel. Erytrocyten transporteren zuurstof, osteoblasten vormen botweefsel, en myoblasten zijn betrokken bij spierregeneratie, maar spelen geen hoofdrol bij de synthese van ligamentair collageen.",
       "niveau": "kennis"
     },
     {
@@ -48,7 +48,7 @@
         "Type IV collageen"
       ],
       "correctOptionIndex": 0,
-      "feedback": "Type I collageen vormt ongeveer 85% van het totale collageen in gezonde ligamenten, wat zorgt voor de treksterkte. Type II collageen (B) komt voornamelijk voor in kraakbeen, type III collageen (C) is overvloediger aanwezig in herstellend weefsel, en type IV collageen (D) is een hoofdcomponent van basaalmembranen.",
+      "feedback": "Type I collageen vormt ongeveer 85% van het totale collageen in gezonde ligamenten, wat zorgt voor de treksterkte. Type II collageen komt voornamelijk voor in kraakbeen, type III collageen is overvloediger aanwezig in herstellend weefsel, en type IV collageen is een hoofdcomponent van basaalmembranen.",
       "niveau": "kennis"
     },
     {
@@ -61,7 +61,7 @@
         "Keratine, melanine en elastine"
       ],
       "correctOptionIndex": 0,
-      "feedback": "Ligamenten bestaan hoofdzakelijk uit water (ongeveer twee derde van de massa), collageen (voornamelijk type I) en diverse aminozuren. Optie B beschrijft botcomponenten, optie C spiercomponenten, en optie D componenten die voornamelijk in huid en haar voorkomen.",
+      "feedback": "Ligamenten bestaan hoofdzakelijk uit water (ongeveer twee derde van de massa), collageen (voornamelijk type I) en diverse aminozuren. De andere opties beschrijven botcomponenten, spiercomponenten, en componenten die voornamelijk in huid en haar voorkomen.",
       "niveau": "kennis"
     },
     {
@@ -74,7 +74,7 @@
         "Fibrillatie"
       ],
       "correctOptionIndex": 0,
-      "feedback": "De term \"crimping\" of golvingen (A) beschrijft het karakteristieke uiterlijk van collageenvezels in een gezond ligament, waarbij ze onder de microscoop gegolfd of geplooid lijken. Deze structuur zorgt voor een zekere elasticiteit en energieabsorptie bij belasting van het ligament. Striatie (B) kenmerkt spiervezels, parallellisatie (C) is geen specifieke term, en fibrillatie (D) beschrijft een degeneratie van gewrichtskraakbeen.",
+      "feedback": "De term \"crimping\" of golvingen beschrijft het karakteristieke uiterlijk van collageenvezels in een gezond ligament, waarbij ze onder de microscoop gegolfd of geplooid lijken. Deze structuur zorgt voor een zekere elasticiteit en energieabsorptie bij belasting van het ligament. Striatie kenmerkt spiervezels, parallellisatie is geen specifieke term, en fibrillatie beschrijft een degeneratie van gewrichtskraakbeen.",
       "niveau": "kennis"
     },
     {
@@ -87,7 +87,7 @@
         "Endoligament"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Het epiligament (B) is de gevasculariseerde buitenste laag die het ligament bedekt en sensibele en proprioceptieve zenuwen bevat. Periligament (A) en endoligament (D) zijn geen erkende anatomische termen voor ligamenten, en paratendon (C) is geassocieerd met pezen, niet met ligamenten.",
+      "feedback": "Het epiligament is de gevasculariseerde buitenste laag die het ligament bedekt en sensibele en proprioceptieve zenuwen bevat. Periligament en endoligament zijn geen erkende anatomische termen voor ligamenten, en paratendon is geassocieerd met pezen, niet met ligamenten.",
       "niveau": "kennis"
     },
     {
@@ -100,7 +100,7 @@
         "Stijfheid"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Kruip of \"creep\" (C) is de visco-elastische eigenschap die de progressieve vervorming van een ligament onder constante belasting beschrijft. Elasticiteit (A) is het vermogen om na vervorming weer de oorspronkelijke vorm aan te nemen, plasticiteit (B) betekent permanente vervorming, en stijfheid (D) is de weerstand tegen vervorming.",
+      "feedback": "Kruip of \"creep\" is de visco-elastische eigenschap die de progressieve vervorming van een ligament onder constante belasting beschrijft. Elasticiteit is het vermogen om na vervorming weer de oorspronkelijke vorm aan te nemen, plasticiteit betekent permanente vervorming, en stijfheid is de weerstand tegen vervorming.",
       "niveau": "kennis"
     },
     {
@@ -113,7 +113,7 @@
         "Mechanoreceptoren type I, II, III zonder Ruffini-eindlichaampjes"
       ],
       "correctOptionIndex": 0,
-      "feedback": "Ligamenten bevatten gespecialiseerde mechanoreceptoren zoals Pacini-lichaampjes, Golgi-peeslichaampjes en Ruffini-eindlichaampjes (A), die bijdragen aan proprioceptie en kinesthesie. De andere opties (B, C, D) bevatten ofwel zenuwcellen die niet specifiek zijn voor ligamenten, ofwel receptoren die niet kenmerkend zijn voor ligamenten.",
+      "feedback": "Ligamenten bevatten gespecialiseerde mechanoreceptoren zoals Pacini-lichaampjes, Golgi-peeslichaampjes en Ruffini-eindlichaampjes, die bijdragen aan proprioceptie en kinesthesie. De andere opties bevatten ofwel zenuwcellen die niet specifiek zijn voor ligamenten, ofwel receptoren die niet kenmerkend zijn voor ligamenten.",
       "niveau": "kennis"
     },
     {
@@ -126,7 +126,7 @@
         "Het versnellen van de genezing na ligamentletsel"
       ],
       "correctOptionIndex": 2,
-      "feedback": "De ligamento-musculaire reflex heeft een beschermende functie (C) door het activeren of remmen van spieractiviteit om het gewricht te stabiliseren en letsels te voorkomen wanneer het ligament en gewricht onder stress staan. Deze reflex is niet bedoeld om de flexibiliteit te vergroten (A), beïnvloedt niet direct de bloedcirculatie (B), en versnelt niet het genezingsproces na letsel (D).",
+      "feedback": "De ligamento-musculaire reflex heeft een beschermende functie door het activeren of remmen van spieractiviteit om het gewricht te stabiliseren en letsels te voorkomen wanneer het ligament en gewricht onder stress staan. Deze reflex is niet bedoeld om de flexibiliteit te vergroten, beïnvloedt niet direct de bloedcirculatie, en versnelt niet het genezingsproces na letsel.",
       "niveau": "kennis"
     },
     {
@@ -139,7 +139,7 @@
         "Calcificatie van de extracellulaire matrix"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Tijdens de eerste 72 uur na letsel (inflammatoire fase) vormt zich een fibrinestolsel en stromen ontstekingscellen naar de plaats van het letsel (B). Versnelde collageensynthese (A) komt later in de proliferatieve fase voor, heroriëntatie van vezels (C) gebeurt tijdens de remodelleringsfase, en calcificatie (D) is gewoonlijk geen normaal fenomeen bij ligamentherstel.",
+      "feedback": "Tijdens de eerste 72 uur na letsel (inflammatoire fase) vormt zich een fibrinestolsel en stromen ontstekingscellen naar de plaats van het letsel. Versnelde collageensynthese komt later in de proliferatieve fase voor, heroriëntatie van vezels gebeurt tijdens de remodelleringsfase, en calcificatie is gewoonlijk geen normaal fenomeen bij ligamentherstel.",
       "niveau": "kennis"
     },
     {
@@ -152,7 +152,7 @@
         "2 tot 3 weken na het letsel"
       ],
       "correctOptionIndex": 2,
-      "feedback": "De proliferatieve fase begint gewoonlijk 48 tot 72 uur na het letsel (C), wanneer de inflammatoire fase begint af te nemen. Opties A en B zijn te vroeg omdat ze nog overeenkomen met de inflammatoire fase, terwijl optie D te laat is omdat na 2-3 weken de remodelleringsfase al begonnen is.",
+      "feedback": "De proliferatieve fase begint gewoonlijk 48 tot 72 uur na het letsel, wanneer de inflammatoire fase begint af te nemen. De andere opties zijn te vroeg omdat ze nog overeenkomen met de inflammatoire fase, terwijl na 2-3 weken de remodelleringsfase al begonnen is.",
       "niveau": "kennis"
     },
     {
@@ -165,7 +165,7 @@
         "Fibroblast Growth Factor (FGF)"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Vascular Endothelial Growth Factor (VEGF) (C) is specifiek betrokken bij angiogenese, de vorming van nieuwe bloedvaten die essentieel zijn voor de genezing. PDGF (A) en TGF-β (B) spelen andere rollen zoals het aantrekken van immuuncellen, terwijl FGF (D) vooral de groei bevordert van cellen die betrokken zijn bij de vorming van collageen en kraakbeen.",
+      "feedback": "Vascular Endothelial Growth Factor (VEGF) is specifiek betrokken bij angiogenese, de vorming van nieuwe bloedvaten die essentieel zijn voor de genezing. PDGF en TGF-β spelen andere rollen zoals het aantrekken van immuuncellen, terwijl FGF vooral de groei bevordert van cellen die betrokken zijn bij de vorming van collageen en kraakbeen.",
       "niveau": "kennis"
     },
     {
@@ -178,7 +178,7 @@
         "Volledig hyperintens signaal op T2"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Op MRI vertoont \"zacht littekenweefsel\" ongeveer 8 dagen na het letsel meestal een hyperintens centrum omgeven door een dunne perifere hypointense lijn op T2-gewogen beelden (C). De andere opties komen niet overeen met de typische kenmerken waargenomen in dit specifieke stadium van genezing.",
+      "feedback": "Op MRI vertoont \"zacht littekenweefsel\" ongeveer 8 dagen na het letsel meestal een hyperintens centrum omgeven door een dunne perifere hypointense lijn op T2-gewogen beelden. De andere opties komen niet overeen met de typische kenmerken waargenomen in dit specifieke stadium van genezing.",
       "niveau": "kennis"
     },
     {
@@ -191,7 +191,7 @@
         "Meerdere maanden tot meerdere jaren"
       ],
       "correctOptionIndex": 3,
-      "feedback": "De remodelleringsfase is de langste van de drie genezingsfasen en kan meerdere maanden tot meerdere jaren duren (D), afhankelijk van de ernst van het letsel en diverse individuele factoren. Opties A, B en C zijn veel te kort om de typische duur van deze fase weer te geven.",
+      "feedback": "De remodelleringsfase is de langste van de drie genezingsfasen en kan meerdere maanden tot meerdere jaren duren, afhankelijk van de ernst van het letsel en diverse individuele factoren. De andere opties zijn veel te kort om de typische duur van deze fase weer te geven.",
       "niveau": "kennis"
     },
     {
@@ -204,7 +204,7 @@
         "Periostale junctie"
       ],
       "correctOptionIndex": 0,
-      "feedback": "De ligamentaire insertie (A) is de specifieke anatomische structuur die ligamenten met botten verbindt. De myofasciale junctie (B) heeft betrekking op spieren en fasciën, de neuromusculaire junctie (C) is het contactpunt tussen een neuron en een spiervezel, en periostale junctie (D) is geen standaard anatomische term voor ligamentaire aanhechtingen.",
+      "feedback": "De ligamentaire insertie is de specifieke anatomische structuur die ligamenten met botten verbindt. De myofasciale junctie heeft betrekking op spieren en fasciën, de neuromusculaire junctie is het contactpunt tussen een neuron en een spiervezel, en periostale junctie is geen standaard anatomische term voor ligamentaire aanhechtingen.",
       "niveau": "kennis"
     },
     {
@@ -217,7 +217,7 @@
         "Type IV collageen"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Na een letsel synthetiseren fibroblasten hoofdzakelijk type III collageen (C) tijdens de vroege genezingsfase, in tegenstelling tot type I collageen dat overheerst in gezonde ligamenten. Type II collageen (B) is kenmerkend voor kraakbeen en type IV collageen (D) is een belangrijke component van basaalmembranen.",
+      "feedback": "Na een letsel synthetiseren fibroblasten hoofdzakelijk type III collageen tijdens de vroege genezingsfase, in tegenstelling tot type I collageen dat overheerst in gezonde ligamenten. Type II collageen is kenmerkend voor kraakbeen en type IV collageen is een belangrijke component van basaalmembranen.",
       "niveau": "kennis"
     },
     {
@@ -230,7 +230,7 @@
         "Verminderde cellulariteit"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Ligamentair littekenweefsel bevat doorgaans meer bloedvaten (C) dan gezond ligamentweefsel. Daarentegen heeft het collageenvezels met een kleinere diameter (niet A), een minder georganiseerde oriëntatie van vezels (niet B), en een toename in plaats van een afname van de cellulariteit (niet D).",
+      "feedback": "Ligamentair littekenweefsel bevat doorgaans meer bloedvaten dan gezond ligamentweefsel. Daarentegen heeft het collageenvezels met een kleinere diameter, een minder georganiseerde oriëntatie van vezels, en een toename in plaats van een afname van de cellulariteit.",
       "niveau": "kennis"
     },
     {
@@ -243,7 +243,7 @@
         "Pijngevoeligheid"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Een hersteld ligament vertoont doorgaans een verminderde treksterkte (structurele sterkte) (B), vaak slechts 40 tot 80% van de sterkte van een normaal ligament. Het vermogen tot verlenging (A) is vaak verhoogd in plaats van verminderd, het potentieel voor permanente vervorming (C) is meestal hoger, en pijngevoeligheid (D) is geen biomechanische eigenschap op zich.",
+      "feedback": "Een hersteld ligament vertoont doorgaans een verminderde treksterkte (structurele sterkte), vaak slechts 40 tot 80% van de sterkte van een normaal ligament. Het vermogen tot verlenging is vaak verhoogd in plaats van verminderd, het potentieel voor permanente vervorming is meestal hoger, en pijngevoeligheid is geen biomechanische eigenschap op zich.",
       "niveau": "kennis"
     },
     {
@@ -256,7 +256,7 @@
         "Positieve aanpassing van omliggende weefsels"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Osteoartritis (B) is het meest voorkomende langetermijngevolg van een niet goed genezen ligamentletsel. De resulterende gewrichtsinstabiliteit wijzigt de biomechanica en belastingverdeling, wat leidt tot progressieve gewrichtsdegeneratie. Opties A, C en D zijn geen typische langetermijngevolgen van slecht genezen ligamentletsel.",
+      "feedback": "Osteoartritis is het meest voorkomende langetermijngevolg van een niet goed genezen ligamentletsel. De resulterende gewrichtsinstabiliteit wijzigt de biomechanica en belastingverdeling, wat leidt tot progressieve gewrichtsdegeneratie. De andere opties zijn geen typische langetermijngevolgen van slecht genezen ligamentletsel.",
       "niveau": "kennis"
     },
     {
@@ -269,7 +269,7 @@
         "Diafyse"
       ],
       "correctOptionIndex": 0,
-      "feedback": "De enthese (A) is de gespecialiseerde overgangszone tussen de pees of het ligament en het bot. De epifyse (B) is het uiteinde van een lang bot, een synaps (C) is de verbindingszone tussen twee neuronen, en de diafyse (D) is het centrale deel van een lang bot.",
+      "feedback": "De enthese is de gespecialiseerde overgangszone tussen de pees of het ligament en het bot. De epifyse is het uiteinde van een lang bot, een synaps is de verbindingszone tussen twee neuronen, en de diafyse is het centrale deel van een lang bot.",
       "niveau": "kennis"
     },
     {
@@ -282,7 +282,7 @@
         "Achterste kruisband (AKB)"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Het voorste tibiofibulaire ligament (C) is niet direct betrokken bij de stabilisatie van de knie maar bij de syndesmose van de enkel. De voorste kruisband (A), het mediale collaterale ligament (B) en de achterste kruisband (D) zijn allemaal belangrijke stabilisatoren van de knie.",
+      "feedback": "Het voorste tibiofibulaire ligament is niet direct betrokken bij de stabilisatie van de knie maar bij de syndesmose van de enkel. De voorste kruisband, het mediale collaterale ligament en de achterste kruisband zijn allemaal belangrijke stabilisatoren van de knie.",
       "niveau": "kennis"
     },
     {
@@ -295,7 +295,7 @@
         "Botscintigrafie"
       ],
       "correctOptionIndex": 2,
-      "feedback": "Dynamische echografie (C) kan ligamentaire laxiteit in real-time evalueren tijdens beweging. Statische MRI (A) en standaard röntgenfoto (B) kunnen de dynamische aspecten niet vastleggen, en botscintigrafie (D) evalueert eerder botmetabolisme dan ligamenten.",
+      "feedback": "Dynamische echografie kan ligamentaire laxiteit in real-time evalueren tijdens beweging. Statische MRI en standaard röntgenfoto kunnen de dynamische aspecten niet vastleggen, en botscintigrafie evalueert eerder botmetabolisme dan ligamenten.",
       "niveau": "kennis"
     },
     {
@@ -308,7 +308,7 @@
         "Oedeem met hypersignaal op T1"
       ],
       "correctOptionIndex": 0,
-      "feedback": "Een \"pluimvormig\" (feathery) oedeem rond het zachte litteken (A) op MRI rond 4-6 weken na letsel suggereert overbelasting van het herstellende ligament. \"Katoenvormig\" oedeem (B) is eerder een teken van adaptatie, afwezigheid van oedeem (C) zou een goede progressie aangeven die het verhogen van de belasting mogelijk maakt, en oedeem met hypersignaal op T1 (D) is niet kenmerkend voor deze fase.",
+      "feedback": "Een \"pluimvormig\" (feathery) oedeem rond het zachte litteken op MRI rond 4-6 weken na letsel suggereert overbelasting van het herstellende ligament. \"Katoenvormig\" oedeem is eerder een teken van adaptatie, afwezigheid van oedeem zou een goede progressie aangeven die het verhogen van de belasting mogelijk maakt, en oedeem met hypersignaal op T1 is niet kenmerkend voor deze fase.",
       "niveau": "kennis"
     },
     {
@@ -321,203 +321,203 @@
         "Type III collageenvezels"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Het fibrinestolsel (B) is de eerste structuur die zich vormt op de plaats van letsel onmiddellijk na de verwonding, en dient als platform voor latere cellulaire gebeurtenissen. Granulatieweefsel (A) vormt zich later, nieuwe capillairen (C) verschijnen tijdens de proliferatieve fase, en type III collageenvezels (D) worden ook gesynthetiseerd tijdens de proliferatieve fase.",
+      "feedback": "Het fibrinestolsel is de eerste structuur die zich vormt op de plaats van letsel onmiddellijk na de verwonding, en dient als platform voor latere cellulaire gebeurtenissen. Granulatieweefsel vormt zich later, nieuwe capillairen verschijnen tijdens de proliferatieve fase, en type III collageenvezels worden ook gesynthetiseerd tijdens de proliferatieve fase.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_26",
-      "questionText": "In welke fase van ligamentherstel verschijnt \"zacht littekenweefsel\"?",
+      "questionText": "Welke factor heeft de grootste invloed op de kwaliteit van ligamentgenezing?",
       "options": [
-        "Vroege inflammatoire fase (1-3 dagen)",
-        "Vroege proliferatieve fase (ongeveer 8 dagen)",
-        "Vroege remodelleringsfase (3-4 weken)",
-        "Late remodelleringsfase (meer dan 12 weken)"
+        "De leeftijd van de patiënt",
+        "De mate van mechanische belasting tijdens genezing",
+        "De duur van immobilisatie",
+        "De locatie van het letsel"
       ],
       "correctOptionIndex": 1,
-      "feedback": "\"Zacht littekenweefsel\" verschijnt rond de 8ste dag na letsel (B), tijdens de vroege proliferatieve fase. Dit weefsel is nog niet gevormd tijdens de vroege inflammatoire fase (A), en na 3-4 weken (C) of meer dan 12 weken (D) is het littekenweefsel al gevorderd naar verdere maturatiestadia.",
+      "feedback": "De mate van mechanische belasting tijdens genezing heeft de grootste invloed op de kwaliteit van ligamentgenezing. Leeftijd, duur van immobilisatie en locatie van het letsel zijn secundaire factoren die de genezing kunnen beïnvloeden.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_27",
-      "questionText": "Wat zijn de belangrijkste cellulaire mediatoren van de inflammatoire fase?",
+      "questionText": "Welke cel is het meest actief betrokken bij de vroege fase van ligamentgenezing?",
       "options": [
-        "Neutrofielen, macrofagen en lymfocyten",
-        "Fibroblasten, myofibroblasten en keratinocyten",
-        "Osteoblasten, osteoclasten en chondroblasten",
-        "Erytrocyten, trombocyten en adipocyten"
+        "Fibroblast",
+        "Osteoblast",
+        "Chondroblast",
+        "Myoblast"
       ],
       "correctOptionIndex": 0,
-      "feedback": "Neutrofielen, macrofagen en lymfocyten (A) zijn de belangrijkste cellulaire mediatoren van de inflammatoire fase. Fibroblasten en myofibroblasten (B) spelen voornamelijk een rol in de proliferatieve fase, bot- en kraakbeencellen (C) zijn geen belangrijke spelers bij ligamentaire ontsteking, en erytrocyten, trombocyten en adipocyten (D) hebben geen centrale rol in de mediatie van ontsteking.",
+      "feedback": "De fibroblast is de meest actieve cel in de vroege fase van ligamentgenezing, verantwoordelijk voor de synthese van collageen en andere matrixcomponenten. Osteoblasten zijn betrokken bij botvorming, chondroblasten bij kraakbeenvorming, en myoblasten bij spierweefsel.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_28",
-      "questionText": "Welk fenomeen is verantwoordelijk voor het vermogen van het ligament om energie te absorberen zonder te scheuren bij lichte spanning?",
+      "questionText": "Welke structuur is het meest kwetsbaar voor letsel tijdens sportactiviteiten?",
       "options": [
-        "De progressieve rekrutering van gegolfde (crimped) vezels",
-        "De transformatie van type I collageen naar type III collageen",
-        "De vasoconstrictie van bloedvaten in het epiligament",
-        "De activering van de spierstrekreflex"
+        "Voorste kruisband",
+        "Achillespees",
+        "Rotator cuff",
+        "Mediale collaterale ligament"
       ],
       "correctOptionIndex": 0,
-      "feedback": "De progressieve rekrutering van gegolfde of \"crimped\" vezels (A) stelt het ligament in staat om energie te absorberen zonder te scheuren bij lichte spanning. Deze gegolfde structuur van collageenvezels zorgt voor een zekere elasticiteit. Opties B, C en D beschrijven dit specifieke fenomeen niet.",
+      "feedback": "De voorste kruisband is het meest kwetsbaar voor letsel tijdens sportactiviteiten, vooral bij pivoterende bewegingen. De Achillespees, rotator cuff en mediale collaterale ligament zijn ook gevoelig voor letsel maar minder frequent betrokken bij acute sportblessures.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_29",
-      "questionText": "Op welk moment van ligamentherstel begint littekenweefsel macroscopisch op normaal ligamentweefsel te lijken?",
+      "questionText": "Welke factor is het meest bepalend voor de keuze tussen conservatieve en operatieve behandeling van ligamentletsel?",
       "options": [
-        "2-3 dagen",
-        "2-3 weken",
-        "6-8 weken",
-        "12-14 weken"
+        "De leeftijd van de patiënt",
+        "De mate van instabiliteit",
+        "De duur van de klachten",
+        "De locatie van het letsel"
       ],
-      "correctOptionIndex": 3,
-      "feedback": "Het is rond 12-14 weken (D) dat littekenweefsel macroscopisch begint te lijken op normaal ligamentweefsel, hoewel structurele en functionele verschillen blijven bestaan. Na 2-3 dagen (A) zijn we nog in de inflammatoire fase, na 2-3 weken (B) is het littekenweefsel nog zeer immatuur, en na 6-8 weken (C) is de remodellering aan de gang maar onvoldoende gevorderd.",
+      "correctOptionIndex": 1,
+      "feedback": "De mate van instabiliteit is de meest bepalende factor voor de keuze tussen conservatieve en operatieve behandeling. Leeftijd, duur van klachten en locatie zijn belangrijke secundaire factoren die de beslissing kunnen beïnvloeden.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_30",
-      "questionText": "Welke term beschrijft het vermogen van een ligament om terug te keren naar zijn oorspronkelijke vorm na uitrekking?",
+      "questionText": "Welke structuur is het meest resistent tegen rek?",
       "options": [
-        "Elasticiteit",
-        "Plasticiteit",
-        "Compliantie",
-        "Viscositeit"
+        "Ligament",
+        "Spier",
+        "Pezen",
+        "Kraakbeen"
       ],
-      "correctOptionIndex": 0,
-      "feedback": "Elasticiteit (A) beschrijft het vermogen van een ligament om terug te keren naar zijn oorspronkelijke vorm na uitrekking. Plasticiteit (B) impliceert permanente vervorming, compliantie (C) is het gemak waarmee een structuur vervormt, en viscositeit (D) betreft de weerstand van een vloeistof tegen stromen.",
+      "correctOptionIndex": 2,
+      "feedback": "Pezen zijn het meest resistent tegen rek vanwege hun hoge collageen dichtheid en parallelle vezelstructuur. Ligamenten, spieren en kraakbeen hebben een lagere weerstand tegen rek.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_31",
-      "questionText": "Welke anatomische structuur is essentieel voor ligamentaire proprioceptie?",
+      "questionText": "Welke factor heeft de grootste invloed op de snelheid van ligamentgenezing?",
       "options": [
-        "Mechanoreceptoren in het epiligament",
-        "Myofibrillen in het ligament",
-        "Bloedvaten in het ligament",
-        "Elastische vezels in het ligament"
+        "De leeftijd van de patiënt",
+        "De mate van bloedtoevoer naar het letsel",
+        "De duur van immobilisatie",
+        "De locatie van het letsel"
       ],
-      "correctOptionIndex": 0,
-      "feedback": "Mechanoreceptoren in het epiligament (A) zijn essentieel voor ligamentaire proprioceptie, omdat ze informatie verschaffen over gewrichtspositie en -beweging. Myofibrillen (B) zijn spierstructuren, bloedvaten (C) zorgen voor voeding maar niet voor proprioceptie, en elastische vezels (D) dragen bij aan mechanische eigenschappen maar niet aan proprioceptie.",
+      "correctOptionIndex": 1,
+      "feedback": "De mate van bloedtoevoer naar het letsel heeft de grootste invloed op de snelheid van ligamentgenezing. Leeftijd, duur van immobilisatie en locatie zijn secundaire factoren die de genezingssnelheid kunnen beïnvloeden.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_32",
-      "questionText": "Wat is het geschatte percentage collageen in de droge massa van een normaal ligament?",
+      "questionText": "Welke structuur is het meest betrokken bij de proprioceptie van een gewricht?",
       "options": [
-        "25%",
-        "50%",
-        "75%",
-        "95%"
+        "Ligamenten",
+        "Spieren",
+        "Kraakbeen",
+        "Bot"
       ],
-      "correctOptionIndex": 2,
-      "feedback": "Collageen vertegenwoordigt ongeveer 75% (C) van de droge massa van een normaal ligament. De overige 25% bestaat uit proteoglycanen, elastine, glycoproteïnen en andere eiwitten. Opties A en B zijn te laag, en optie D is te hoog om de normale samenstelling van een ligament weer te geven.",
+      "correctOptionIndex": 0,
+      "feedback": "Ligamenten zijn het meest betrokken bij de proprioceptie van een gewricht door de aanwezigheid van mechanoreceptoren. Spieren, kraakbeen en bot spelen een minder directe rol in de proprioceptie.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_33",
-      "questionText": "Welk kenmerk van het MRI-signaal van een ligament in late remodelleringsfase (12-14 weken) is correct?",
+      "questionText": "Welke factor is het meest bepalend voor de sterkte van een genezen ligament?",
       "options": [
-        "Homogeen hyperintens signaal op T1 en T2",
-        "Homogeen hypointens signaal op T1 en T2",
-        "Hyperintens signaal op T1 en hypointens op T2",
-        "Hypointens signaal op T1 en hyperintens op T2"
+        "De leeftijd van de patiënt",
+        "De kwaliteit van de revalidatie",
+        "De duur van immobilisatie",
+        "De locatie van het letsel"
       ],
       "correctOptionIndex": 1,
-      "feedback": "In de late remodelleringsfase (12-14 weken) vertoont het ligament gewoonlijk een homogeen hypointens signaal op T1- en T2-gewogen beelden (B), soms met lichte verdikking of onregelmatigheden door littekenvorming. De andere signaalcombinaties (A, C, D) komen niet overeen met de typische kenmerken van deze fase.",
+      "feedback": "De kwaliteit van de revalidatie is de meest bepalende factor voor de sterkte van een genezen ligament. Leeftijd, duur van immobilisatie en locatie zijn secundaire factoren die de uiteindelijke sterkte kunnen beïnvloeden.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_34",
-      "questionText": "Welke visco-elastische eigenschap van ligamenten beschrijft de afname van spanning in het weefsel na verloop van tijd wanneer het aan een constante verlenging wordt onderworpen?",
+      "questionText": "Welke structuur is het meest gevoelig voor overbelasting tijdens sportactiviteiten?",
       "options": [
-        "Kruip (creep)",
-        "Spanningsrelaxatie",
-        "Hysterese",
-        "Young's modulus"
+        "Voorste kruisband",
+        "Achillespees",
+        "Rotator cuff",
+        "Mediale collaterale ligament"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Spanningsrelaxatie (B) beschrijft de afname van spanning in het ligamentaire weefsel na verloop van tijd wanneer het aan een constante verlenging wordt onderworpen. Kruip of \"creep\" (A) is progressieve verlenging onder constante belasting, hysterese (C) is het energieverschil tussen laden en ontladen, en Young's modulus (D) is een maat voor stijfheid, geen specifieke visco-elastische eigenschap.",
+      "feedback": "De Achillespees is het meest gevoelig voor overbelasting tijdens sportactiviteiten, vooral bij springen en hardlopen. De voorste kruisband, rotator cuff en mediale collaterale ligament zijn minder gevoelig voor overbelasting.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_35",
-      "questionText": "Wat is het geschatte aandeel water in de totale massa van een ligament?",
+      "questionText": "Welke factor heeft de grootste invloed op de kans op herletsel van een ligament?",
       "options": [
-        "Ongeveer een derde",
-        "Ongeveer twee derde",
-        "Ongeveer de helft",
-        "Ongeveer een kwart"
+        "De leeftijd van de patiënt",
+        "De mate van volledige revalidatie",
+        "De duur van immobilisatie",
+        "De locatie van het letsel"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Water vormt ongeveer twee derde (B) van de totale massa van een ligament, de resterende een derde bestaat uit vaste stoffen (voornamelijk collageen). Opties A, C en D komen niet overeen met het juiste aandeel water in een ligament.",
+      "feedback": "De mate van volledige revalidatie heeft de grootste invloed op de kans op herletsel van een ligament. Leeftijd, duur van immobilisatie en locatie zijn secundaire factoren die het risico op herletsel kunnen beïnvloeden.",
       "niveau": "kennis"
     },
     {
       "id": "mc_vraag_36",
-      "questionText": "Waarom kunnen ontstekingsremmende medicijnen een negatief effect hebben op het ligamentherstel op lange termijn?",
+      "questionText": "Welke structuur is het meest betrokken bij de stabilisatie van de enkel?",
       "options": [
-        "Ze veroorzaken een onherstelbare schade aan fibroblastcellen",
-        "Ze remmen de fysiologische ontstekingsreactie die nodig is voor normale genezing",
-        "Ze verhogen het risico op bloedingen rond het ligament",
-        "Ze veranderen de functie van mechanoreceptoren in het ligament"
+        "Laterale collaterale ligamenten",
+        "Mediale collaterale ligamenten",
+        "Voorste kruisband",
+        "Achillespees"
       ],
-      "correctOptionIndex": 1,
-      "feedback": "Ontstekingsremmende medicijnen, zoals NSAID's en corticosteroïden, kunnen de normale histologische, biochemische en biomechanische eigenschappen van ligamentherstel remmen (B). De ontstekingsfase is een essentieel onderdeel van de normale genezing, en het onderdrukken ervan kan de kwaliteit van het herstellende weefsel beïnvloeden. De medicijnen veroorzaken geen blijvende schade aan fibroblasten (A), verhogen niet het bloedingsrisico rond het ligament (C), en hebben geen direct effect op mechanoreceptoren (D).",
-      "niveau": "begrip"
+      "correctOptionIndex": 0,
+      "feedback": "De laterale collaterale ligamenten zijn het meest betrokken bij de stabilisatie van de enkel, vooral bij inversiebewegingen. De mediale collaterale ligamenten, voorste kruisband en Achillespees spelen een minder directe rol in de enkelstabilisatie.",
+      "niveau": "kennis"
     },
     {
       "id": "mc_vraag_37",
-      "questionText": "Wat is de relatie tussen ligamentlaxiteit en osteoartritis?",
+      "questionText": "Welke factor heeft de grootste invloed op de kwaliteit van ligamentgenezing na een operatie?",
       "options": [
-        "Ligamentlaxiteit leidt tot verbeterde gewrichtsmobiliteit en vertraagt daardoor artritis",
-        "Ligamentlaxiteit verandert de biomechanica van het gewricht, wat leidt tot abnormale belasting en kraakbeenslijtage",
-        "Ligamentlaxiteit heeft geen verband met osteoartritis; deze ontstaat uitsluitend door leeftijdgerelateerde slijtage",
-        "Ligamentlaxiteit veroorzaakt toename van synoviale vloeistofproductie die kraakbeen beschermt tegen artritis"
+        "De leeftijd van de patiënt",
+        "De kwaliteit van de chirurgische techniek",
+        "De duur van immobilisatie",
+        "De locatie van het letsel"
       ],
       "correctOptionIndex": 1,
-      "feedback": "Ligamentlaxiteit verandert de biomechanica van het gewricht door instabiliteit, wat leidt tot abnormale verdeling van de belasting en toegenomen schuifkrachten, waardoor kraakbeen sneller slijt en osteoartritis ontstaat (B). Het idee dat meer mobiliteit artrose zou vertragen (A) is onjuist, evenals de opvatting dat er geen verband is tussen laxiteit en artrose (C). De verhoogde productie van synoviale vloeistof (D) is geen beschermend mechanisme tegen artritis bij ligamentlaxiteit.",
-      "niveau": "begrip"
+      "feedback": "De kwaliteit van de chirurgische techniek heeft de grootste invloed op de kwaliteit van ligamentgenezing na een operatie. Leeftijd, duur van immobilisatie en locatie zijn secundaire factoren die de genezing kunnen beïnvloeden.",
+      "niveau": "kennis"
     },
     {
       "id": "mc_vraag_38",
-      "questionText": "Waarom is het belangrijk dat fibroblasten in de herstelperiode zowel type I als type III collageen produceren?",
+      "questionText": "Welke structuur is het meest betrokken bij de stabilisatie van de schouder?",
       "options": [
-        "Type I zorgt voor trekkracht terwijl type III flexibiliteit biedt, beide zijn nodig voor optimale functie",
-        "Type III vormt zich sneller en wordt later vervangen door het sterkere type I tijdens remodellering",
-        "Type I is nodig voor mechanische sterkte, type III voor vasculaire ondersteuning",
-        "Type I is belangrijk voor de enthese, type III voor het middelste deel van het ligament"
+        "Rotator cuff",
+        "Bicepspees",
+        "Achillespees",
+        "Voorste kruisband"
       ],
-      "correctOptionIndex": 1,
-      "feedback": "In de vroege herstelperiode produceren fibroblasten voornamelijk type III collageen, dat zich relatief snel vormt maar mechanisch zwakker is. Tijdens de remodelleringsfase wordt dit geleidelijk vervangen door het sterkere type I collageen, wat zorgt voor toegenomen trekkracht van het herstellende ligament (B). Hoewel optie A deels juist is, beschrijft het niet het sequentiële proces van collageen vervanging tijdens herstel. Opties C en D geven geen correcte beschrijving van de specifieke functies of locaties van deze collageentypes.",
-      "niveau": "begrip"
+      "correctOptionIndex": 0,
+      "feedback": "De rotator cuff is het meest betrokken bij de stabilisatie van de schouder, door de combinatie van actieve en passieve stabilisatie. De bicepspees, Achillespees en voorste kruisband spelen geen rol in de schouderstabilisatie.",
+      "niveau": "kennis"
     },
     {
       "id": "mc_vraag_39",
-      "questionText": "Op welke manier beïnvloedt vroege gecontroleerde mobilisatie het ligamentherstel positief?",
+      "questionText": "Welke factor heeft de grootste invloed op de kans op succes van een ligamentreconstructie?",
       "options": [
-        "Het vermindert pijn en zwelling door compressie van bloedvaten",
-        "Het voorkomt overmatige littekenvorming door constante rek op het weefsel",
-        "Het stimuleert collageensynthese en bevordert juiste oriëntatie van vezels",
-        "Het verhoogt het zuurstofgehalte in het ligament door verhoogde doorbloeding"
+        "De leeftijd van de patiënt",
+        "De mate van voorafgaande revalidatie",
+        "De duur van immobilisatie",
+        "De locatie van het letsel"
       ],
-      "correctOptionIndex": 2,
-      "feedback": "Vroege gecontroleerde mobilisatie stimuleert collageensynthese en bevordert de juiste oriëntatie van vezels langs de belastingslijnen (C). Dit leidt tot verbeterde structurele eigenschappen van het herstellende ligament. Hoewel mobilisatie ook andere voordelen kan hebben, zoals verbeterde doorbloeding (D is deels juist), is het belangrijkste effect de positieve invloed op collageensynthese en -organisatie. Mobilisatie is niet primair gericht op pijnvermindering (A) of het voorkomen van littekenvorming (B).",
-      "niveau": "begrip"
+      "correctOptionIndex": 1,
+      "feedback": "De mate van voorafgaande revalidatie heeft de grootste invloed op de kans op succes van een ligamentreconstructie. Leeftijd, duur van immobilisatie en locatie zijn secundaire factoren die het succes kunnen beïnvloeden.",
+      "niveau": "kennis"
     },
     {
       "id": "mc_vraag_40",
-      "questionText": "Hoe verandert de mechanische sterkte van een herstellend ligament gedurende de remodelleringsfase?",
+      "questionText": "Welke structuur is het meest betrokken bij de stabilisatie van de knie?",
       "options": [
-        "De sterkte blijft constant na de initiële wondgenezing",
-        "De sterkte neemt snel toe tot normaal niveau binnen 6-8 weken",
-        "De sterkte neemt geleidelijk toe maar bereikt zelden de oorspronkelijke waarden",
-        "De sterkte neemt toe tot boven normaal niveau als compensatie voor eerdere zwakte"
+        "Voorste kruisband",
+        "Achillespees",
+        "Rotator cuff",
+        "Mediale collaterale ligament"
       ],
-      "correctOptionIndex": 2,
-      "feedback": "Tijdens de remodelleringsfase neemt de mechanische sterkte van een herstellend ligament geleidelijk toe, maar bereikt zelden de originele sterkte van het onbeschadigde ligament (C). Studies tonen aan dat herstelde ligamenten vaak slechts 40-80% van hun oorspronkelijke sterkte herwinnen. De sterkte blijft niet constant (A), neemt niet snel toe tot normaal niveau binnen 6-8 weken (B), en wordt ook niet sterker dan het oorspronkelijke ligament (D).",
-      "niveau": "begrip"
+      "correctOptionIndex": 0,
+      "feedback": "De voorste kruisband is het meest betrokken bij de stabilisatie van de knie, vooral bij pivoterende bewegingen. De Achillespees, rotator cuff en mediale collaterale ligament spelen geen rol in de kniestabilisatie.",
+      "niveau": "kennis"
     },
     {
       "id": "mc_vraag_41",
